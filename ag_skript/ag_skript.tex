@@ -1,0 +1,4408 @@
+\documentclass[10pt]{scrbook}
+\usepackage[utf8]{inputenc} % no ",halfparskip"
+\usepackage{ngerman}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{MnSymbol}
+\usepackage[numbers,square]{natbib}
+\usepackage{paralist}
+\usepackage[arrow, matrix]{xy} % für kommutative Diagramme
+\author{Wolfgang Keller\footnote{mit Beiträgen von Toni Reimers}}
+\title{Skript Mathe-AG Klasse 11/12}
+\begin{document}
+\maketitle
+\newtheorem{Def}{Definition}
+\newtheorem{Le}[Def]{Lemma}
+\newtheorem{Sa}[Def]{Satz}
+\newtheorem{Kor}[Def]{Korollar}
+\newtheorem{Pro}[Def]{Problem}
+\newtheorem{Bem}[Def]{Bemerkung}
+\newtheorem{Bsp}[Def]{Beispiel}
+\newtheorem{Auf}[Def]{Aufgabe}
+\newtheorem{Loe}[Def]{Lösung}
+\newcommand{\Ker}{\operatorname{Kern}}
+\newcommand{\bild}{\operatorname{Bild}}
+\newcommand{\ord}{\operatorname{o}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\spr}{\operatorname{spr}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\cond}{\operatorname{cond}}
+\newcommand{\lin}{\operatorname{lin}}
+\newcommand{\rang}{\operatorname{Rang}}
+\newcommand{\capa}{\operatorname{cap}}
+\newcommand{\val}{\operatorname{val}}
+\newenvironment{bew}{\begin{proof}[Beweis]}{\end{proof}}
+%\newcommand{\dotcup}{\ensuremath{\mathaccent\cdot\cup}}
+\tableofcontents
+
+\chapter{Humorvolle Einführung}
+
+\section{Definitions}
+
+An engineer thinks that his equations are an approximation to reality. A physicist thinks reality is an approximation to his equations. A mathematician doesn't care. 
+
+\section{Aufbau eines Kriminalromans, entworfen von einem Mathematiker}
+
+Kapitel I   Die Entstehung des babylonischen Rechtssystems \\
+Kapitel II   Die Verfassung der Vereinigten Staaten \\
+Kapitel III   Die Organisationsstruktur des Polizei-Ministeriums \\
+Kapitel IV   Elemente der Gerichtspraxis \\
+Kapitel V   Theorie der Fingerabdrücke \\
+\ldots \\
+Kapitel XXX   (letzte Seite) Die Leiche \\
+(Die Lösung bleibt dem Leser überlassen) \\
+Auflage: 0 Exemplare
+
+(Quelle: \verb|http://www.mathewitze.de/mathe1.html|)
+
+\section{What is mathematics good for?}
+
+A math professor, a native Texan, was asked by one of his students: "`What is mathematics good for?"'
+He replied: "`This question makes me sick! If you show someone the Grand Canyon for the first time, and he asks you 'What's it good for?' What would you do? Well, you kick that guy off the cliff!"'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\section{Knowledge pills}
+
+After the phenomenal success of Viagra, Pfizer has come up with yet another pharmaceutical sensation: knowledge pills.
+A student who is way behind in his English literature class, goes to the pharmacy, and asks the pharmacist if there are knowledge pills for English literature.
+
+"`Sure"', the pharmacist replies.
+
+The student buys one, swallows it, and hours later he knows everything there is to know about English literature. If it's that easy to acquire knowledge, he thinks, why waste hours wrecking your brains over boring textbooks? So, he gives up studying, and whenever an exam is near, he goes to the pharmacy and buys the right knowledge pill: biology, art history, world history - you name it.
+
+When he has to take a math exam, he goes again to the pharmacy as asks for a knowledge pill for mathematics.
+
+"`Just wait a moment"', the pharmacist says. He disappears in the back of his store and comes back with a pill of the size of a melon.
+
+"`But how am I supposed to swallow this?!"' the student exclaims.
+
+"`Well, math has always been a little hard to swallow..."'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|) \\
+
+These days, even the most pure and abstract mathematics is in danger to be applied. (Quelle: \verb|http://www.math.utah.edu/~cherk/mathjokes.html|)
+
+\chapter{Algebra}
+
+George W. Bush visits Algeria. As part of his program, he delivers a speech to the Algerian people: "`You know, I regret that I have to give this speech in English. I would very much prefer to talk to you in your own language. But unfortunately, I was never good at algebra\ldots"'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\section{Wichtige Symbole}
+\begin{itemize}
+	\item $\forall$: für alle
+	\item $\exists$: es existiert ein
+	\item $\exists !$: es existiert genau ein
+	\item $\neg A$: nicht A
+	\item $A \wedge B$: A und B
+	\item $A \vee B$: A oder B
+	\item $A \Rightarrow B$: Aus A folgt B
+	\item $A \Leftrightarrow B$: A gilt genau dann, wenn B gilt
+\end{itemize}
+
+\subsection{Humorvolle Erklärung zu "`$\Rightarrow$"'}
+
+When the logician's little son refused again to eat his vegetables for dinner, the father threatened him: "`If you don't eat your vegies, you won't get any ice-cream!"'
+The son, frightened at the prospect of not having his favorite dessert, quickly finished his vegetables.
+
+What happened next?
+
+After dinner, impressed that his son had eaten all his vegetables, the father sent his son to bed without any ice-cream\ldots
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\subsection{Die De-Morgan'schen Regeln}
+
+A logician at Safeway. \\
+"`Paper or plastic?"' \\
+"`Not 'not paper and not plastic'!"'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\begin{Le}
+Es gilt für alle Belegungen $\alpha$ eines aussagenlogischen oder prädikatenlogischen Ausdrucks und aussagen- bzw. prädikatenlogische Ausdrücke A, B:
+\begin{itemize}
+	\item $w_\alpha\left(A\wedge B\right)=w_\alpha\left(\neg\left (\neg A \vee \neg B\right)\right)$,
+	\item $w_\alpha\left(A\vee B\right)=w_\alpha\left(\neg\left (\neg A \wedge \neg B\right)\right)$,
+	\item $w_\alpha\left(A \Rightarrow B\right)=w_\alpha\left(\neg B \Rightarrow \neg A\right)$ (Prinzip des indirekten Beweises)
+\end{itemize}
+\end{Le}
+
+\begin{Le}
+Es gilt für alle Belegungen $\alpha$ eines prädikatenlogischen Ausdrucks und einen prädikatenlogische Ausdrücke A:
+\begin{itemize}
+	\item $w_\alpha\left(\neg\exists x A\right)=w_\alpha\left(\forall x \neg A\right)$,
+	\item $w_\alpha\left(\neg\forall x A\right)=w_\alpha\left(\exists x \neg A\right)$.
+\end{itemize}
+\end{Le}
+
+\section{Mengen, Relationen und Funktionen}
+\subsection{Mengen}
+\begin{Def}
+\begin{displaymath}
+	A\subseteq B\Leftrightarrow a\in A \Rightarrow b\in B\textnormal{ A ist Teilmenge von B, wenn aus }a\in A\textnormal{ folgt, dass }b\in B\textnormal{ ist}.
+\end{displaymath}
+\end{Def}
+\begin{Def}
+\begin{displaymath}
+	\mathcal{P}(M):=\left\{T: T\subseteq M\right\}
+\end{displaymath}
+$\mathcal{P}(M)$ nennen wir die \emph{Potenzmenge} von $M$.
+\end{Def}
+\begin{Auf}
+Bestimme $\mathcal{P}(\mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset))))$.
+\end{Auf}
+\begin{Loe}
+\begin{eqnarray*}
+\mathcal{P}(\emptyset) & = & \left\{\emptyset\right\} \\
+\mathcal{P}(\mathcal{P}(\emptyset)) & = & \left\{\emptyset, \left\{\emptyset\right\}\right\} \\
+\mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset))) & = & \left\{\emptyset, \left\{\emptyset\right\}, \left\{\left\{\emptyset\right\}\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\} \right\} \\
+\mathcal{P}(\mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset)))) & = & \left\{
+\emptyset, 
+\left\{\emptyset\right\},
+\left\{\left\{\emptyset\right\}\right\},
+\left\{\emptyset, \left\{\emptyset\right\}\right\},\right. \\
+& & \left.
+\left\{\left\{\left\{\emptyset\right\}\right\}\right\},
+\left\{\emptyset, \left\{\left\{\emptyset\right\}\right\}\right\},
+\left\{\left\{\emptyset\right\}, \left\{\left\{\emptyset\right\}\right\}\right\},
+\left\{\emptyset, \left\{\emptyset\right\}, \left\{\left\{\emptyset\right\}\right\}\right\},
+\right. \\
+& & \left.
+\left\{\left\{\emptyset, \left\{\emptyset\right\}\right\} \right\}, 
+\left\{\emptyset, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\},
+\left\{\left\{\emptyset\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\},
+\left\{\emptyset, \left\{\emptyset\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\},
+\right. \\
+& & 
+\left.
+\left\{\left\{\left\{\emptyset\right\}\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\},
+\left\{\emptyset, \left\{\left\{\emptyset\right\}\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\}, \right. \\
+& & \left.
+\left\{\left\{\emptyset\right\}, \left\{\left\{\emptyset\right\}\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\},
+\left\{\emptyset, \left\{\emptyset\right\}, \left\{\left\{\emptyset\right\}\right\}, \left\{\emptyset, \left\{\emptyset\right\}\right\}\right\}
+\right\}
+\end{eqnarray*}
+\end{Loe}
+
+\begin{Def}Seien $M_1$, $M_2$ Mengen. Dann ist 
+\begin{displaymath}
+M_1\cap M_2:=\left\{m: m\in M_1 \textnormal{ und } m\in M_2\right\}.
+\end{displaymath}
+Analog definieren wir 
+\begin{displaymath}
+M_1\cup M_2:=\left\{m: m\in M_1 \textnormal{ oder } m\in M_2\right\}.
+\end{displaymath}
+\end{Def}
+\begin{Def}Sei
+\begin{displaymath}
+	\left\{M_i\right\}_{i\in I}
+\end{displaymath}
+eine durch die Indexmenge $I$ indizierte Familie von Mengen. Dann definieren wir 
+\begin{displaymath}
+\bigcap\limits_{i\in I}{M_i}:=\left\{m: \forall M_k\in\left\{M_i\right\}_{i\in I}: m\in M_k\right\}=\left\{m: \forall i\in I: m\in M_i\right\}
+\end{displaymath}
+und
+\begin{displaymath}
+\bigcup\limits_{i\in I}{M_i}:=\left\{m: \exists M_k\in\left\{M_i\right\}_{i\in I}: m\in M_k\right\}=\left\{m: \exists i\in I: m\in M_i\right\}
+\end{displaymath}\end{Def}
+\begin{Bem}
+	Falls $I=\left\{n\in \mathbb{N}_0: n\geq n_0\right\}$ (oder $I=\left\{n\in \mathbb{Z}: n\geq n_0\right\}$) ist, so schreibt man statt
+\begin{displaymath}
+	\bigcap\limits_{i\in I}{M_i}\textnormal{ bzw. }\bigcup\limits_{i\in I}{M_i}
+\end{displaymath}
+üblicherweise
+\begin{displaymath}
+	\bigcap\limits_{i=n_0}^\infty{M_i}\textnormal{ bzw. }\bigcup\limits_{i=n_0}^\infty{M_i}.
+\end{displaymath}
+Falls $I=\mathbb{Z}$ ist, so ist die Schreibweise
+\begin{displaymath}
+	\bigcap\limits_{i=-\infty}^\infty{M_i}\textnormal{ bzw. }\bigcup\limits_{i=-\infty}^\infty{M_i}
+\end{displaymath}
+üblich.
+\end{Bem}
+\begin{Def}
+\begin{displaymath}
+	\left[a, b\right]:=\left\{x\in \mathbb{R}: a\leq x\leq b\right\}
+\end{displaymath}
+\begin{displaymath}
+	\left[a, b\right):=\left\{x\in \mathbb{R}: a\leq x< b\right\}
+\end{displaymath}
+\begin{displaymath}
+ \left(a, b\right]:=\left\{x\in \mathbb{R}: a< x\leq b\right\}
+\end{displaymath}
+\begin{displaymath}
+	\left(a, b\right):=\left\{x\in \mathbb{R}: a< x< b\right\}
+\end{displaymath}
+\end{Def}
+\begin{Bem}
+Es ist häufig üblich als Grenzen auch $\infty$ und $-\infty$ zuzulassen. In diesem Fall muss man, falls dies als abgeschlossene Grenze eines Intervalls verwendet wird, ggf. das Intervall als Teilmenge von $\mathbb{R}\cup\left\{\infty, -\infty\right\}$ auffassen.
+\end{Bem}
+
+\begin{Auf}
+Sei $\left\{X_r\right\}_{r\in \mathbb{R}}$ mit $X_r:=\left[r, r+1\right)$. Berechne $\bigcap\limits_{r\in \mathbb{R}}{X_r}$ und $\bigcup\limits_{r\in \mathbb{R}}{X_r}$.
+\end{Auf}
+
+\begin{Auf}
+Sei $\left\{Y_r\right\}_{r\in \mathbb{R}^+_0}$ mit $Y_r:=\left[r+1, \infty\right]$. Berechne $\bigcap\limits_{r\in \mathbb{R}^+_0}{Y_r}$ und $\bigcup\limits_{r\in \mathbb{R}^+_0}{Y_r}$.
+\end{Auf}
+
+\begin{Auf}
+Sei $\left\{Z_r\right\}_{r\in \mathbb{R}^+_0}$ mit $Z_r:=\left[1, r+2\right]$. Berechne $\bigcap\limits_{r\in \mathbb{R}^+_0}{Z_r}$ und $\bigcup\limits_{r\in \mathbb{R}^+_0}{Z_r}$.
+\end{Auf}
+
+\begin{Def}
+Das kartesische Produkt von $A$ und $B$: $A \times B$ ist als $\left\{(a, b): a\in A, b\in B\right\}$ definiert.
+\end{Def}
+
+\begin{Bem}
+Wir wollen $(A \times B) \times C$ als äquivalent zu $A \times (B \times C)$ betrachten. Durch diese Definition wird das kartesische Produkt assoziativ. Wir werden später sehen, dass diese Definition sinnvoll ist.
+\end{Bem}
+
+\begin{Def}
+\begin{displaymath}
+\bigtimes\limits_{i=1}^0{M_i}:=\left(\right):=\left\{\emptyset\right\}
+\end{displaymath}
+\begin{displaymath}
+\bigtimes\limits_{i=1}^n{M_i}:=\left(\bigtimes\limits_{i=1}^{n-1}{M_i}\right)\times M_n\textnormal{ für }n\geq 1
+\end{displaymath}
+\end{Def}
+\begin{Def}
+\begin{displaymath}
+M^n:=\bigtimes\limits_{i=1}^n{M}
+\end{displaymath}
+\end{Def}
+\begin{Bsp}
+\begin{displaymath}
+\mathbb{R}^2=\mathbb{R}\times\mathbb{R}
+\end{displaymath}
+\end{Bsp}
+\subsection{Relationen und Funktionen}
+\begin{Def} $R\subseteq M\times N$ heißt binäre Relation \emph{zwischen} $M$ und $N$ (bzw. \emph{äußere Relation} auf M oder auch Relation \emph{auf} $ M\times N$). Eine binäre Relation $R$ \emph{in} M (auch \emph{innere Relation von M} bzw. Relation \emph{auf} M genannt) ist eine Teilmenge von $M\times M$ $(R\subseteq M\times M)$. Analog kann man Relationen auch mit beliebiger Stelligkeit zwischen und innerhalb von Mengen definieren.\end{Def}
+
+\begin{Bem}\label{bem:relation_schreibweise} Statt $(a, b)\in R$ schreibt man üblicherweise $a R b$.\end{Bem}
+
+\begin{Bsp}Sei $M:=\mathbb{R}$. Dann ist $\leq$ eine (binäre) Relation in $\mathbb{R}$. Nach Bemerkung \ref{bem:relation_schreibweise} schreiben wir meist $a\leq b$ statt $(a, b)\in \leq$.\end{Bsp}
+
+\begin{Def}Sei $R\subseteq X\times Y$ eine äußere binäre Relation. Dann heißt R
+\begin{itemize}
+	\item \emph{linkstotal} $\Leftrightarrow\forall x\in X\exists y\in Y: x R y$
+	\item \emph{rechtstotal} $\Leftrightarrow\forall y\in Y\exists x\in X: x R y$
+	\item \emph{linkseindeutig} $\Leftrightarrow x R z \wedge y R z \Rightarrow x=y$
+	\item \emph{rechtseindeutig} $\Leftrightarrow x R y \wedge x R z \Rightarrow y=z$
+\end{itemize}
+\end{Def}
+
+\begin{Def}Sei $R\subseteq M\times M$ eine innere binäre Relation. Dann heißt R
+\begin{itemize}
+	\item \emph{reflexiv} $\Leftrightarrow\forall x\in M: x R x$
+	\item \emph{symmetrisch} $\Leftrightarrow\forall x, y\in M: x R y \Rightarrow y R x$
+	\item \emph{transitiv} $\Leftrightarrow\forall x, y, z\in M: x R y \wedge y R z \Rightarrow x R z$
+	\item \emph{antisymmetrisch} $\Leftrightarrow\forall x, y\in M: x R y \wedge y R x \Rightarrow x=y$
+\end{itemize}
+\end{Def}
+
+\begin{Def}
+Eine Relation heißt \emph{Äquivalenzrelation}, wenn sie reflexiv, symmetrisch und transitiv ist.
+\end{Def}
+
+
+\begin{Def}
+Sei $\sim$ eine Äquivalenzrelation auf der Menge A und $x\in A$. Dann definieren wir $\left[x\right]_\sim := \left\{y \in A: y \sim x\right\}$ als \emph{Äquivalenzklasse von x bezüglich $\sim$}.
+\end{Def}
+
+\begin{Le}
+$x\sim y \Rightarrow \left[x\right]_\sim = \left[y\right]_\sim$.
+\label{le:eqklassen1}
+\end{Le}
+
+\begin{bew}
+
+Sei $z\in \left[x\right]_\sim$. Dann gilt $z\sim x$. Aber es gilt auch $x\sim y$. Nach Transitivität folgt $z\sim y$, also $z\in \left[y\right]_\sim$, also damit  $\left[x\right]_\sim \subseteq \left[y\right]_\sim$.
+
+Aufgrund der Symmetrie folgt aus aus $x\sim y$, dass $y\sim x$ gilt. Damit folgt durch Vertauschung der Variablen  $\left[y\right]_\sim \subseteq \left[x\right]_\sim$.
+
+Zusammen ergibt dies: $\left[x\right]_\sim \subseteq \left[y\right]_\sim \subseteq \left[x\right]_\sim$, also muss Gleichheit gelten.
+\end{bew}
+
+\begin{Le}
+Zwei Äquivalenzklassen $\left[x\right]_\sim, \left[y\right]_\sim$ sind entweder gleich oder disjunkt.
+\end{Le}
+
+\begin{bew}
+Annahme es existiert $z\in \left[x\right]_\sim \cap \left[y\right]_\sim$. Dann muss $z\sim x$ (also $x\sim z$) und $z\sim y$ gelten, woraus wegen Transitivität folgt: $x\sim y$. Mit Lemma \ref{le:eqklassen1} folgt daraus $\left[x\right]_\sim = \left[y\right]_\sim$.
+\end{bew}
+
+\begin{Def}
+Eine Relation heißt \emph{Ordnungsrelation} (oder \emph{Ordnung}), wenn sie reflexiv, antisymmetrisch und transitiv ist.
+\end{Def}
+
+\begin{Bsp}
+$\subseteq$ ist eine Ordnungsrelation auf $\mathcal{P}(M)$, wobei $M$ beliebig ist.
+\end{Bsp}
+
+An diesem Beispiel sieht man sehr schön, dass nicht unbedingt alle Elemente bezüglich eine Ordnung vergleichbar sein müssen.
+
+\begin{Def}
+Eine Ordnung $\prec$ auf M heißt \emph{total}, wenn für alle $m, n\in M$ entweder $m \prec n$ oder $n \prec m$ erfüllt ist.
+\end{Def}
+
+\begin{Def}
+Eine Relation heißt \emph{Funktion}, wenn sie linkstotal und rechtseindeutig ist.
+\end{Def}
+
+\begin{Bem}
+Ohne Einschränkung wollen wir voraussetzen, dass alle Relationen und Funktionen über nichtleeren Mengen definiert sind.
+\end{Bem}
+
+\begin{Def}
+Eine Funktion heißt \emph{injektiv}, wenn sie linksseindeutig ist.
+\end{Def}
+
+\begin{Def}
+Eine Funktion heißt \emph{surjektiv}, wenn sie rechtstotal ist.
+\end{Def}
+\begin{Bem}
+Bei einer surjektiven Funktion $f: X\rightarrow Y$ spricht man häufig von einer Funktion \emph{auf} Y, statt von einer Funktion \emph{nach} Y.
+\end{Bem}
+
+\begin{Def}
+Eine Funktion heißt \emph{bijektiv}, wenn sie injektiv und surjektiv ist.
+\end{Def}
+
+\begin{Def}
+Für $f: X\rightarrow Y$ definieren wir: $\bild(f):=\left\{y\in Y: \exists x\in X: f(x)=y\right\}$.
+\end{Def}
+
+\begin{Auf}
+Sei die Relation $\heartsuit$ auf der Menge aller Menschen dadurch definiert, dass $a \heartsuit b\Leftrightarrow$ Person a die Person b liebt. Untersuche die Relation $\heartsuit$ auf alle Relationseigenschaften (Recht-, Links-Totalität und -Eindeutigkeit, Reflexivität, Transitivität, Symmetrie, Antisymmetrie) dieses Kapitels und entscheide, ob es sich bei $\heartsuit$ um eine
+\begin{itemize}
+\item Äquivalenzrelation
+\item Ordnungsrelation
+\item Funktion
+\end{itemize}
+handelt.
+\end{Auf}
+
+\begin{Auf}
+Bestimme je eine Relation, die
+\begin{itemize}
+	\item reflexiv, symmetrisch und transitiv
+	\item nicht reflexiv, symmetrisch und transitiv
+	\item reflexiv, nicht symmetrisch und transitiv
+	\item nicht reflexiv, nicht symmetrisch und transitiv
+	\item reflexiv, symmetrisch und nicht transitiv
+	\item nicht reflexiv, symmetrisch und nicht transitiv
+	\item reflexiv, nicht symmetrisch und nicht transitiv
+	\item nicht reflexiv, nicht symmetrisch und nicht transitiv
+\end{itemize}
+ist.
+\end{Auf}
+
+\begin{Auf}
+Untersuche folgende Funktionen auf Injektivität und Surjektivität:
+\begin{itemize}
+	\item $\mathbb{R}\rightarrow \mathbb{R}: x\mapsto x^2$
+	\item $\mathbb{R}^+_0\rightarrow \mathbb{R}: x\mapsto x^2$
+	\item $\mathbb{R}\rightarrow \mathbb{R}^+_0: x\mapsto x^2$
+	\item $\mathbb{R}^+_0\rightarrow \mathbb{R}^+_0: x\mapsto x^2$
+\end{itemize}
+\end{Auf}
+
+\begin{Def}
+$Id_X: X\rightarrow X$ ist definiert als $Id_X(x)=x \forall x\in X$.
+\end{Def}
+
+\begin{Def}
+$S_n$ sei als die Menge aller bijektiven Abbildungen von $\left\{1, \ldots, n\right\}$ auf $\left\{1, \ldots, n\right\}$ definiert.
+\end{Def}
+
+\begin{Def}Seien $R\subseteq L\times M$ und $S\subseteq M\times N$ Relationen. Dann wird durch die Verkettung von R und S eine Relation auf $L \times N$ definiert:
+\begin{displaymath}
+	R\circ S:=\left\{(x, z): \exists y: x R y \wedge y S z\right\}
+\end{displaymath}
+\end{Def}
+
+\begin{Bem}
+Auf diese Weise kann man auch die Verkettung von Funktionen definieren, wobei zu beachten ist, dass viele Lehrbücher bei der Verkettung von Funktionen die Reihenfolge vertauschen (unter dem Hintergrund der Abkürzung $(f \circ g)(x):=f(g(x))$).
+\end{Bem}
+
+\begin{Le}
+$f: X\rightarrow Y$ ist injektiv $\Leftrightarrow \exists f^{-1}: Y \rightarrow X: f\circ f^{-1}=Id_X$. 
+\end{Le}
+\begin{bew}
+Sei f injektiv. Dann gibt es für jedes $y\in \bild(f)$ genau ein $x\in X$ mit $f(x)=y$. Setze
+\begin{displaymath}
+f^{-1}(y)=
+\begin{cases}
+x \textnormal{ mit f(x)=y } & \textnormal{für }y\in \bild(f)\\
+x_0\textnormal{ mit }x_0\in X\textnormal{ beliebig }&\textnormal{für }y\notin \bild(f)\\
+\end{cases}
+\end{displaymath}
+Nun rechnen wir für $x\in X$ nach:
+\begin{eqnarray*}
+	(f\circ f^{-1})(x) & = & f^{-1}(f(x)) \\
+	& = & f^{-1}(y)\textnormal{ mit }y=f(x)\in \bild(f) \\
+	& = & x\textnormal{ (nach Definition von }f^{-1}\textnormal{)}
+\end{eqnarray*}
+Hieraus folgt: $f\circ f^{-1}=Id_X$.\\
+
+Existiere umgekehrt eine Funktion $f^{-1}: Y \rightarrow X$ mit $f\circ f^{-1}=Id_X$.
+
+Angenommen $f(x_1)=f(x_2)=y$. Dann folgt durch das Anwenden von $f^{-1}$ auf beiden Seiten der Gleichung $f(x_1)=f(x_2)$:
+\begin{displaymath}
+f^{-1}(f(x_1))=f^{-1}(f(x_2))
+\end{displaymath}
+Nach Voraussetzung $f\circ f^{-1}=Id_X$ folgt:
+\begin{displaymath}
+x_1=x_2
+\end{displaymath}
+Hieraus folgt die Injektivität.
+\end{bew}
+
+\begin{Le}
+$f: X\rightarrow Y$ ist surjektiv $\Leftrightarrow \exists f^{-1}: Y \rightarrow X: f^{-1}\circ f=Id_Y$.
+\end{Le}
+\begin{bew}
+Sei f surjektiv. Dann existiert zu jedem $y\in Y$ ein $x\in X$ mit $f(x)=y$. Setze daher
+\begin{displaymath}
+f^{-1}(y)=x\textnormal{, wobei x mit }y=f(x)\textnormal{ im Falle der Nichteindeutigkeit beliebig gewählt wird}
+\end{displaymath}
+Sei $y\in Y$. Dann gilt:
+\begin{eqnarray*}
+(f^{-1}\circ f)(y) & = & f(f^{-1}(y)) \\
+& = & f(x)\textnormal{, wobei nach Definition von }f^{-1}\textnormal{ für dieses x gilt:}f(x)=y\\
+& = & y
+\end{eqnarray*}
+Daraus folgt: $f^{-1}\circ f=Id_Y$.\\
+
+Existiere umgekehrt eine Funktion $f^{-1}$ mit $f^{-1}\circ f=Id_Y$. Sei $y\in Y$. Zu zeigen ist $y\in\bild(f)$.
+Dies gilt, weil $y=(f^{-1}\circ f)(y)=f(\underbrace{f^{-1}(y)}_{=:x})$. Daraus folgt $f(x)=y$, woraus die Surjektivität von f folgt.
+\end{bew}
+
+\begin{Le}\label{le:bijektivitaet_umkehrfunktion}
+$f: X\rightarrow Y$ ist bijektiv,$\Leftrightarrow \exists f_l^{-1}: f_l^{-1}\circ f=Id_Y$ sowie $\exists f_r^{-1}: Y \rightarrow X: f\circ f_r^{-1}=Id_X$. Zudem gilt $f_l^{-1}=f_r^{-1}$.
+\end{Le}
+\begin{bew}
+Die Existenz von $f_l^{-1}$ und $f_r^{-1}$ folgt aus den vorherigen beiden Lemmata. Zu zeigen ist nur noch die Gleichheit. Wie man leicht nachrechnet, ist $\circ$ assoziativ. Dann gilt:
+\begin{eqnarray*}
+	f_l^{-1} & = & f_l^{-1}\circ Id_X \\
+	& = & f_l^{-1} \circ (f\circ f_r^{-1}) \\
+	& = & (f_l^{-1} \circ f)\circ f_r^{-1} \\
+	& = & Id_Y\circ f_r^{-1} \\
+	& = & f_r^{-1}
+\end{eqnarray*}
+\end{bew}
+
+\begin{Le}
+Sei $f: X\rightarrow Y$ und $g: Y\rightarrow Z$ bijektiv. Dann ist auch $f\circ g: X\rightarrow Z$ bijektiv.
+\end{Le}
+\begin{bew}
+Nach Lemma \ref{le:bijektivitaet_umkehrfunktion} existieren zu $f$ und $g$ Umkehrfunktionen $f^{-1}$ und $g^{-1}$. Wie man leicht nachrechnet, ist $g^{-1}\circ f^{-1}$ Umkehrfunktion von $f\circ g$, wodurch nach Lemma \ref{le:bijektivitaet_umkehrfunktion} auch $f\circ g$ bijektiv ist.
+\end{bew}
+
+\section{Gruppen}
+\subsection{Einführende Beispiele}
+
+\begin{Bsp}Drehungen und Spiegelungen eines Dreicks\end{Bsp}
+
+\begin{Bsp}Verkettung bijektiver Funktionen, $S_n$\end{Bsp}
+
+\begin{Bsp}Addition von ganzen, rationalen, reelen und komplexen Zahlen\end{Bsp}
+
+\begin{Bsp}Multiplikation von von 0 verschiedenen rationalen, rellen oder komplexen Zahlen (Spezialfall von Körpern)\end{Bsp}
+
+\begin{Bsp}Addition von Zahlen modulo n\end{Bsp}
+
+\subsubsection{Multiplikation von positiven Zahlen modulo p (prim)}
+
+\begin{Sa}\label{sa:diophantische_gleichung}Sei $a, b\in\mathbb{Z}\backslash \left\{0\right\}$ und $c\in\mathbb{Z}$. Dann besitzt die Gleichung
+\begin{equation}
+	a\,x+b\,y=c
+	\label{eq:diophantische_gleichung}
+\end{equation}
+genau dann ein ganzzahliges Lösungspaar $(x, y)$, wenn gilt: $\gcd(a, b)|c$. 
+
+Seien $(x_1, y_1)$ eine Lösung der Gleichung (\ref{eq:diophantische_gleichung}). Dann gilt: $(x_2, y_2)$ ist genau dann Lösung von (\ref{eq:diophantische_gleichung}), wenn gilt:
+\begin{displaymath}
+	\left(x_2, y_2\right)=\left(x_1, y_1\right)+\left(\frac{b}{\gcd(a,b)}, -\frac{a}{\gcd(a,b)}\right)
+\end{displaymath}
+\end{Sa}
+\begin{Kor}
+Sei p prim und $x\in\left\{1, \ldots, p-1\right\}$. Dann gilt: es existiert genau ein $x^{-1}\in \left\{1, \ldots, p-1\right\}$ mit $x\cdot x^{-1}\equiv 1\,mod\,p$.
+\end{Kor}
+\begin{bew}
+$x\cdot x^{-1}\equiv 1\,mod\,p\Leftrightarrow x\cdot x^{-1}+m\cdot p=1$ für ein $m\in \mathbb{Z}$. Diese ganzzahlige Gleichung in den Variablen $x^{-1}$ und $m$ besitzt nach Satz \ref{sa:diophantische_gleichung} eine Lösung $(x^{-1}, m)$, da $1=\gcd(x, p)|0$ offensichtlich gilt. Da für jede weitere Lösung $(\tilde{x}^{-1}, \tilde{m})=\left(x^{-1}, m\right)+\left(p, -m\right)$ erfüllt ist, folgt die Existenz einer eindeutigen Lösung im Bereich $\left\{1, \ldots, p-1\right\}$.
+\end{bew}
+
+\subsection{Definition und Eigenschaften von Gruppen}
+\begin{Def}
+Sei $\mathcal{G}:=(G, *)$ mit $*: G \times G \rightarrow G$. $\mathcal{G}$ heißt \emph{Gruppe} genau dann, wenn folgende Eigenschaften erfüllt sind:
+\begin{enumerate}
+	\item[G1] $(a*b)*c=a*(b*c)\forall a, b, c\in G$ (Assoziativität)
+	\item[G2] $1_G*g=g\forall g\in G$, wobei $1_G\in G$ ein konkretes Element aus G ist (Existenz linksneutrales Element)
+	\item[G3] $\forall g\in G\exists g^{-1}\in G: g^{-1}*g=1_G$ (Existenz linksinverses Element)
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+Aus der Existenz des neutralen Elements in der Gruppe folgt, dass die Menge G nicht leer sein kann.
+\end{Bem}
+
+\begin{Bem}
+Sehr häufig benutzt man $G$ als Abkürzung für $(G, *)$. Wenn man von dieser abkürzenden Notation Gebrauch macht, sollte man sehr genau darauf achten, dass klar ist, welche Operation auf $G$ verwendet wird.
+\end{Bem}
+
+\begin{Bsp}
+\label{bsp:gegenbsp_gruppe}
+(Gegenbeispiel für kommende "`korrekt erscheinende"' Gruppenaxiomatiken)
+
+Sei
+\begin{eqnarray*}
+G & = & \left\{0, 1\right\}, \\
+*: G\times G & \rightarrow & G: \\
+a*b & \mapsto & b \\
+a^{-1} & = & 0 \textnormal{ für alle }a, b\in G.
+\end{eqnarray*}
+Dies ist offenbar \emph{keine} Gruppe, da nicht wie in $G3$ gefordert, $x^{-1}*x$ konstant ($=1_G$) ist.
+\end{Bsp}
+
+\begin{Bem}
+Es ist ganz wichtig zu fordern, dass in G3 auf der rechten Seite tatsächlich "`das konkrete $1_G$ aus G2"' steht und nicht "`irgendein linksneutrales Element"'.
+
+Dazu definieren wir für eine beliebige Menge G und Verknüpfung $*:G\times G\rightarrow G$:
+\begin{displaymath}
+e\in G\textnormal{ linksneutral}\Leftrightarrow \forall g\in G: e*g=g.
+\end{displaymath}
+Nun könnte man auf die Idee kommen, folgende (falsche) Axiomatik für eine Gruppe aufzustellen:
+\begin{enumerate}
+	\item[G1*] $(a*b)*c=a*(b*c)\forall a, b, c\in G$
+	\item[G2*] $\exists 1_G\in G$ mit $1_G$ linksneutral
+	\item[G3*] $\forall g\in G\exists g^{-1}\in G$ mit $g^{-1}*g$ linksneutral
+\end{enumerate}
+Jedoch bildet Beispiel \ref{bsp:gegenbsp_gruppe} ein Modell, welches die Axiome G1*-G3* erfüllt, aber keine Gruppe ist.
+\end{Bem}
+\begin{Bem}
+Alternativ kann man eine Gruppe auch mit rechtsneutralem und rechtsinversem Element definieren. Falls man jedoch linksneutrales und rechtsinverses Element oder rechtsneutrales und linksinverses Element als Axiome verwendet, führt dies auf eine echt allgemeinere algebraische Struktur, von denen Gruppen einen Spezialfall darstellen (Beispiel \ref{bsp:gegenbsp_gruppe} bildet für linksneutral und rechtsinvers ein solches Gegenbeispiel).
+\end{Bem}
+
+\begin{Def}
+Eine Gruppe G heißt \emph{abelsch} oder \emph{kommutativ}, wenn für alle $g, h\in G$ gilt: $g*h=h*g$.
+\end{Def}
+
+\begin{Def}
+In den folgenden Lemmata und Sätzen sei G als Gruppe vorausgesetzt.
+\end{Def}
+
+\begin{Le}\label{le:gruppen_1} Sei $a, b\in G$. Dann gilt: $b*a=1_G\Rightarrow a*b=1_G$\end{Le}
+\begin{bew}
+\begin{eqnarray*}
+	1_G & \stackrel{\textnormal{G3.}}{=} & b^{-1}*b \\
+	& \stackrel{\textnormal{G2.}}{=} & b^{-1}*(1_G*b) \\
+	& \stackrel{\textnormal{Voraussetzung}}{=} & b^{-1}*((b*a)*b) \\
+	& \stackrel{\textnormal{G1.}}{=} & b^{-1}*(b*(a*b)) \\
+	& \stackrel{\textnormal{G1.}}{=} & (b^{-1}*b)*(a*b) \\
+	& \stackrel{\textnormal{G3.}}{=} & 1_G*(a*b) \\
+	& \stackrel{\textnormal{G2.}}{=} & a*b
+\end{eqnarray*}
+\end{bew}
+
+\begin{Le}\label{le:rechtneutral}$\forall a\in G: a*1=a$\end{Le}
+\begin{bew}
+Nach G3. gilt: $a^{-1}*a=1_G$. Nach Lemma \ref{le:gruppen_1} folgt hieraus $a*a^{-1}=1_G$. Daher gilt:
+\begin{eqnarray*}
+a*1 & \stackrel{\textnormal{G3.}}{=} & a*(a^{-1}*a) \\
+ & \stackrel{\textnormal{G1.}}{=} & (a*a^{-1})*a \\
+ & \stackrel{\textnormal{Lemma \ref{le:gruppen_1}}}{=} & 1_G*a \\
+ & \stackrel{\textnormal{G2.}}{=} & a
+\end{eqnarray*}
+\end{bew}
+
+\begin{Le}
+$\exists ! e\in G: \forall x\in G: e*x=x$, sowie dieses Element ist auch das einzige, für welches gilt: $\forall x\in G: x*1=x$.
+\end{Le}
+\begin{bew}
+Sei $1_G'$ ein weiteres Gruppenelement mit der Eigenschaft $1_G'*x=x\forall x\in G$. Dann gilt insbesondere $1_G'*1_G=1_G$. Nach Lemma \ref{le:rechtneutral} gilt auch $1_G*1_G'=1_G$. Aber nach der definierenden Eigenschaft von $1_G$ gilt auch $1_G*1_G'=1_G'$. Hieraus folgt $1_G=1_G'$.
+
+Habe nun $1_G'$ die Eigenschaft $x*1_G'=x\forall x\in G$. Hieraus folgt $1_G*1_G'=1_G$. Da $1_G$ das Einselement der Gruppe ist, gilt aber auch $1_G*1_G'=1_G'$. Auch hier folgt $1_G=1_G'$.
+\end{bew}
+
+\begin{Le}
+$\forall x\in G\exists ! x^{-1}\in G: x^{-1}*x=1_G$. Dieses Element ist auch das einzige, welches $x*x^{-1}=1_G$ erfüllt.
+\end{Le}
+\begin{bew}
+Gelte $x^{-1}*x=1_G$ und außerdem ${x^{-1}}'*x=1$. Daraus folgt: $x^{-1}*x={x^{-1}}'*x$, woraus sich durch Rechtsmultiplikation mit $x^{-1}$ ergibt: $(x^{-1}*x)*x^{-1}=({x^{-1}}'*x)*x^{-1}$. Mittels Assoziativität folgt hieraus: 
+\begin{equation}
+	x^{-1}*(x*x^{-1})={x^{-1}}'*(x*x^{-1}).
+	\label{eq:le_gru4}
+\end{equation}
+Durch Lemma \ref{le:gruppen_1} wissen wir, dass $x*x^{-1}=1$ ist. Dies in \ref{eq:le_gru4} eingesetzt ergibt: $x^{-1}={x^{-1}}'$, was die Eindeutigkeit des linksinversen Elements zeigt.
+
+Für die Eindeutigkeit des rechtinversen Elements bemerke man, dass aus $x*x^{-1}=1=x*{x^{-1}}'$ nach Lemma \ref{le:gruppen_1} folgt, dass $x^{-1}*x=1={x^{-1}}'*x$ gilt. Da das linksinverse Element jedoch, wie wir eben bewiesen haben, eindeutig ist, folgt sofort in Form von $x^{-1}={x^{-1}}'$ die Eindeutigkeit des rechtsinversen Elements.
+\end{bew}
+
+\begin{Bsp}$FG^{(r)}$\end{Bsp}
+
+\begin{Auf}Beweise, dass in jeder Gruppe gilt:
+\begin{enumerate}
+	\item $\left(a^{-1}\right)^{-1}=a$
+	\item $(a*b=a*c)\vee(b*a=c*a)\Rightarrow b=c$
+	\item $(a*b=b)\vee(b*a=b)\Rightarrow a=1$
+	\item $(a*b)^{-1}=b^{-1}*a^{-1}$
+\end{enumerate}
+\end{Auf}
+
+\subsection{Über die Symmetriegruppe}
+
+Wie schon vorher definiert ist $S_n$ die Menge aller bijektiven Abbildungen von $\left\{1, \ldots, n\right\}$ auf $\left\{1, \ldots, n\right\}$. Bezüglich der Hintereinanderausführung $\circ$ wird hieraus eine Gruppe, die wir ebenfalls mit $S_n$ bezeichnen. Die Elemente von $S_n$ bezeichnen wir als \emph{Permutationen} von $\left\{1, \ldots, n\right\}$ auf $\left\{1, \ldots, n\right\}$.
+
+\begin{Def}
+Eine \emph{Transposition} $\sigma:=(i\ j)$ ($i\neq j$) ist eine Permutation mit
+\begin{displaymath}
+	\sigma(k)=
+	\begin{cases}
+	j & \textnormal{ für } k=i \\
+	i & \textnormal{ für } k=j \\
+	k & \textnormal{ sonst}
+	\end{cases}
+\end{displaymath}
+\end{Def}
+
+\begin{Le}
+Jede Permutation lässt sich als Hintereinanderausführung (Produkt) von Transpositionen darstellen.
+\end{Le}
+
+\begin{Sa}
+Die Anzahl an Transpositionen, mit denen sich eine Permutation darstellen lässt ist modulo 2 eindeutig bestimmt.
+\end{Sa}
+
+\begin{Def}
+Die Permutationen, die sich mittels einer geraden Zahl von Transpositionen darstellen lässt, bildet nach dem vorherigen Satz bezüglich der Hintereinanderausführung eine Gruppe. Diese bezeichnen wir mit $A_n$.
+\end{Def}
+
+\begin{Def}
+Ein \emph{r-Zyklus} $\sigma:=(i_1\ \ldots\ i_r)$ ($i_j\neq i_k$ für $j\neq k$) ist eine Permutation mit
+\begin{displaymath}
+	\sigma(k)=
+	\begin{cases}
+	i_{l+1} & \textnormal{ für } k=i_l \textnormal{ mit } 1\leq l \leq r-1 \\
+	i_1 & \textnormal{ für } k=i_r \\
+	k & \textnormal{ sonst}
+	\end{cases}
+.
+\end{displaymath}
+\end{Def}
+
+\begin{Bem}
+Die Transpositionen entsprechen den 2-Zyklen
+\end{Bem}
+
+\begin{Sa}
+Jede Permutation aus $S_n$ lässt sich bis auf die Reihenfolge eindeutig als Produkt von r-Zyklen, deren Länge sich zu n aufsummieren, darstellen.
+\end{Sa}
+
+\subsection{Untergruppen}
+\begin{Def}
+Sei $(G, *)$ eine Gruppe und $U\subseteq G$. Dann heißt $\left(U, *_{|_{U\times U}}\right)$ Untergruppe von G (kurz: $U\leq G$) genau dann, wenn folgende Kriterien erfüllt sind:
+\begin{itemize}
+	\item $U\neq \emptyset$
+	\item $u, v\in U\Rightarrow u*v\in U$
+	\item $u\in U\Rightarrow u^{-1}\in U$
+\end{itemize}
+\end{Def}
+
+\begin{Bem}Offensichtlich ist $\leq$ eine Ordnungsrelation auf der Menge aller Untergruppen von G.\end{Bem}
+
+\begin{Bem}Für jede Gruppe G ist offensichtlich $\left\{1_G\right\}$ und G Untergruppe.\end{Bem}
+\begin{Bsp}$(n\mathbb{Z}, +)\leq (\mathbb{Z}, +)\leq (\mathbb{Q}, +)\leq(\mathbb{R}, +)\leq(\mathbb{C}, +)$, wobei $n\in\mathbb{Z}$.\end{Bsp}
+\begin{Bsp}$\underbrace{(\mathbb{Q}\backslash\left\{0\right\}, *)}_{\mathbb{Q}^*}\leq\underbrace{(\mathbb{R}\backslash\left\{0\right\}, *)}_{\mathbb{R}^*}\leq\underbrace{(\mathbb{C}\backslash\left\{0\right\}, *)}_{\mathbb{C}^*}$\end{Bsp}
+
+\begin{Auf}\label{auf:familie_untergruppen}Man beweise folgende Aussage: Sei $\left\{U_i\right\}_{i\in I}$ eine Familie von Untergruppen von G. Dann ist auch $\bigcap\limits_{i\in I}{U_i}$ eine Untergruppe von G.\end{Auf}
+
+\begin{Def}Sei $M\subseteq G$. Dann definieren wir die von M aufgespannte Untergruppe mit:
+\begin{displaymath}
+\left\langle M \right\rangle:=\bigcap\limits_{U\supseteq M: U\leq G} {U}
+\end{displaymath}
+\end{Def}
+\begin{Bem}Nach Aufgabe \ref{auf:familie_untergruppen} ist $\left\langle M \right\rangle$ tatsächlich eine Untergruppe von G.\end{Bem}
+
+\begin{Auf}Was ist $\left\langle \emptyset \right\rangle$?\end{Auf}
+
+\begin{Le}$<M>=\left\{m_1\cdot m_2\cdot\ldots m_n: n\in\mathbb{N}, m_i \textnormal{ oder } m_i^{-1}\in M, \right\}$.\end{Le}
+
+\begin{Bem}Das leere Produkt von Gruppenelementen aus G wollen wir mit $1_G$ identifizieren.\end{Bem}
+
+\begin{Def}G heißt endlich erzeugt $\Leftrightarrow \exists U: \left\langle U\right\rangle=G$\end{Def}
+
+\begin{Def}G heißt zyklisch $\Leftrightarrow \exists g: \left\langle g\right\rangle:=\left\langle\left\{g\right\}\right\rangle=G$.\end{Def}
+
+\begin{Def}Sei $U\leq G$. Dann definieren wir
+\begin{displaymath}
+a\equiv_r b \mod U \Leftrightarrow a\cdot b^{-1}\in U\textnormal{ (Rechtsäquivalenz)}
+\end{displaymath}
+und
+\begin{displaymath}
+a\equiv_l b \mod U \Leftrightarrow a^{-1}\cdot b\in U\textnormal{ (Linksäquivalenz).}
+\end{displaymath}
+\end{Def}
+
+\begin{Bem}
+$a\cdot b^{-1}\in U \Leftrightarrow a\in \underbrace{\left\{u\cdot b: u\in U\right\}}_{=:U b}$ (wobei wir $U b$ als \emph{Rechtsnebenklasse} von b bezüglich U bezeichnen) und \\
+$a^{-1}\cdot b\in U \Leftrightarrow a\in \underbrace{\left\{b\cdot u: u\in U\right\}}_{=:b U}$ (wobei wir $b U$ als \emph{Linksnebenklasse} von b bezüglich U bezeichnen).
+\end{Bem}
+
+\begin{Auf}
+Beweise: $\equiv_r$ und $\equiv_l$ sind Äquivalenzrelationen.
+\end{Auf}
+
+\begin{Le}
+Sei $(G, *)$ Gruppe und $U\leq G$. Dann ist $\sigma: U \cdot b \rightarrow U \cdot a$ $(a, b\in G)$ eine Bijektion.
+\label{le:nebenklassen_bijektion}
+\end{Le}
+
+\begin{Sa}
+Sei G Gruppe. $U\leq G$, $\left|G\right|<\infty$. Dann gilt: $\left|U\right| | \left|G\right|$.
+\end{Sa}
+\begin{bew}
+Sei $\equiv_r$ die Äquivalenzrelation, bei welcher die Rechtnebenklassen die Äquivalenzklassen bilden. Nach Lemma \ref{le:nebenklassen_bijektion} gilt: $\left|U\cdot b\right|=\left|U\cdot a\right|=\left|U\right|$. Da die Rechtnebenklassen eine Partitionierung von G bilden, folgt: $x\cdot\left|U\right|=\left|G\right|$, wobei x die Anzahl der verschiedenen Nebenklasen ist.
+\end{bew}
+
+\begin{Kor}
+Sei G Gruppe und $U\leq G$, $\left|G\right|<\infty$. Dann gilt: $\left|U\right| | \left|G\right|$.
+\end{Kor}
+
+\begin{Def}
+$\frac{\left|G\right|}{\left|U\right|}=:\left[G : U\right]$ wird als der "`Index von U in G"' bezeichnet. Er bestimmt die Anzahl von Nebenklassen (Recht- \emph{und} Linksnebenklassen) von U.
+\end{Def}
+
+\begin{Bem}
+Man kann zeigen, dass auch für unendliche Gruppen die Anzahl Linksnebenklassen mit der Anzahl Rechtsnebenklassen übereinstimmt.
+\end{Bem}
+
+\begin{Kor}
+$o(g)|\left|G\right|$.
+\end{Kor}
+
+\begin{Auf}
+Bestimme die Rechts- und Linksnebenklassen in $S_3$ bezüglich der Untergruppe $\left\langle (1\ 2)\right\rangle$.
+\end{Auf}
+
+\begin{Le}\label{le:ordnung_g}$\left\langle g\right\rangle=\left\{g^i: i\in \mathbb{Z}\right\}$\end{Le}
+
+\begin{Def}
+\label{def:ordnung_g}
+$\ord(g):=\left\langle g\right\rangle$ bezeichnet die Ordnung von g. Auch ein Wert von $\infty$ ist hier möglich.
+\end{Def}
+
+\begin{Sa}
+$o(g)=\min\left\{n\in \mathbb{N}: g^n=1_G\right\}$.
+\end{Sa}
+
+\begin{Kor}
+Sei G endliche Gruppe und $g\in G$. Dann gilt: $g^{\left|G\right|}=1_G$.
+\end{Kor}
+\begin{bew}
+\begin{eqnarray*}
+	g^{\left|G\right|} & = & \left(g^{\ord(g)}\right)^{\frac{\left|G\right|}{\ord(g)}} \\
+	& = & {1_G}^{\frac{\left|G\right|}{\ord(g)}} \\
+	& = & 1_G
+\end{eqnarray*}
+\end{bew}
+
+\begin{Kor}
+Sei p prim und $0<x<p$. Dann gilt:
+\begin{displaymath}
+	x^{p-1}\equiv 1 \mod p
+\end{displaymath}
+\end{Kor}
+
+\subsection{Normalteiler und Faktorgruppen}
+
+\begin{Def}
+Sei $N\leq G$. Dann heißt N Normalteiler von G ($N\trianglelefteq G$) genau dann, wenn gilt: $g N=N g\ \forall g\in G$.
+\end{Def}
+
+\begin{Def}
+Wenn in einer Gruppe G gilt, dass $\left\{1_G\right\}$ und G die einzigen Normalteiler sind, dann heißt G \emph{einfach}.
+\end{Def}
+
+\begin{Bsp}
+$A_n$ ist für alle $n\geq 5$ einfach. Für $n=4$ ist $\left\langle\left\{(1\,2), (3\,4\right\}\right\rangle$ ein Normalteiler von $A_4$.
+\end{Bsp}
+
+\begin{Le}
+Sei $[G : U]=2$. Dann ist U Normalteiler von G.
+\end{Le}
+\begin{bew}
+Für $[G : U]=2$ gilt:
+\begin{displaymath}
+	U\cdot g=\begin{cases}
+	U & \textnormal{ für } g\in U \\
+	G\backslash U & \textnormal{ für } g\notin U
+	\end{cases}
+\end{displaymath}
+\begin{displaymath}
+	g\cdot U=\begin{cases}
+	U & \textnormal{ für } g\in U \\
+	G\backslash U & \textnormal{ für } g\notin U
+	\end{cases}.
+\end{displaymath}
+	Hieraus folgt: $U g=g U$, woraus $U\trianglelefteq G$ folgt.
+\end{bew}
+
+\begin{Sa}
+Sei $N\leq G$. Dann ist äquivalent:
+\begin{enumerate}
+	\item $g\cdot N = N \cdot g\ \forall g\in G\ (N\trianglelefteq G)$
+	\item $g^{-1} \cdot N\cdot g  = N\ \forall g\in G$
+	\item $(N\cdot g)\cdot (N\cdot h)=N\cdot(g\cdot h)\ \forall g,h\in G$
+\end{enumerate}
+\end{Sa}
+\begin{bew}
+
+$1.\Rightarrow 2.$:\\
+Wenn man die Gleichung $g\cdot N = N \cdot g$ von links mit $g^{-1}$ multipliziert, ergibt sich: $N=g^{-1}\cdot N \cdot g$.\\
+
+$2.\Rightarrow 3.$:\\
+\begin{eqnarray*}
+	(N\cdot g)\cdot (N\cdot h) & = & (N\cdot g)\cdot (N\cdot g^{-1}\cdot g\cdot h)\\
+	& = & N\cdot \underbrace{(g\cdot N\cdot g^{-1})}_{=N\textnormal{ (nach Voraussetzung)}}\cdot g\cdot h \\
+	& = & \underbrace{N\cdot N}_{=N\textnormal{ (da N Untergruppe)}} \cdot g \cdot h \\
+	& = & N\cdot g \cdot h
+\end{eqnarray*}\\
+
+
+$3.\Rightarrow 1.$:\\
+\begin{eqnarray*}
+	g\cdot N & \subseteq & N\cdot g \cdot N\textnormal{, weil }1\in G\\
+	&=& (N\cdot g)\cdot (N\cdot 1)\\
+	&=& N\cdot g\cdot 1\textnormal{ nach Voraussetzung}\\
+	&=& N\cdot g.
+\end{eqnarray*}
+Zusammengefasst: $g\cdot N\subseteq N\cdot g$.
+
+Da aber g beliebig ist, können wir für g auch $g^{-1}$ einsetzen. Dann folgt: $g^{-1}\cdot N\subseteq N\cdot g^{-1}$. Wenn wir diese Gleichung von links und rechts mit g multiplizieren, ergibt sich: $N\cdot g\subseteq g\cdot N$. Also $g\cdot N\subseteq N\cdot g\subseteq g\cdot N$. Hieraus folgt, dass überall Gleichheit gelten muss, woraus sich $g\cdot N = N \cdot g$ ergibt.
+\end{bew}
+
+\begin{Sa}
+Sei $N\trianglelefteq G$. Dann wird auf der Menge $^G/_N:=\left\{N\cdot g: g\in G\right\}$ mittels folgender Verknüpfung eine Gruppe definiert:
+\begin{displaymath}
+	(N\cdot g)\cdot (N\cdot h)=N\cdot(g\cdot h)
+\end{displaymath}
+\end{Sa}
+
+\begin{Bsp}
+$n \mathbb{Z}\trianglelefteq \mathbb{Z}$ (mit $n\geq 2$). Dann ist: $^\mathbb{Z}/_{n \mathbb{Z}}$ eine Gruppe (die sich, wie wir im nächsten Abschnitt sehen werden, als isomorph zu $\mathbb{Z}_n$ entpuppt).
+\end{Bsp}
+
+\begin{Bsp}
+$A_n \trianglelefteq S_n$. Hieraus folgt, dass: $^{S_n}/_{A_n}$ eine Gruppe ist (die sich, wie wir im nächsten Abschnitt sehen werden, als isomorph zu $\mathbb{Z}_2$ entpuppt).
+\end{Bsp}
+
+\subsection{Strukturerhaltende Abbildungen von Gruppen}
+
+Asked if he believes in one God, a mathematician answered:
+"`Yes, up to isomorphism."'
+
+(Quelle: \verb|http://www.math.utah.edu/~cherk/mathjokes.html|)
+
+\begin{Def}
+Seien $(G, *)$ und $(H, \circ)$ Gruppen und $\sigma: G\rightarrow H$. $\sigma$ heißt \emph{Homomorphismus} genau dann, wenn gilt:
+\begin{equation}
+	\sigma(g*h)=\sigma(g)\circ\sigma(h)\ \forall g, h\in G
+	\label{eq:homomorphismus}
+\end{equation}
+bzw. das folgende Diagramm kommutiert:
+
+\begin{xy}
+  \xymatrix{
+      G\times G \ar[r]^{*} \ar[d]_{\sigma\times\sigma}    &   G \ar[d]^{\sigma}  \\
+      H\times H \ar[r]_{\circ}             &   H   
+  }
+\end{xy}
+\end{Def}
+
+\begin{Def}
+Wenn $\sigma$ surjektiv ist, so heißt $\sigma$ \emph{Epimorphmismus}.\\
+Wenn $\sigma$ injektiv ist, so heißt $\sigma$ \emph{Monomorphmismus}.\\
+Wenn $\sigma$ bijektiv ist, so heißt $\sigma$ \emph{Isomorphmismus}.\\
+Wenn G=H ist, so heißt $\sigma$ \emph{Endomorphmismus}.\\
+Wenn G=H und $\sigma$ bijektiv ist, so heißt $\sigma$ \emph{Automorphmismus}.
+\end{Def}
+
+\begin{Bem}
+Man könnte erwarten, dass man zusätzlich fordern muss, dass die folgenden Diagramme kommutieren:
+
+\begin{xy}
+  \xymatrix{
+      \left\{\cdot\right\} \ar[rr]^{1_G} \ar[rd]_{1_H}  &     &  G \ar[dl]^\sigma  \\
+                             &  H  &
+  }
+\end{xy}wobei wir $1_G$ bzw. $1_H$ mit einer Abbildung von $\left\{\cdot\right\}$ (beliebige nicht näher spezifizierte einelementige Menge) nach $1_G$ bzw. $1_H$ identifizieren und
+
+\begin{xy}
+  \xymatrix{
+      G \ar[r]^{\left(\cdot\right)^{-1}} \ar[d]_{\sigma}    &   G \ar[d]^{\sigma}  \\
+      H \ar[r]_{\left(\cdot\right)^{-1}}             &   H   
+  }
+\end{xy}
+
+Dies ist jedoch nicht der Fall. Wir zeigen dies im folgenden Lemma.
+\end{Bem}
+
+\begin{Le}
+Sei $\sigma: G\rightarrow H$ Homomorphismus. Dann gilt:
+\begin{enumerate}
+	\item $\sigma(1_G)=1_H$
+	\item $\sigma(g^{-1})=(\sigma(g))^{-1}$
+\end{enumerate}
+bzw. die folgenden Diagramme kommutieren:
+
+\begin{xy}
+  \xymatrix{
+      \left\{\cdot\right\} \ar[rr]^{1_G} \ar[rd]_{1_H}  &     &  G \ar[dl]^\sigma  \\
+                             &  H  &
+  }
+\end{xy}
+
+\begin{xy}
+  \xymatrix{
+      G \ar[r]^{\left(\cdot\right)^{-1}} \ar[d]_{\sigma}    &   G \ar[d]^{\sigma}  \\
+      H \ar[r]_{\left(\cdot\right)^{-1}}             &   H   
+  }
+\end{xy}
+\end{Le}
+\begin{bew}
+Zu 1.:
+
+\begin{eqnarray}
+	\sigma(g) & = & \sigma(1_G*g)\\
+	& = & \sigma(1_G)\circ\sigma(g)
+	\label{eq:hom_1}
+\end{eqnarray}
+
+Diese Eigenschaft ist lediglich für das (eindeutig bestimmte) neutrale Element von H erfüllt.\\
+
+Zu 2.:
+
+Sei $g\in G$. Dann gilt:
+\begin{eqnarray}
+  \sigma(1_G) & = & \sigma(g^{-1}*g) \\
+	& = & \sigma(g^{-1})\circ\sigma(g) \\
+	\label{eq:hom_2}
+\end{eqnarray}
+
+Diese Eigenschaft ist lediglich für das (eindeutig bestimmte) inverse Element von $\sigma(g)$ erfüllt.
+\end{bew}
+
+\begin{Bsp}
+\begin{enumerate}
+	\item $\log: (\mathbb{R}^+, \cdot) \rightarrow (\mathbb{R}, +)$ ist ein Isomorphismus.
+	\item $m_d: (\mathbb{Z}, +) \rightarrow (\mathbb{Z}, +): z\mapsto d z$ ist ein Endorphismus.
+\end{enumerate}
+\end{Bsp}
+
+\begin{Auf}
+Sei G Gruppe und $N\trianglelefteq G$. Beweise, dass $\nu: G\rightarrow ^G/_N: g\mapsto N\cdot g$ ein Epimorphismus ist.
+\end{Auf}
+
+\begin{Auf}
+Sei G Gruppe. Beweise, dass für alle $g\in G$ gilt: $\tau_g: G \rightarrow G: x\mapsto g^{-1} x g$ ist ein Automorphismus.
+\end{Auf}
+
+\begin{Def}
+Sei $\sigma: G\rightarrow H$ ein Homomorphismus. Dann definieren wir:
+\begin{itemize}
+	\item $\bild(\sigma)=\left\{\sigma(g): g\in G\right\}$
+	\item $\Ker(\sigma)=\left\{g\in G: \sigma(g)=1_H\right\}$
+\end{itemize}
+\end{Def}
+
+\begin{Auf}\label{auf:bild_ker_untergruppe}
+Zeige: Sei $\sigma: G\rightarrow H$ ein Homomorphismus. Dann gilt:
+\begin{itemize}
+	\item $\bild (\sigma)\leq H$
+	\item $\Ker (\sigma)\trianglelefteq G$
+\end{itemize}
+\end{Auf}
+
+\begin{Sa}
+(1. Isomorphie-Satz für Gruppen)
+
+Seien G, H Gruppen und $\phi: G \rightarrow H$ sei Homomorphismus mit $N:=\Ker \phi$ (nach Aufgabe \ref{auf:bild_ker_untergruppe} gilt: $N\trianglelefteq G$). Dann gibt es genau einen injektiven Homomorphismus $\sigma: {}^G/_{\Ker \phi} \rightarrow H$ mit $\sigma(N g)=\phi(g)$. Ist $\phi$ surjektiv, dann auch $\sigma$. Außerdem gilt: $^G/_{\Ker \phi}\cong \bild(\phi)$ ($\cong$: ist isomorph zu).
+\end{Sa}
+
+\begin{Bsp}
+Sei $H=\left(\left\{0, \ldots, n-1 \right\}, + \mod n\right)$. Definiere $\phi: \mathbb{Z}\rightarrow H, z\mapsto z \mod n$. $\phi$ ist offensichtlich Homomorphismus. $\Ker (\phi)=n\mathbb{Z}$. Nach 1. Isomorphiesatz für Gruppen folgt damit: $^\mathbb{Z}/_{n \mathbb{Z}}\cong H$, da $\phi$ surjektiv.
+\end{Bsp}
+
+\begin{Le}
+Es gibt bis auf Isomorphie genau eine zyklische Gruppe der Ordnung n.
+\end{Le}
+\begin{bew}
+Sei G:=$\left\langle g\right\rangle$ zyklisch. Definiere
+\begin{eqnarray*}
+	\nu: \mathbb{Z} & \rightarrow & G\\
+	i & \mapsto & g^i
+\end{eqnarray*}
+Offensichtlich ist $\nu$ surjektiver Homomorphismus (Epimorphismus). Es gilt: $\Ker(\nu)=n\mathbb{Z}$. Hieraus folgt nach 1. Isomorphiesatz: $^\mathbb{Z}/_{n\mathbb{Z}}\cong G$.
+\end{bew}
+
+\begin{Sa}
+(2. Isomorphie-Satz für Gruppen)
+Sei G Gruppe, $H, K\leq G$ und $K\trianglelefteq G$. Wir definieren: $H K=\left\{g\cdot k: h\in H, k\in K\right\}$. Dann gilt: $H K\leq G$ und $K\trianglelefteq H\cdot K$, also $K\trianglelefteq H$.
+
+Die Abbildung $\phi: ^{H K}/_K \rightarrow ^K/_{H\cap K}$ mit $h K\mapsto h (H\cap K)$ ist ein Isomorphismus, d. h. $^{H K}/_K\cong ^K/_{H\cap K}$. 
+\end{Sa}
+
+\begin{Bem}
+In der Definition von $\phi: ^{H K}/_K \rightarrow ^K/_{H\cap K}$ mit $h K\mapsto h (H\cap K)$ ist $h\in H$. Dies ist korrekt, da $h k K=h K$ für $k\in K$ (Untergruppeneigenschaft eines Normalteilers).
+\end{Bem}
+
+\begin{Bem}
+Sei $N\trianglelefteq G, H\leq G\textnormal{ und }N\subseteq H$. Dann gilt: $N\trianglelefteq H$ (warum?)
+\end{Bem}
+
+\begin{Sa}
+(3. Isomorphie-Satz für Gruppen)
+Sei $N\trianglelefteq G$. Wenn $N\trianglelefteq H\leq G$, dann ist $^H/_N\leq ^G/_N$. Außerdem gilt: $H \trianglelefteq G\Leftrightarrow ^H/_N\trianglelefteq ^G/_N$. In diesem Fall gilt: $^{\left(^G/_N\right)}/_{\left(^H/_N\right)}\cong ^G/_H$.
+\end{Sa}
+\begin{bew}
+Anmerkung: Der verwendete Isomorphismus ist der aus dem folgenden Satz.
+\end{bew}
+
+\begin{Sa}
+(Korrespondenzsatz für Gruppen)
+Die Zuordnung $\overline{\ }$, die jedem H mit $N\trianglelefteq H\leq G$ ein $\overline{H}:=^H/_N$ zurordnet (nach 3. Isomorphiesatz für Gruppen mit $\overline{H}\leq \overline{G}$), ist bijektiv, d. h. zu jeder Untergruppe $\overline{S}\leq \overline{G}$ gibt es genau ein H mit $N\trianglelefteq H\leq G$ und $\overline{H}=\overline{S}$.
+\end{Sa}
+
+\section{Ringe und Körper}
+
+\begin{Def}
+$(R, +, \cdot, 0, 1)$ (wobei $0, 1\in R$ mit $0\neq 1$) heißt \emph{Ring mit 1}, wenn gilt:
+\begin{enumerate}
+	\item $(R, +)$ ist eine abelsche (kommutative) Gruppe mit neutralem Element 0
+	\item $(r_1\cdot r_2)\cdot r_3=r_1\cdot (r_2\cdot r_3)\ \forall r_1, r_2, r_3\in R$ (Assoziativität der Multiplikation)
+	\item $r_1\cdot (r_2+ r_3) = r_1\cdot r_2+r_1\cdot r_3$\\ $(r_1 + r_2)\cdot r_3 = r_1\cdot r_3+r_2\cdot r_3\ \forall r_1, r_2, r_3\in R$
+	\item $1\cdot r=r\cdot 1=r\ \forall r\in R$
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+Wenn die Eigenschaft 4. nicht gilt, so heißt $(R, +, \cdot, 0, 1)$ nur Ring (ohne 1). Mit dieser allgemeineren Klasse von Ringen werden wir uns hier jedoch nicht weiter beschäftigen.
+\end{Bem}
+
+\begin{Bem}
+Ringe \emph{mit} 1 werden häufig auch als \emph{unitäre Ringe} bezeichnet.
+\end{Bem}
+
+\begin{Bem}
+Ein Ring heißt \emph{kommutativ}, wenn $\cdot$ kommutativ ist.
+\end{Bem}
+
+\begin{Bsp}
+Folgende sind kommutative Ringe:
+\begin{enumerate}
+	\item $\left(\mathbb{Z}, +, \cdot, 0, 1\right)$
+	\item $\left(\mathbb{Z}\left(\sqrt{2}\right), +, \cdot, 0, 1\right)$ (mit $\mathbb{Z}\left(\sqrt{2}\right)=\left(m+n\sqrt{2}: m, n\in \mathbb{Z}\right)\subset \mathbb{R}$)
+	\item $\left(n \mathbb{Z}, +, \cdot, 0, 1\right)$
+\end{enumerate}
+\end{Bsp}
+
+\begin{Le}
+Sei $(R, +, \cdot, 0, 1)$ Ring. Dann gilt:
+\begin{enumerate}
+	\item $r\cdot 0=0\cdot r=0\ \forall r\in R$
+	\item $r\cdot (-1)=(-1)\cdot r=-r\ \forall r\in R$
+	\item Wenn R kommutativ ist, dann gilt: \begin{displaymath}\left(r+s\right)^n=\sum\limits_{i=0}^n{\binom {n} {i}}\cdot r^i\cdot s^{n-i}\end{displaymath}
+\end{enumerate}
+\end{Le}
+\begin{bew}
+Zu 1.:
+\begin{eqnarray*}
+	r\cdot 0 & = & r\cdot (0+0) \\
+	& = & r\cdot 0 + r\cdot 0
+\end{eqnarray*}
+Indem man auf beiden Seiten $r\cdot 0$ abzieht, folgt: $r\cdot 0=0$.\\
+
+Zu 2.:
+\begin{eqnarray*}
+	r+(-1)\cdot r & = & 1\cdot r+(-1)\cdot r \\
+	& = & (1+(-1))\cdot r \\
+	& = & 0\cdot r \\
+	& = & 0\textnormal{ (wie wir in 1. eben bewiesen haben)}
+\end{eqnarray*}
+Durch Abziehen von r auf beiden Seiten der Gleichung folgt: $(-1)\cdot r=-r$.\\
+
+In beiden Beweisteilen folgt der Beweis für die andere Multiplikationsreihenfolge analog.
+\end{bew}
+
+\begin{Def}
+$U\subseteq R$ heißt \emph{Unterring}$\Leftrightarrow (U, +_{|_{U\times U}}, \cdot_{|_{U\times U}}, 0, 1)$ wieder ein Ring ist (Schreibweise $U\leq R$).
+\end{Def}
+
+\begin{Le}
+$U\leq R$ genau dann, wenn gilt:
+\begin{itemize}
+  \item $0\in U$
+  \item $1\in U$
+	\item $r+s\in U\ \forall r,s\in U$
+	\item $r\cdot s\in U\ \forall r,s\in U$
+\end{itemize}
+\end{Le}
+
+\begin{Def}
+Für $(R, +, \cdot, 0, 1)$ Ring definieren wir: $R^*=R\backslash\left\{0\right\}$.
+\end{Def}
+
+\begin{Def}
+Für einen $(R, +, \cdot, 0, 1)$ Ring definieren wir $U(R):=\left\{r\in R: \exists a\in R: a r=r a=1\right\}$ als die Einheitengruppe des Rings.
+\end{Def}
+
+\begin{Def}
+R heißt \emph{Integritätsbereich}, wenn gilt:
+\begin{enumerate}
+	\item R ist kommutativ
+	\item $r\cdot s=0 \Rightarrow r=0\textnormal{ oder }s=0\ \forall r,s\in R$
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}Falls nur 2. gilt, so heißt R \emph{nullteilerfrei}.\end{Bem}
+
+\begin{Auf}
+Beweise, dass in jedem nullteilerfreien Ring gilt:
+\begin{displaymath}
+(a\cdot b)=0 \Rightarrow a=0 \vee b=0
+\end{displaymath}
+\end{Auf}
+
+\begin{Bem}
+Falls R Integritätsbereich ist, so besitzt $(R^*, \cdot)$ die Struktur eines kommutativen \emph{Monoids}.
+\end{Bem}
+
+\begin{Def}
+Falls in einem Ring $(R^*, \cdot)$ eine Gruppe bildet, so heißt R \emph{Schiefkörper}.
+\end{Def}
+
+\begin{Def}
+Falls in einem Ring $(R^*, \cdot)$ eine abelsche (kommutative) Gruppe bildet, so heißt R \emph{Körper}.
+\end{Def}
+
+\begin{Sa} (Wedderburn)
+Jeder endliche Schiefkörper ist ein Körper.
+\end{Sa}
+
+\begin{Bsp}
+$\mathbb{Q}, \mathbb{R}$ und $\mathbb{C}$ sind Körper.
+\end{Bsp}
+
+\begin{Bsp}
+$\mathbb{F}_p$ (p prim) ist Körper.
+\end{Bsp}
+
+\subsection{Der Schiefkörper der Quaternionen}
+\begin{Bsp}
+$\mathbb{H}$ (Quaternionen) ist ein Schiefkörper, wobei $\mathbb{H}:=(\mathbb{R}^4, +, \cdot)$ mit komponentenweiser Addition und
+\begin{eqnarray}
+	(a_1, a_2, a_3, a_4)\cdot (b_1, b_2, b_3, b_4) & := (& a_1 b_1-a_2 b_2-a_3 b_3-a_4 b_3, \nonumber \\
+	& & a_1 b_2+a_2 b_1+a_3 b_4-a_4 b_3, \nonumber \\
+	& & a_1 b_3+a_3 b_1+a_4 b_2-a_2 b_4, \nonumber \\
+	& & a_1 b_4+a_4 b_1+a_3 b_4-a_4 b_2)
+	\label{eq:quaternionen_multiplikation}.
+\end{eqnarray}
+\end{Bsp}
+
+\begin{Bem}
+\begin{displaymath}
+	(0, a_2, a_3, a_4)\cdot (0, b_2, b_3, b_4)=\left(0, (a_2, a_3, a_4) \times (b_2, b_3, b_4)\right),
+\end{displaymath}
+\end{Bem}
+
+\begin{Le}
+Sei $a^{-1}:=(a_1, a_2, a_3, a_4)\neq 0$. Dann gilt: 
+\begin{equation}
+	a^{-1}=\frac{\underbrace{(a_1, -a_2, -a_3, -a_4)}_{=:\overline{a}}}{\underbrace{a_1^2+a_2^2+a_3^2+a_4^2}_{\left|a\right|^2}}
+	\label{eq:inverses_quaternion}
+\end{equation}
+\end{Le}
+
+\begin{Kor}
+Sei $\left|a\right|=1$. Dann gilt: $a^{-1}=\overline{a}$.
+\end{Kor}
+
+\begin{Sa}
+Sei $x\in \mathbb{R}^3$ (den wir durch (0, x) mit den Quaternionen identifizieren wollen) bezüglich einer Orthonormalbasis gegeben. Dann wird durch $x\mapsto q\cdot (0, x)\cdot q^{-1}=q\cdot (0, x) \cdot\overline{q}$ mit 
+$q=(\cos \alpha, \sin \alpha\,e_1, \sin \alpha\,e_2, \sin \alpha\,e_3)$ (mit $e_1^2+e_2^2+e_3^2=1$) eine Drehung von x um die Achse $(e_1, e_2, e_3)$ um den Winkel $2 \alpha$ beschrieben.
+\end{Sa}
+
+\begin{Kor}
+Sei $x\in \mathbb{R}^3$ (den wir durch (0, x) mit den Quaternionen identifizieren wollen) bezüglich einer Orthonormalbasis gegeben. Dann wird durch $x\mapsto q\cdot (0, x)\cdot \overline{q}$ mit 
+$q=(\cos \alpha, \sin \alpha\,e_1, \sin \alpha\,e_2, r\,\sin \alpha\,e_3)$ (mit $e_1^2+e_2^2+e_3^2=r$) eine Drehstreckung von x um die Achse $(e_1, e_2, e_3)$ um den Winkel $2 \alpha$ mit dem Streckfaktor r beschrieben.
+\end{Kor}
+
+\begin{Auf}
+Bestimme alle Nullstellen des Polynoms $x^2+1$ über dem Schiefkörper der Quaternionen.
+\end{Auf}
+
+\subsection{Ideale und Faktorringe}
+
+\begin{Def}
+Sei R ein Ring und $I \subseteq R$. I heißt \emph{zweiseitiges Ideal} ($I\trianglelefteq R$), wenn gilt:
+\begin{enumerate}
+	\item $(I, +)\leq (R, +)$
+	\item $\forall r\in R, a\in I: r\cdot a\in I, a\cdot r\in I$
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+Wir können auch Links-- und Rechtsideale definieren: $I \subseteq R$ heißt \emph{Linksideal}, wenn statt 2. nur gilt: $r\cdot a\in I$ und I heißt \emph{Rechtsideal}, wenn statt 2. nur gilt: $a\cdot r\in I$ (beides für alle $r\in R, a\in I$).
+\end{Bem}
+
+\begin{verbatim}
+Streitbare Ideale
+
+Das Linksideal und das Rechtsideal
+zankten sich sehr, zumal vor der Wahl,
+beliebten, sich peinlich zu bedraengen,
+goennten einander kein Element,
+beschimpften sich zudem permanent
+als urverdorbene Mengen.
+Sie pochten auf ihre Verschiedenheit
+und immer wilder ward der Streit,
+der nimmermehr zuende ging -
+und doch stammten beide vom gleichen Ring
+und ihr Hass war im Grunde naiv,
+denn ihr Ring war kommutativ!
+\end{verbatim}
+
+\begin{Bem}
+In Ringen, die \emph{mit} 1 definiert sind, sind Ideale \emph{keine} Unterringe (z. B. $2\mathbb{Z}\trianglelefteq \mathbb{Z}$, aber $2\mathbb{Z}\not\subseteq \mathbb{Z}$, da $1\notin 2\mathbb{Z}$). Falls man Ringe ohne 1 definiert, sind Ideale offensichtlich Unterringe.
+\end{Bem}
+
+\begin{Bsp}
+\begin{itemize}
+	\item $\{0\}, R$ sind die trivialen Ideale von R
+	\item $m\cdot \mathbb{Z}$ ist Ideal in $\mathbb{Z}$
+\end{itemize}
+\end{Bsp}
+
+\begin{Le}
+Sei $\left\{S_j\right\}_{j\in J}$ eine Familie von Unterringen von R. Dann ist auch $\bigcap\limits_{j\in J}{S_j}$ ein Unterring von R.
+\end{Le}
+
+\begin{Le}
+Sei $\left\{I_j\right\}_{j\in J}$ eine Familie von Idealen von R. Dann ist auch $\bigcap\limits_{j\in J}{I_j}$ ein Ideal von R.
+\end{Le}
+
+\begin{Def}
+Sei $S\subseteq R$. Dann nennen wir $\left\langle S\right\rangle=\bigcap\limits_{S\subseteq I\leq R} {I}$ den von S erzeugte Unterring.
+\end{Def}
+
+\begin{Def}
+Sei $S\subseteq R$. Dann nennen wir $\left(S\right)=\bigcap\limits_{S\subseteq I\trianglelefteq R} {I}$ das von S erzeugte Ideal.
+\end{Def}
+
+\begin{Sa}
+$S=\left\{a_1, \ldots, a_n\right\}\subseteq R$. Dann gilt:
+\begin{displaymath}
+	\left(S\right)=\left\{\sum\limits_{i_1\in I_1}{x_{1, i_1} a_1 y_{1, i_1}} + \sum\limits_{i_2\in I_2}{x_{2, i_2} a_2 y_{2, i_2}} + \ldots + \sum\limits_{i_n\in I_n}{x_{n, i_n} a_n y_{n, i_n}}: x_{i, j}, y_{i, j}\in R\right\}
+\end{displaymath}
+mit $I_1, \ldots, I_n\subseteq \mathbb{N}$.
+
+Wenn R kommutativ ist, so gilt:
+\begin{displaymath}
+	\left(S\right)=\left\{a_1\cdot x_1+\ldots+a_n\cdot x_n: x_i\in R\right\}.
+\end{displaymath}
+Wenn $S=\left\{a\right\}$, so gilt: 
+\begin{displaymath}
+\left(a\right)=\left\{\sum_{i\in I} x_i a \cdot y_i: I\subset \mathbb{N},\textnormal{ I endlich }, x_i, y_i\in R\right\}.
+\end{displaymath}
+Wenn $S=\left\{a\right\}$ und R kommutativ ist, so gilt: 
+\begin{displaymath}
+\left(a\right)=\left\{a \cdot x: x\in R\right\}.
+\end{displaymath}
+\end{Sa}
+
+\begin{Sa}
+Sei R ein kommutativer Ring. Dann gilt: R ist Körper $\Leftrightarrow$ $\{0\}, R$ sind die einzigen Ideale von R.\label{sa:ring_koerper}
+\end{Sa}
+\begin{bew}
+$\Rightarrow$: Sei $I\trianglelefteq R, I\neq \left\{0\right\}$, also $a\in I, a\neq 0$. Dann gilt: $\left(a\right)=\left\{a\cdot x: x\in R\right\}$. Da $a^{-1}\in R$ (da R Körper), folgt: $R=\left(1\right)=I$.
+
+$\Leftarrow$: Sei $a\in R^*$. Nach Voraussetzung gilt: $\left(a\right)=\left\{a\cdot x: x\in R\right\}=R$. Also muss $1\in R$ sein. Somit gibt es $x\in R$ mit $a\cdot x=1$, demnach $x=a^{-1}$.
+\end{bew}
+
+\begin{Sa}
+Sei R Ring und $I\triangleleft R$. Dann ist ${}^R/_I:=\left\{r+I:r\in R\right\}$ ein Ring bezüglich folgender Verknüpfungen:
+\begin{itemize}
+	\item $(r+I)+(s+I):=(r+s)+I$
+	\item $(r+I)\cdot (s+I):=r s+I$
+\end{itemize}
+\end{Sa}
+\begin{bew}
+Neutrale Elemente sind nach Definition $0+I$ und $1+I$. Assoziativität und Distributivität gilt, weil sie in R gelten und die entsprechende Verknüpfung in ${}^R/_I$ auf die in R geltende zurückgeführt wird. Die Addition ist wohldefiniert, weil $r+I$ und $s+I$ Nebenklassen bezüglich der additiven Gruppe sind (und für Gruppen haben wir dies schon früher gezeigt). 
+
+Also ist nur die Wohldefiniertheit von $\cdot$ zu zeigen:
+
+Sei $r+I=r'+I$, $s+I=s'+I$.
+
+Zu zeigen: $\underbrace{(r+I) (s+I)}_{r s+I}=\underbrace{(r'+I) (s'+I)}_{r' s'+I}$, also $r s-r' s'\in I$.
+
+Nach Voraussetzung ist $r-r', s-s'\in I$. Also ist $(r-r') s=r s-r' s\in I$, weil I Rechtsideal ist und $r' (s-s')=r' s-r' s'\in I$, weil I ein Linksideal ist. Also ist auch $(r s-r' s)-(r' s-r' s')=r s-r' s'\in I$, was zu zeigen war.
+\end{bew}
+
+\begin{Def}
+Seien R, R' Ringe. Eine Abbildung $\phi: R \rightarrow R'$ heißt \emph{Ringhomomorphismus}, wenn gilt:
+\begin{itemize}
+	\item $\phi(r+s)=\phi(r)+\phi(s)$
+	\item $\phi(r\cdot s)=\phi(r)\cdot\phi(s)$
+	\item $\phi(1_R)=1_{R'}$
+\end{itemize}
+\end{Def}
+
+\begin{Bem}
+Falls man die Ringe nicht als unitär voraussetzt, lässt man die letzte Eigenschaft weg.
+\end{Bem}
+
+\begin{Bsp}
+Bezüglich + ist $\varphi_a: \mathbb{Z}_p\rightarrow \mathbb{Z}_p, x\mapsto a x$ mit $a\in \mathbb{Z}_p$ ein (Gruppen-)Homomorphismus. Jedoch ist $\varphi_a$ kein Ringhomomorphismus, denn $\varphi_a(x y)=a x y$, aber gleichzeitig muss gelten: $\varphi_a(x y)=\varphi_a(x) \varphi_a(y)=a x a y=a^2 x y$, also gilt $a^2 x y=a x y$ für alle $x, y\in R$. Demnach gilt: $a=0$ oder $a=1$. Für $a=0$ ist es jedoch ebenfalls kein Ringhomomorphismus, da dann nicht $\varphi(1_R)=1_{R'}$ gilt.
+\end{Bsp}
+
+\begin{Def}
+Sei $\phi$ ein Ringhomomorphismus. Dann bezeichnen wir mit $\Ker \phi:=\{r\in R: \phi(r)=0\}$.
+\end{Def}
+
+\begin{Le}
+Seien R, R' Ringe und $\phi: R\rightarrow R'$ ein Ringhomomorphismus. Dann gilt:
+\begin{itemize}
+	\item $\ker \phi\trianglelefteq R$
+	\item $\phi$ injektiv $\Leftrightarrow \Ker \phi=\left\{0\right\}$
+	\item $\bild \phi\leq R'$
+\end{itemize}
+\end{Le}
+
+\begin{Sa} (1. Isomorphiesatz für Ringe)
+Seien $R, R'$ Ringe und $\varphi: R\leftarrow R'$ ein Homomorphismus und $I=\Ker \varphi$. Dann gibt es genau einen injektiven Homomorphismus $\phi': {}^R/_I\rightarrow R'$ mit $\varphi'(r+I)=\phi(r)$. Außerdem gilt: $\varphi'$ surjektiv $\Leftrightarrow$ $\phi$ surjektiv, woraus folgt: ${}^R/_I\cong \bild \varphi$.
+\end{Sa}
+
+\begin{Sa} (2. Isomorphiesatz für Ringe)
+Sei R ein Ring, $S\leq R$ und $I\trianglelefteq R$. Dann ist $S+I:=\left\{s+r: s\in S, r\in I\right\}$ ein Teilring von R, der I enthält und es gilt:
+\begin{itemize}
+	\item $S \cap I$ ist ein Ideal in S
+	\item $\varphi: {}^{(S+I)}/_I\rightarrow {}^{S}/_{S\cap I}$ mit $s+I\mapsto s+(S\cap I)$ ist ein Isomorphismus, also ${}^{(S+I)}/_I\cong {}^{S}/_{S\cap I}$
+\end{itemize}
+\end{Sa}
+
+\begin{Sa}
+(3. Isomorphie-Satz für Ringe)
+Sei $I\trianglelefteq R$. Wenn $I\trianglelefteq S\leq R$, dann ist $^S/_I\leq ^R/_I$. Außerdem gilt: $S \trianglelefteq R\Leftrightarrow ^S/_I\trianglelefteq ^R/_I$. In diesem Fall gilt: $^{\left(^S/_I\right)}/_{\left(^R/_I\right)}\cong ^R/_S$.
+\end{Sa}
+
+\begin{Sa}
+(Korrespondenzsatz für Gruppen)
+Die Zuordnung $\overline{\ }$, die jedem I mit $I\trianglelefteq S\leq R$ ein $\overline{S}:=^R/_I$ zurordnet (nach 3. Isomorphiesatz für Ring mit $\overline{S}\leq \overline{R}$), ist bijektiv, d. h. zu jedem Ideal J in R, welches I enhält, wird genau ein Ideal $\overline{J}$ in $^R/_I$ zugeorndnet und zu jedem Ideal K in $^R/_I$ gehört ein $J\trianglelefteq R$ mit $\overline{J}=K$.
+\end{Sa}
+
+\subsection{Quotientenkörper}
+
+\begin{Def}
+Sei D ein Integritätsbereich und $D^*:=D\backslash \left\{0\right\}$. Definiere eine Relation $\sim$ auf $D\times D^*$: $(a, b)\sim (c,d)\Leftrightarrow a d=b c $.
+\end{Def}
+
+\begin{Auf}
+Zeige: $\sim$ ist eine Äquivalenzrelation.
+\end{Auf}
+
+\begin{Sa}
+$D':=({}^{D\times D^*}/_\sim, +, \cdot)$ ist ein Körper mittels folgender Verknüpfungen:
+\begin{itemize}
+	\item $\left[\left(a, b\right)\right]_\sim \cdot \left[\left(c, d\right)\right]_\sim:=\left[\left(a c, b d\right)\right]_\sim$
+	\item $\left[\left(a, b\right)\right]_\sim + \left[\left(c, d\right)\right]_\sim:=\left[\left(a d+ b c, b d\right)\right]_\sim$
+\end{itemize}
+mit neutralem Elementen $\left[(0, 1)\right]_\sim$ bzw. $\left[(1, 1)\right]_\sim$. D' nennen wir \emph{Quotientenkörper von D}.
+\end{Sa}
+
+\begin{Kor}
+Jeder Integritätsbereich kann in einen Körper $\mathbb{F}$ eingebettet werden, d.~h. es existiert ein injektiver Homomorphismus (Monomorphismus) $\eta: D\rightarrow \mathbb{F}$.
+\end{Kor}
+\begin{bew}
+Sei $\mathbb{F}=D'$ und definiere $\eta: D\rightarrow \mathbb{F}, a\mapsto \left[(a, 1)\right]_\sim$. Die Homomorphismen-Eigenschaft ist leicht nachzurechnen.
+
+Zu zeigen ist noch die Injektivität:
+\begin{eqnarray*}
+	\Ker \eta & = & \left\{a\in D: \left[(a, 1)\right]_\sim=\left[(0, 1)\right]_\sim \right\} \\
+	& = & \left\{a\in D: (a, 1)\sim (0, 1) \right\} \\
+	& = & \left\{a\in D: a=0 \right\} \\
+\end{eqnarray*}
+\end{bew}
+
+\begin{Sa}
+Sei D Integritätsbereich und $\mathbb{F}$ Körper. Dann kann jeder injektive Homomorphismus $\eta: D\rightarrow \mathbb{F}$ eindeutig zu einem Monomorphismus $\eta': D'\rightarrow \mathbb{F}$ fortgesetzt werden, d. h. $\eta'_{|D}=\eta$.
+\end{Sa}
+
+\subsection{Polynomringe, Moduln und R-Algebren}
+
+\begin{Def}
+Sei R ein Ring und $f:=\left\{f_j\right\}_{j=0}^\infty$ eine Folge von Elementen aus R, welche nur endlich viele Nicht-Nullelemente enthält. Dann heißt f \emph{Polynom über R}.
+\end{Def}
+
+\begin{Bem}
+Häufig wird ein Polynom statt als Folge von Ringelementen, welche nur endlich viele Nicht-Nullelemente enthält, als formale Summe definiert:
+\begin{displaymath}
+	f:=f_n x^n+\ldots+f_1 x + f_0
+\end{displaymath}
+mit $f_i\in R$.
+
+Wie man leicht sieht, ist diese Definition äquivalent zur vorhergehenden. Da diese Definition jedoch dazu verleitet Polynome als Funktionen zu betrachten, wurde hier Abstand davon genommen, werden jedoch auf die Schreibweise ggf. zurückgreifen.
+\end{Bem}
+
+\begin{Bem}
+Polynome sind \emph{keine} Funktionen. Beispiel: als Polynome über $\mathbb{F}_3$ sind $x^3$ und $x$ verschieden, als Funktionen jedoch identisch.
+\end{Bem}
+
+\begin{Def}
+Sei f ein Polynom. Den Index des größten von 0 verschiedenen Koeffizienten von f bezeichnen wir als den \emph{Grad von f} ($\deg f$). Falls das Polynom gleich dem Nullpolynom ist, so besitzt dieses einen Grad von $-\infty$.
+\end{Def}
+
+\begin{Def}
+Durch die Definition folgender Additionen und Multiplikation wird auf der Menge aller Polynome über dem Ring R eine Ringstruktur ("`Polynomring"') induziert, die wir mit $R[x]$, wobei x ein formales Symbol wie in der vorhergehenden Bemerkung:
+\begin{displaymath}
+	\left\{f_j\right\}_{j=0}^\infty+\left\{g_j\right\}_{j=0}^\infty:=\left\{f_j+g_j\right\}_{j=0}^\infty
+\end{displaymath}
+und
+\begin{displaymath}
+	\left\{f_j\right\}_{j=0}^\infty\cdot\left\{g_j\right\}_{j=0}^\infty:=\left\{\sum\limits_{i=0}^j{f_i g_{j-i}}\right\}_{j=0}^\infty
+\end{displaymath}.
+\end{Def}
+
+\begin{Le}
+Seien $f, g\in R[x]$. Dann gilt: $\deg f+g\leq \max(\deg f, \deg g)$ und $\deg f g\leq \deg f+\deg g$. Gleichheit für alle f, g gilt genau dann, wenn R nullteilerfrei ist.
+\end{Le}
+
+\begin{Auf}
+Man beweise folgende Aussage: der Ring R[x] ist genau dann nullteilerfrei, wenn R nullteilerfrei ist.
+\end{Auf}
+
+\begin{Bem}
+Da $R[x]$ wieder ein Ring ist, können wir über diesem wiederum einen Polynomring in einer weiteren Variable bilden. Dieser wird im Allgemeinen als $R[x, y]$ statt $R[x][y]$ oder $(R[x])[y]$ geschrieben.
+\end{Bem}
+
+Nun wollen wir uns der Frage zuwenden, wie ein Polynom eine Polynomfunktion induziert: 
+
+\begin{Bem}
+Falls wir im Polynom "`einfach so Elemente aus R einsetzen"' und R ist nicht kommutativ, so bekommen wir schon für Polynome vom Grad 1 ein Problem in der Veträglichkeit bezüglich der Multiplikation der Funktionswerte versus der Multiplikation im Polynomring:
+\begin{displaymath}
+	(f_0+f_1 x)\cdot (g_0+g_1 x)=f_0 g_0+\underbrace{f_1 x g_0}_{\textnormal{im Allgemeinen }\neq f_1 g_0 x}+f_0 g_1 x+\underbrace{f_1 x g_1 x}_{\textnormal{im Allgemeinen }\neq f_1 g_1 x^2}.
+\end{displaymath}
+Wie wir gesehen haben, bilden die Polynome bezüglich der Addition und Multiplikation einen sinnvoll definierten Ring. Sobald wir jedoch im Falle eines nichtkommutativen Rings Werte einsetzen, so bekommen wir einen Widerspruch zu der von einer "`sinnvollen Einsetzung von Werten"' zu erwartenden Verträglichkeit mit der Multiplikation ($(f\cdot g)(x)=f(x)\cdot g(x)$).
+
+Dies ist ein weiterer wichtiger Punkt dafür, warum man Polynome nicht als Funktionen auffassen sollte und der Grund warum wir im Folgenden, wenn es um die Einsetzung von Werten geht, den Ring R als kommutativ voraussetzen.
+\end{Bem}
+
+\begin{Def}
+Sei R ein (unitärer) und nicht unbedingt kommutativer Ring. $(M, \cdot)$ (mit $\cdot: R\times M \rightarrow M$) heißt \emph{(unitärer) R-Links-Modul}, wenn für alle $r, r_1, r_2\in R, m, m_1, m_2\in M$ gilt:
+\begin{enumerate}
+	\item $M$ ist eine abelsche Gruppe
+	\item $(r_1+r_2) m = r_1 m+r_2 m$
+	\item $r (m_1+m_2)=(r m_1)+(r m_2)$
+	\item $r_1 (r_2 m) = (r_1 r_2) m$
+	\item $1 m=m$.
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+Analog definiert man einen R-Rechts-Modul.
+\end{Bem}
+
+\begin{Def}
+Falls R kommutativ ist, macht es keinen Unterschied, ob man einen Links- oder Rechtsmodul betrachtet. In diesem Fall spricht man nur von einem R-Modul.
+\end{Def}
+
+\begin{Bem}
+Falls R kein unitärer Ring ist, so lässt man die Eigenschaft 5. sinnvollerweise weg. Da wir jedoch alle Ringe als unitär voraussetzen wollen, setzen wir dementsprechend auch alle Moduln als unitär voraus.
+\end{Bem}
+
+\begin{Def}
+Falls $R=\mathbb{K}$ ein Körper ist, so nennen wir einen $\mathbb{K}-Modul$ einen \emph{$\mathbb{K}$-Vektorraum}.
+\end{Def}
+
+\begin{Bsp}
+Sei R ein kommutativer Ring. Dann ist $R^n$ (die Menge aller n-Tupel von Ringelementen) ein R-Modul bezüglich der "`natürlichen"' Verknüpfungen.
+\end{Bsp}
+
+\begin{Bsp}
+$R^n$ (R kommutativ) bildet mittels folgender Verknüpfung einen $M(n, R)$-Links-Modul:
+\begin{displaymath}
+	(M\cdot x)_i=\sum\limits_{j=1}^n{m_{i j} x_j}.
+\end{displaymath}
+\end{Bsp}
+
+\begin{Def}
+Sei R ein \emph{kommutativer} Ring und A ein R-Modul. $(R, A, \cdot)$ mit $\cdot: A \times A \rightarrow A$ heißt \emph{assoziative R-Algebra}, wenn für alle $x, y, z\in A, \lambda \in R$ gilt:
+\begin{enumerate}
+  \item $(x+y) z=x z+y z$
+  \item $x (y+z)=x y+x z$
+  \item $\lambda (x y)=(\lambda x) y=x (\lambda y)$
+  \item $(x y) z=x (y z)$ (Assoziativität)
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+Falls man in der Definition der assoziativen R-Algebra die Assozativität weglässt, so erhält man die allgemeinere Klasse von R-Algebren.
+\end{Bem}
+
+\begin{Bsp}
+Jeder kommutative Ring ist eine assoziative R-Algebra über sich selbst und damit insbesondere ein R-Modul über sich selbst.
+\end{Bsp}
+
+\begin{Def}
+Seien M, N Mengen. Dann bezeichnet $N^M$ die Menge aller Funktionen von M nach N.
+\end{Def}
+
+\begin{Bsp}
+Sei R ein kommutativer Ring und S ein (nicht unbedingt kommutativer) Ring, welcher R als Teilring enthält. Dann ist S eine assoziative R-Algebra.
+\end{Bsp}
+
+\begin{Bsp}
+Sei M eine beliebige Menge. Dann bildet die Menge $M^R$ bezüglich der "`natürlichen"' Verknüpfungen eine R-Algebra:
+\begin{displaymath}
+	(f+g)(m)=f(m)+g(m)
+\end{displaymath}
+\begin{displaymath}
+	(f\cdot g)(m)=f(m)\cdot g(m)
+\end{displaymath}
+\begin{displaymath}
+	(r\cdot f)(m)=r \cdot f(m).
+\end{displaymath}
+\end{Bsp}
+
+\begin{Bsp}
+$M(n, R)$ (R wie gewohnt kommutativ) bildet bezüglich der natürlichen Verknüpfungen und der Ringmultiplikation in $M(n, R)$ eine assoziative R-Algebra.
+\end{Bsp}
+
+\begin{Def}
+Sei R ein kommutativer Ring und S eine assoziative R-Algebra. Dann wird durch $\widetilde{\ }: R[x] \rightarrow S^S$ mittels
+\begin{displaymath}
+	\widetilde{f}(x)=\sum\limits_{i=0}^{\deg f}{f_i x^i}
+\end{displaymath}
+eine Funktion induziert, die wir den \emph{Einsetzungshomomorphismus} des Polynoms (bezüglich S) nennen.
+\end{Def}
+
+\begin{Bem}
+Bislang haben wir keine Homomorphismen von Ringen und R-Algebren definiert. Sobald dies nachgeholt wurde, könnte man problemlos nachrechnen, dass es sich, wie man beim Begriff "`Einsetzungshomomorphismus"' erwarten würde, tatsächlich um einen Ringhomomorphismus vom Ring R in den Ring der Endomorphismen der assoziativen R-Algebra S handelt.
+
+Zusätzlich erfüllt für jedes $f\in R[x]$ die Funktion $\widetilde{f}$ die Eigenschaft der Veträglichkeit mit der Algebren-Multiplikation: $\widetilde{f}(x\cdot y)=\widetilde{f}(x) \widetilde{f}(y)$.
+\end{Bem}
+
+\begin{Bem}
+Ab jetzt werden wir, falls erforderlich, den Einsetzungshomomorphismus "`implizit"' benutzen, also nicht mehr $\widetilde{f}(x)$ schreiben, sondern $f(x)$ (da eine Einsetzung von Werten für Polynome nicht definiert ist, ist klar, dass der Einsetzungshomomorphismus bezüglich einer passenden assoziativen R-Algebra gemeint ist).
+\end{Bem}
+
+\begin{Le}
+Jeder Ring R lässt sich durch $\eta: R\rightarrow R[x]: r\mapsto (r, 0, \ldots)$ in den Ring $R[x]$ einbetten.
+\end{Le}
+
+\begin{Def}
+Seien R, S Ringe und $U\subseteq S$. Dann definieren wir
+\begin{displaymath}
+	R[U]:=\bigcap\limits_{R\leq S'\leq S, U\subseteq S'}{S'}
+\end{displaymath}
+als den kleinsten Ring, der R und U enthält.
+\end{Def}
+
+\begin{Bsp}
+\begin{enumerate}
+	\item $R=\mathbb{Z}$, $S=\mathbb{R}$, $\mathbb{Z}[\sqrt{2}]=\left\{a+b\sqrt{2}: a, b\in \mathbb{Z}\right\}$
+	\item $R=\mathbb{Z}$, $S=\mathbb{C}$, $\mathbb{Z}[i]=\left\{a+b i: a, b\in \mathbb{Z}\right\}$. Diesen Ring nennen wir die \emph{Gaußschen ganzen Zahlen}
+\end{enumerate}
+\end{Bsp}
+
+\begin{Sa}
+Seien R, S kommutative Ringe und $u\in S$. Außerdem gebe es einen Homomorphismus $\eta: R\rightarrow S$. Dann gibt es genau einen Homomorphismus $\eta': R[x]\rightarrow S$ mit $\eta'_{|R}=\eta$ und $\eta'((0,1,0,\ldots))=u$.\label{sa:11_3}
+\end{Sa}
+\begin{bew}
+Setze $\eta'((a_0, a_1, a_2,\ldots))=\sum_{i\in\mathbb{N}_0, a_i\neq 0}{\eta(a_i) u^i}$ (wobei $u^0=1$, also $\eta'((1, 0, 0,\ldots))=1$). Die Eindeutigkeit von $\eta'$ folgt durch Nachrechnen.
+\end{bew}
+
+\begin{Sa}
+$R[u]\cong {}^{R[x]}/_I$ mit $I=\Ker (\eta')=\left\{f\in R[x]: f(u)=0\right\}$ (wobei $R[u]$ eine Abkürzung für $R[\left\{u\right\}]$ ist).\label{sa:11_5}
+\end{Sa}
+\begin{bew}
+Aussage folgt aus dem 1. Isomorphiesatz für Ringe.
+\end{bew}
+
+\begin{Def}
+$u\in S$ heißt \emph{algebraisch}, wenn $I\neq \left\{0\right\}$ und \emph{transzendent}, wenn $I=\left\{0\right\}$.
+\end{Def}
+
+\begin{Bsp}
+R=$\mathbb{Q}$, S=$\mathbb{R}$ und $u=e$ bzw. $u=\pi$. Dann ist u transzendent. Es ist ein offenes Problem, ob $u=e+\pi$ algebraisch oder transzendent ist.
+\end{Bsp}
+
+\begin{Bsp}
+R=$\mathbb{Q}$, S=$\mathbb{R}$ und $u=\sqrt{2}$. Dann ist u algebraisch, denn der Homomorphismus $\eta'$ aus Satz \ref{sa:11_3} mit $\eta'_{|R}=\eta=
+id$ und $\eta'((0, 1, 0, \ldots))=\sqrt{2}$ hat als Kern $(x^2-2)$ (das von $x^2-2$ aufgespannte Ideal).
+\end{Bsp}
+
+\begin{Def}
+Sei R ein Integritätsbereich. Dann heißt R Hauptidealring, wenn jedes Ideal nur von einem Element erzeugt wird.
+\end{Def}
+
+\begin{Auf}
+Zeige, dass $\mathbb{Z}[x]$ und $\mathbb{F}[x, y]$ keine Hauptidealringe sind (Tipp: betrachte die Ideale $(2, x)$ und $(x, y)$).
+\end{Auf}
+
+\begin{Sa}
+Sei $\mathbb{F}$ ein Körper. Dann ist $\mathbb{F}[x]$ ein Hauptidealring.
+\end{Sa}
+\begin{bew}
+(Skizze) Trick: wir können für Polynome über einem Körper mittels euklidischem Algorithmus einen größten gemeinsamen Teiler bestimmen (da diese einen sogenannten euklidischen Ring bilden).
+
+Sei I ein Ideal in $\mathbb{F}[x]$. Sei $f\in I$ mit minimalem Grad. Annahme: $(f)\neq I$. Dann muss es ein Element g mit $g\in I$, $g\notin (f)$ geben. Also bilden wir den ggT von f und g und erhalten ein Element aus I, welches einen kleineren Grad als f hat (Widerspruch).
+\end{bew}
+
+\begin{Def}
+Falls im Satz \ref{sa:11_5} R ein Körper ist, so wird das Ideal I durch ein Polynom f erzeugt. Dieses nennen wir, falls f monisch ist (d. h. der höchste Koeffizient, welcher nicht 0 ist, ist 1), das \emph{Minimalpolynom} von u.
+\end{Def}
+
+\begin{Sa}
+Sei $\mathbb{F}$ ein Körper. $\mathbb{F}[u]$ ist ein Körper, wenn u algebraisch ist und das Minimalpolynom von u irreduzibel ist. Wenn das Minimalpolynom von u reduzibel ist, so ist $\mathbb{F}[u]$ kein Integritätsbereich.
+\end{Sa}
+
+\begin{Bsp}
+$\mathbb{F}=\mathbb{R}$. Mittels $\eta: r\mapsto \left(
+\begin{array}{ll}
+	r & 0 \\
+	0 & r 
+\end{array}\right)$ lässt sich $\mathbb{R}$ in den Ring der $2\times 2$-Matrizen einbetten. Sei $A=\left(
+\begin{array}{ll}
+	0 & 1 \\
+	-1 & 0 
+\end{array}\right)$. Das Minimalpolynom von A ist $x^2+1$. Also ist $\mathbb{F}[A]$ ein Körper (welcher isomorph zu $\mathbb{C}$ ist).
+\end{Bsp}
+
+\begin{bew}
+$\mathbb{F}[u]={}^{\mathbb{F}[x]}/_{(g)}$ (da g irreduzibel und Minimalpolynom von u). Sei $J\trianglelefteq \mathbb{F}[x]={}^{\mathbb{F}[x]}/_{(g)}$. Nach dem Korrespondenzsatz gibt dann ein Ideal J' mit $(g)\subseteq J'\trianglelefteq \mathbb{F}[x]$, wobei $J=(r+(g): r\in J')$. Es gilt $J'=(h)$, weil
+$\mathbb{F}[x]$ ein Hauptidealring ist.
+
+Weil aber $(g)\subseteq (h)\Leftrightarrow h | g$ gibt es ein f mit $h f=g$. Da g irreduzibel ist, ist entweder $\deg h=0$ ($\Rightarrow J'=\mathbb{F}[x]$) oder $\deg f=0$ ($\Rightarrow J'=(g)$). In beiden Fällen ist J ein triviales Ideal von ${}^{\mathbb{F}[x]}/_{(g)}$.
+
+Nach Satz \ref{sa:ring_koerper} ist demnach $\mathbb{F}[u]={}^{\mathbb{F}[x]}/_{(g)}$ ein Körper.
+
+Sei umgekehrt u algebraisch und g reduzibel. Dann ist $g=f h$ mit $0<\deg f, \deg h < \deg g$. Also gilt: $(f+(g))(h+(g))=f h +(g)=0+(g)$, also ist ${}^{\mathbb{F}[x]}/_{(g)}$ nicht nullteilerfrei.
+\end{bew}
+
+\section{Vektorräume}
+
+Classification of mathematical problems as linear and nonlinear is like classification of the Universe as bananas and non-bananas. 
+
+(Quelle: \verb|http://www.math.utah.edu/~cherk/mathjokes.html|)
+
+\begin{Def}
+Sei $\mathbb{K}$ ein Körper. $(V, \cdot)$ (mit $\cdot: \mathbb{F}\times V \rightarrow V$) heißt \emph{Linearer $\mathbb{K}$-Vektorraum}, wenn für alle $k, k_1, k_2\in R, v, v_1, v_2\in V$ gilt:
+\begin{enumerate}
+	\item $V$ ist eine abelsche Gruppe
+	\item $(k_1+k_2) v = k_1 v+k_2 v$
+	\item $k (v_1+v_2)=(k v_1)+(k v_2)$
+	\item $k_1 (k_2 v) = (k_1 k_2) v$
+	\item $1 v=v$.
+\end{enumerate}
+\end{Def}
+
+\begin{Bsp}
+Sei $\mathbb{K}$ ein Körper. Dann ist $\mathbb{K}^n$ bezüglich der kanonischen Verknüpfungen ein Vektorraum.
+\end{Bsp}
+
+\begin{Bsp}
+Sei G eine Menge und $\mathbb{K}$ ein Körper. Dann ist $\mathbb{K}^G$ (Menge der Abbildungen von G nach $\mathbb{K}$ ein Vektorraum.
+\end{Bsp}
+
+\begin{Bsp}
+Für $\mathbb{K}$ Körper bildet $M(n, \mathbb{K})$ einen Vektorraum, den wir auch mit $\mathbb{K}^{n\times n}$ bezeichnen (mit $M(n, \mathbb{K})$ bezeichnet man im Allgemeinen die Matrizenalgebra der $n\times n$-Matrizen, d. h. es ist zusätzlich eine Multiplikation definiert).
+\end{Bsp}
+
+\begin{Bsp}
+Für $\mathbb{K}$ Körper bezeichnet $\mathbb{K}^{m\times n}$ den Vektorraum der Matrizen mit m Zeilen und n Spalten.
+\end{Bsp}
+
+\begin{Bsp}
+Sei $\mathbb{K}$ ein Körper mit Unterkörper $\mathbb{U}$. Dann bildet $\mathbb{K}=:V$ einen $\mathbb{U}$-Vektorraum, wenn man die $\cdot: \mathbb{U}\times V\rightarrow V$ als die Einschränkung der Multiplikation in $\mathbb{K}$ auf $\mathbb{U}\times \mathbb{K}$ definiert.
+\end{Bsp}
+
+\begin{Bsp}
+Sei $\mathbb{K}$ ein Körper. Dann ist $\mathbb{K}[X]$ ein Vektorraum.
+\end{Bsp}
+
+\begin{Bsp}
+Sei $1\leq p<\infty$. Dann definieren wir: $l_p(\mathbb{R}):= \left\{\left\{x_i\right\}_{i=1}^\infty: x_i\in\mathbb{R}, \sum\limits_{i=1}^\infty{\left|x_i\right|^p}<\infty\right\}$ und $l_p(\mathbb{C}):= \left\{\left\{x_i\right\}_{i=1}^\infty: x_i\in\mathbb{C}, \sum\limits_{i=1}^\infty{\left|x_i\right|^p}<\infty\right\}$.
+\end{Bsp}
+
+\begin{Bsp}
+$l_\infty(\mathbb{R}):= \left\{\left\{x_i\right\}_{i=1}^\infty: x_i\in\mathbb{R}, \sup\limits_{i\in\mathbb{N}}{\left|x_i\right|}<\infty\right\}$ und $l_\infty(\mathbb{C}):= \left\{\left\{x_i\right\}_{i=1}^\infty: x_i\in\mathbb{C}, \sup\limits_{i\in\mathbb{N}}{\left|x_i\right|}<\infty\right\}$.
+\end{Bsp}
+
+\begin{Bem}
+Die Tatsache, dass $l_p(\mathbb{R})$ bzw. $l_p(\mathbb{C})$ tatsächlich Vektorräume bilden (es ist keineswegs selbstverständlich, dass die Summe zweier Vektorraumelemente wieder die definierende Eigenschaft erfüllt!), folgt aus der Minkowski-Ungleichung:
+
+Seien $x, y\in l_p(\mathbb{R})$ bzw. $l_p(\mathbb{C})$ ($1\leq p\leq \infty$). Dann gilt:
+\begin{displaymath}
+	\left\|x+y\right\|_p\leq \left\|x\right\|_p+\left\|y\right\|_p
+\end{displaymath}
+mit
+\begin{displaymath}
+	\left\|x\right\|_p=\begin{cases}
+	\sqrt[p]{\sum\limits_{i=1}^\infty{\left|x_i\right|^p}} & 1\leq p<\infty \\
+	\sup\limits_{i\in\mathbb{N}}{\left|x_i\right|}<\infty & p=\infty
+	\end{cases}
+\end{displaymath}
+\end{Bem}
+
+\begin{Sa}
+Seien $1\leq p, q\leq \infty$ und $\frac{1}{p}+\frac{1}{q}=1$ (wobei $p=1$, wenn $q=\infty$ und umgekehrt), $f\in l_p$ und $g\in l_q$. Dann gilt
+\begin{displaymath}
+	\left\|f g\right\|_1\leq \left\|f\right\|_p \left\|g\right\|_q.
+\end{displaymath}
+\end{Sa}
+
+Nun noch ein "`ungewöhnliches"' Beispiel:
+
+\begin{Bsp}
+$V:=R^*_+$ mit Addition $\oplus: V\times V\rightarrow V; u \oplus v = u v$ und skalarer Multiplikation $\odot: \mathbb{R}\times V\rightarrow V; \alpha \odot v=v^\alpha$ ist ein Vektorraum.
+\end{Bsp}
+
+\begin{Def}
+Sei $U\subseteq V$. U heißt (linearer) \emph{Untervektorraum} von V ($U\leq V$), wenn gilt:
+\begin{enumerate}
+	\item $U\neq \emptyset$
+	\item $u_1, u_2\in U\Rightarrow u_1+u_2\in U$
+	\item $\lambda\in \mathbb{K}, u\in U\Rightarrow \lambda u\in U$.
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+Ein Untervektorraum ist tatsächlich ein Vektorraum (nachrechnen!).
+\end{Bem}
+
+\begin{Sa}
+$l_p\leq l_q$ für $1\leq p\leq q$.
+\end{Sa}
+\begin{bew}
+Zu zeigen ist lediglich $l_p\subseteq l_q$. Sei also $f\in l_p$.
+
+Für $q=\infty$ gilt die Aussage offensichtlich. Sei nun $p\leq q<\infty$.
+
+Offensichtlich müssen fast alle $\left|f_i\right|<1$ sein. 
+
+Dann gilt: $\sum\limits_{i=1}^\infty{\left|f_i\right|^q}<\sum\limits_{i=1}^\infty{\left|f_i\right|^p}+C<\infty$, wobei $C=\sum\limits_{i\in \mathbb{N}, f_i>1}{f_i^q-f_i^p}<\infty$. Also ist $\sum\limits_{i=1}^\infty{\left|f_i\right|^q}<\infty$ und damit $f\in l_q$.
+\end{bew}
+
+\subsection{Konvexe Mengen}
+
+A mathematician gives a talk intended for a general audience. The talk is announced in the local newspaper, but he expects few people to show up because nobody who is not a mathematician will be able to make any sense of the title: \emph{Convex sets and inequalities}.
+
+To his surprise, the auditorium is crammed when his talk begins. After he has finished, someone in the audience raises his hand.
+
+"`But you said nothing about the actual topic of your talk!"'
+
+"`What topic to you mean?"'
+
+"`Well, the one that was announced in the paper: \emph{Convicts, sex, and inequality}."'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\begin{Def}
+Sei V ein Vektorraum und $C\subseteq V$. C heißt \emph{konvex}, wenn gilt: $a, b\in C\wedge \lambda\in\left[0, 1\right]\Rightarrow \lambda a+(1-\lambda) b\in C$.
+\end{Def}
+
+\subsection{(Konvexe) Kegel}
+
+\begin{Def}
+Sei V ein Vektorraum und $C\subseteq V$. C heißt \emph{Kegel}, wenn gilt: $c\in C\wedge \lambda\in\left[0, \infty\right)\Rightarrow\lambda c\in C$.
+\end{Def}
+
+\begin{Bem}
+Offensichtlich sind Kegel Spezialfälle kommutativer Monoide.
+\end{Bem}
+
+\begin{Def}
+Sei V ein Vektorraum und $C\subseteq V$. C heißt \emph{konvexer Kegel}, wenn C konvex und ein Kegel ist.
+\end{Def}
+
+\begin{Bem}
+Beweise die folgende äquivalente Charakterisierung konvexer Kegel: $C\subseteq V$ ist konvexer Kegel $\Leftrightarrow$
+\begin{enumerate}
+	\item $x,y\in C\Rightarrow x+y\in C$
+	\item $c\in C\wedge \lambda\in\left[0, \infty\right)\Rightarrow\lambda c\in C$.
+\end{enumerate}
+\end{Bem}
+
+\begin{Bem}
+Die Menge aller Metriken auf einer Menge M bildet einen konvexen Kegel (im Vektorraum der Funktionen $M\times M\rightarrow \mathbb{R}$).
+\end{Bem}
+
+\subsection{Normierte Räume}
+
+\begin{Def}
+Sei V ein $\mathbb{R}$- oder $\mathbb{C}$-Vektorraum und $\left\|\cdot\right\|: V\rightarrow \mathbb{R}$. Dann heißt das Tupel $(V, \left\|\cdot\right\|)$ \emph{normierter Raum} (oder \emph{Prä-Banachraum}), wenn gilt:
+\begin{enumerate}
+	\item $\left\|x\right\|=0 \Leftrightarrow x=0$
+	\item $\left\|\lambda x\right\|=\left|\lambda\right| \left\|x\right\|\ \forall \lambda\in \mathbb{R}$ bzw. $\mathbb{C}$.
+	\item $\left\|x+y\right\|\leq \left\|x\right\|+\left\|y\right\|$.
+\end{enumerate}
+\end{Def}
+
+\begin{Auf}
+Man zeige: in einem normierten Raum wird durch $d(x, y)=\left\|x-y\right\|$ eine Metrik induziert.
+\end{Auf}
+
+\begin{Le}
+In jedem normierten Raum gilt: $\left\|x\right\|\geq 0$.
+\end{Le}
+\begin{bew}
+Für die induzierte Metrik gilt: $d(x, y)\geq 0$. Da aber auch $d(x, y)=\left\|x-y\right\|$, folgt $\left\|x-y\right\|\geq 0$. Setze $y=0$ und erhalte die Aussage.
+\end{bew}
+
+\subsection{Nullpunktsymmetrische und offene Mengen}
+
+\begin{Def}
+Eine Menge C heißt \emph{nullpunktsymmetrisch}, wenn aus $c\in C$ folgt, dass $-c\in C$ ist.
+\end{Def}
+
+\begin{Def}
+Eine Menge C heißt bezüglich der durch die Metrik d induzierten Topologie \emph{offen}, wenn es für jedes $c\in C$ ein $\epsilon>0$ gibt, so dass für alle Punkte p mit $d(p, c)<\epsilon$ folgt: $p\in C$.
+\end{Def}
+
+\begin{Sa}
+Sei $(V, \left\|\cdot\right\|)$ normierter endlichdimensionaler Vektorraum. Dann gibt es eine Bijektion zwischen der Menge aller konvexen, nullpunktsymmetrischen, beschränkten und bezüglich $\left\|\cdot\right\|$ offenen Mengen M und der Menge aller Normen auf V.
+
+Genauer: erfülle $M\subseteq V$ die genannten Bedingungen. Dann wird durch $\left\|x\right\|:=\sup\limits_{\lambda>0} \lambda x\in M$ eine Norm auf V definiert, für die gilt: $M=\left\{x\in V: \left\|x\right\|<1\right\}$.
+
+Sei umgekehrt $\left\|\cdot\right\|_V$ eine beliebige Norm auf V. Dann erfüllt $\left\{x\in V: \left\|x\right\|_V<1\right\}$ alle an die Menge M gestellten Bedingungen.
+\end{Sa}
+
+\begin{Def}
+Seien U, V Teilmengen eines metrischen Raums. Dann definieren wir:
+\begin{displaymath}
+	d(U, V):=\inf\limits_{u\in U, v\in V}{d(u, v)}
+\end{displaymath}
+
+\end{Def}
+
+\subsection{Erzeugendensysteme}
+
+\begin{Def}
+Sei $U\subseteq V$ mit V linearer $\mathbb{K}$-Vektorraum und U endlich. Dann definieren wir:
+\begin{displaymath}
+	\lin U:=\left\{\sum\limits_{u_i\in U}{\lambda_i u_i}|\lambda_i\in \mathbb{K}\right\}
+\end{displaymath}
+als die \emph{lineare Hülle} von U, wobei wir im Fall, dass U leer ist, erwartungsgemäß (leere Summe) $\lin U:=\left\{0\right\}$ setzen.
+\end{Def}
+
+\begin{Def}
+Nun sei U unendlich. Dann definieren wir:
+\begin{displaymath}
+	\lin U:=\bigcup\limits_{U'\subseteq U, U'\textnormal{ endlich}}{\lin U'}.
+\end{displaymath}
+\end{Def}
+
+\begin{Bem}
+Offensichtlich ist $\lin U$ ein linearer Vektorraum.
+\end{Bem}
+
+\begin{Def}
+V heißt \emph{endlich erzeugt}, wenn es ein endliches U existiert mit $\lin U=V$. U heißt dann \emph{Erzeugendensystem} von V.
+\end{Def}
+
+\begin{Bem}
+Häufig schreibt man statt $\lin U$ auch $\left\langle U\right\rangle$. Da dies jedoch zu Verwechslungen zu der von U erzeugten Vektorraumgruppe führt, wollen wir letztere Schreibweise der von U erzeugten Untergruppe der Vektorraumgruppe vorbehalten.
+\end{Bem}
+
+\begin{Auf}
+Sei $V=\mathbb{R}^2$, $e_1:=(1, 0)^T, e_2:=(0, 1)^T$. Bestimme $\lin\left\{e_1, e_2\right\}$ und $\left\langle \left\{e_1, e_2\right\}\right\rangle$.
+\end{Auf}
+
+\begin{Def}
+Ein Erzeugendensystem U von V heißt \emph{minimal}, wenn für alle $U'\subset U$ gilt: $\lin U'\neq U$ und es heißt \emph{Minimum-Erzeugendensystem}, wenn es \emph{zusätzlich} kein $U'\subseteq V$ mit $\left|U'\right|<\left|U\right|$ gibt, so dass $\lin U'=V$ ist.
+\end{Def}
+
+\begin{Bem}
+Dass für Minimum-Erzeugendensysteme die definierende Erzeugendensysteme \emph{zusätzlich} zu der eines minimalen Erzeugendensystems wählen, liegt an unendlichdimensionalen Vektorräumen.
+
+Die Menge $\left\{x^i\right\}_{i\in\mathbb{N}_0}\cup \left\{x+1\right\}$ ist beispielsweise kein minimales Erzeugendensystem ($x+1$ kann man weglassen), aber man kann kein Erzeugendensystem mit einer kleineren Mächtigkeit finden.
+\label{bem:unendlich_dimensionale_vr}
+\end{Bem}
+
+\begin{Bem}
+(Erinnerung) Bei einer Gruppe muss nicht jedes minimale Erzeugendensystem minimal sein (betrachte z. B. $\left\{ 2, 3\right\}$, welches minimal $\mathbb{Z}$ erzeugt, aber kein Minimum-Erzeugendensystem darstellt ($\left\{ 1\right\}$ hat diese Eigenschaft.
+\end{Bem}
+
+\begin{Bem}
+Im gruppentheoretischen Kontext spricht man häufig von einem \emph{minimalen Erzeugendensystem}, wenn wir ein \emph{Minimum-Erzeugendensystem} meinen.
+\end{Bem}
+
+Als Ausblick geben wir folgenden Satz schonmal an:
+\begin{Sa}
+Jedes minimale Erzeugendensystem eines Vektorraums ist auch Minimum-Erzeugendensystem.
+\end{Sa}
+
+\subsection{Lineare Unabhängigkeit}
+
+\begin{Def}
+Sei $U:=\left\{u_1, \ldots, u_n\right\}\subseteq V$ und U endlich. Dann heißt U \emph{linear unabhängig}, wenn gilt:
+\begin{displaymath}
+	\lambda_1 u_1+\lambda_2 u_2+\ldots+\lambda_n u_n =0 \Rightarrow \lambda_1=0, \lambda_2=0, \ldots, \lambda_n=0.
+\end{displaymath}
+Ansonsten heißt U \emph{linear abhängig}.
+\end{Def}
+
+\begin{Def}
+Sei nun U nicht mehr unbedingt endlich. Dann heißt U linear unabhängig genau dann, wenn jede endliche Teilmenge von U linear unabhängig ist.
+\end{Def}
+
+\begin{Def}
+$v\in V$ heißt \emph{Linearkombination} von Elementen aus $U\subseteq V$, wenn $v\in \lin U$ ist.
+\end{Def}
+
+\begin{Sa}
+Eine Menge U ist genau dann linear unabhängig, wenn sich kein Vektor aus U als Linearkombination von anderen Elementen aus U schreiben lässt.
+\end{Sa}
+\begin{bew}
+Sei $u_k=\lambda_1 u_1+\ldots+\lambda_{k-1} u_{k-1}+\lambda_{k+1} u_{k+1}+\ldots+\lambda_n u_n$. Dann ist $\lambda_1 u_1+\ldots+\lambda_{k-1} u_{k-1}-u_k+\lambda_{k+1} u_{k+1}+\ldots+\lambda_n u_n=0$ und wir haben somit eine nichttriviale Darstellung des Nullvektors gefunden.
+
+Lasse sich umgekehrt kein Vektor aus U als Linearkombination der anderen Vektoren schreiben. Angenommen es gäbe eine eine nichttriviale Darstellung $\lambda_1 u_1+\ldots+\lambda_{k-1} u_{k-1}+\lambda_k u_k+\lambda_{k+1} u_{k+1}+\ldots+\lambda_n u_n=0$, wobei o. E. $\lambda_k\neq 0$ ist.
+
+Dann gilt: $u_k=-\frac{\lambda_1}{\lambda_k} u_1-\ldots-\frac{\lambda_{k-1}}{\lambda_k}-\frac{\lambda_{k+1}}{\lambda_k}-\ldots-\frac{\lambda_n}{\lambda_k}$. Also gibt es damit doch einen Vektor aus U, der sich als Linearkombination der anderen Vektoren aus U darstellen lässt und wir haben somit einen Widerspruch.
+\end{bew}
+
+\subsection{Basen}
+
+\begin{Def}
+Ein maximales linear unabhängiges System von Vektoren eines Vektorraums nennen wir \emph{Basis}.
+\end{Def}
+
+\begin{Sa}
+Jedes maximal linear unabhängige System von Vektoren eines Vektorraums V ist ein Erzeugendensystem von V.
+\end{Sa}
+
+\begin{Sa}
+Jeder Vektorraum hat eine Basis.
+\end{Sa}
+
+\begin{bew} (Idee)
+Beweismittel zum Beweis dieses Satzes ist das Lemma von Zorn:
+
+\begin{Le} (Lemma von Zorn)
+Sei M eine Menge, welche partiell geordnet ist (d. h. auf M ist eine Ordnungsrelation definiert, welche nicht unbedingt total sein muss). Wenn jede total geordnete Teilmenge von M eine obere Schranke hat, so gibt es ein maximales Element k in M (d. h. es gibt kein größeres Element k' in M, was nicht heißt, dass k ein Maximum bildet).
+\end{Le}
+
+\begin{Bem}
+Man kann zeigen, dass das Zornsche Lemma äquivalent zum Auswahlaxiom ist.
+
+Sei A eine Menge von nichtleeren Mengen. F heißt \emph{Auswahlfunktion} von A, wenn F als Definitionsbereich A hat und es gilt:
+
+$\forall X\in A: F(X)\in X$. Die Funktion F "`wählt also aus jedem Element von A ein Element aus"'.
+
+Das Auswahlaxiom sagt dann folgendes: zu jeder Menge nichtleerer Mengen gibt es mindestens eine Auswahlfunktion.
+\end{Bem}
+
+Für die Menge M wählen wir die Menge aller linear unabhängigen Teilmengen von V und als Ordnung die Inklusion. Wegen dem Lemma von Zorn gibt es eine maximale linear unabhängige Menge in M.
+\end{bew}
+
+\begin{Sa}
+Sei V endlich erzeugt. Dann ist jedes minimale Erzeugendensystem von V eine Basis von V.
+\end{Sa}
+
+\begin{Bem}
+In unendlichdimensionalen Vektorräumen gilt der vorherige Satz nicht (siehe Bemerkung \ref{bem:unendlich_dimensionale_vr}).
+\end{Bem}
+
+\begin{Def}
+Sei B eine Basis von V. Dann nennen wir $\left|B\right|$ die \emph{Dimension von V}.
+\end{Def}
+
+\begin{Le}
+Sei $\left\{v_i\right\}_{i\in I}$ eine Basis von V. Dann lässt sich jeder Vektor aus V eindeutig als Linearkombination von Basiselementen darstellen.
+\end{Le}
+\begin{bew}
+Existenz folgt daraus, dass jede Basis ein Erzeugendensystem ist.
+
+Zur Eindeutigkeit: Seien $v=\sum_{j\in J\textnormal{ mit } J\subseteq I, \left|J\right|<\infty}{\lambda_j v_j}$ und auch $v=\sum_{k\in K\textnormal{ mit } K\subseteq I, \left|K\right|<\infty}{\mu_k v_k}$ zwei verschiedene Linearkombinationen von v..
+
+Hieraus folgt: $0=\sum_{l\in J\cup K}{(\lambda_l-\mu_l) v_l}$ (wobei $\lambda_l=0$ für $l\notin J$ und $\mu_l=0$ für $l\notin K$).
+
+Also haben wir hiermit eine Linearkombination des Nullvektors. Da die beiden Linearkombinationen von v nach Voraussetzung nicht identisch waren, folgt, dass wir eine nichttriviale Linearkombination des Nullvektors erhalten haben, was im Widerspruch zur linearen Unabhängigkeit steht.
+\end{bew}
+
+\subsection{Vektorraumhomomorphismen}
+\begin{Def}
+Seien V, W Vektorräume. $\varphi: V\rightarrow W$ heißt \emph{Vektorraum-Homomorphismus} (oder \emph{lineare Abbildung}) $\Leftrightarrow$
+\begin{enumerate}
+	\item $\varphi(v+w)=\varphi(v)+\varphi(w)$
+	\item $\varphi(k v)=k \varphi(v)$
+\end{enumerate}
+\end{Def}
+
+Man beachte, dass für die Addition und skalare Multiplikation in V bzw. W jeweils selbe Symbol verwendet wurde.
+
+\begin{Le}
+Die Menge aller Homomorphismen von V nach W bildet bezüglich der kanonischen Verknüpfungen wieder einen Vektorraum.
+\end{Le}
+
+\begin{Bsp}
+Poisson-Gleichung: $\Delta x=-f$, wobei x zwei schwache Ableitungen besitze und $\Delta:=\sum\limits_{i=1}^n{\frac{\partial^2}{\partial x_i^2}}$ (Laplace-Operator).
+
+In der Physik sind beispielsweise das Gravitations- und elektrostatische Potential Lösungen der Poisson-Gleichung, wobei f proportional zur Massen- bzw. Ladungsdichte ist.
+
+Hier ist $\Delta$ ein Homomorphismus und die Poisson-Gleichung fragt: besitzt $-f$ (unter zusätzlichen Randbedingungen) in diesem Homomorphismus ein Urbild?
+\end{Bsp}
+
+\begin{Sa}
+Sei $\varphi$ ein Homomorphismus von V nach W. Dann ist $\varphi$ bereits durch die Bilder einer Basis von V eindeutig bestimmt. Umgekehrt: für jede Menge von Bildern von Basiselementen (bezüglich einer festen Basis) gibt es genau einen Homomorphismus $\varphi$.\label{sa:vr_hom_basis}
+\end{Sa}
+\begin{bew}
+Jeder Vektor v lässt sich als $v=\sum_{j\in J, J\subseteq I, \left|J\right|<\infty}{\lambda_j v_j}$ darstellen.
+
+Damit gilt: 
+\begin{eqnarray*}
+\varphi(v) & = & \varphi(\sum_{j\in J\textnormal{ mit } J\subseteq I, \left|J\right|<\infty}{\lambda_j v_j}) \\
+& = & \sum_{j\in J\textnormal{ mit } J\subseteq I, \left|J\right|<\infty}{\varphi(\lambda_j v_j)} \\
+& = & \sum_{j\in J\textnormal{ mit } J\subseteq I, \left|J\right|<\infty}{\lambda_j \varphi(v_j)}.
+\end{eqnarray*}
+
+Das Bild von v hängt also nur von den Bildern der Basiselemente ab.
+
+Für die umgekehrte Richtung ist die Eindeutigkeit klar. Zu zeigen ist nur noch die Existenz. Sei $v=\sum_{j\in J\textnormal{ mit } J\subseteq I, \left|J\right|<\infty}{\lambda_j v_j}$.
+
+Setze $\varphi(v)=\sum_{j\in J}\lambda_j {w_j}$, wobei $w_j$ jeweils das Bild von $v_j$ ist.
+
+Dieser Homomorphismus ist wohldefiniert, da die Darstellung jedes Vektors bezüglich einer Basis eindeutig ist.
+\end{bew}
+
+\begin{Def}
+Sei $\varphi$ ein Vektorraum-Homomorphismus. Dann setzen wir:
+\begin{itemize}
+	\item $\Ker \varphi:=\left\{v\in V: \varphi(v)=0\right\}$
+	\item $\bild \varphi:=\varphi(V)$
+	\item $\rang \varphi:=\dim \bild \varphi$
+\end{itemize}
+\end{Def}
+
+\begin{Bem}
+$\Ker \varphi$ und $\bild \varphi$ sind Vektorräume.
+\end{Bem}
+
+\begin{Le}
+Ein Vektorraum-Homomorphismus $\varphi$ ist surjektiv $\Leftrightarrow \bild \varphi=W$. 
+\end{Le}
+
+\begin{Le}
+Ein Vektorraum-Homomorphismus $\varphi$ ist injektiv $\Leftrightarrow \Ker \varphi=\left\{0\right\}$. 
+\end{Le}
+\begin{bew}
+Sei $\Ker \varphi\neq\left\{0\right\}$. Dann besitzt der Nullvektor mindestens zwei Urbilder (also $\Ker \varphi\neq\left\{0\right\}$), was einen Widerspruch zur Injektivität bedeutet.
+
+Sei umgekehrt $\varphi(v)=\varphi(w)$ mit $v\neq w$. Dann ist $\varphi(v-w)=0$: somit hat der Nullvektor mindestens zwei Urbilder (also $\Ker \varphi\neq\left\{0\right\}$), was einen Widerspruch zur Injektivität bedeutet.
+\end{bew}
+
+\begin{Sa}
+Jeder $\mathbb{K}$-Vektorraum V ist isomorph zum $\mathbb{K}^{\left|I\right|}=:W$ (wobei für jedes $v\in V$ nur endlich viele $v_i$ ungleich 0 sein dürfen), wobei I die Indexmenge einer Basis von V ist. Einen hierdurch induzierten Isomorphismus nennen \emph{kanonischen Basisisomorphismus}.
+\end{Sa}
+\begin{bew}
+Sei $\left\{v^i\right\}_{i\in I}$ eine Basis von V. Setze $(w^i)_j:=\delta_{i j}=\begin{cases}
+1 \textnormal{ für } & i=j\\
+0 \textnormal{ für } & i\neq j\\
+\end{cases}$.
+
+Nach Satz \ref{sa:vr_hom_basis} gibt es einen Homomorphismus, welcher jeweils $v^i$ auf $w^i$ abbildet.
+
+Nachrechnen zeigt, dass es sich hierbei in der Tat um einen Isomorphismus handelt.
+\end{bew}
+
+\begin{Kor}
+Jeder endlich erzeugte $\mathbb{K}$-Vektorraum V ist isomorph zu einem $\mathbb{K}^n$, wobei n die Dimension von V ist.
+\end{Kor}
+
+\begin{Def}
+Sei V ein $\mathbb{K}$-Vektorraum. Dann bezeichnen wir die Menge aller linearen Abbildungen von V nach $\mathbb{K}$ als den \emph{Dualraum von V} (in Zeichen: $V^*$).
+\end{Def}
+
+\begin{Le}
+Es gibt eine Einbettung (d. h. ein injektiver Homomorphismus) von V nach ${V^*}^*$.
+\end{Le}
+\begin{bew}
+Wir müssen zeigen: es gibt einen injektiven Homomorphismus von V nach ${V^*}^*$. Wir müssen also jedem $v\in V$ eine Abbildung von $V^*$ nach $\mathbb{K}$ zuordnen.
+\end{bew}
+
+\begin{Le}
+Für endlichdimensionale V gilt:
+$V\cong V^*$ (wir sagen: V ist selbstdual).
+\end{Le}
+
+\begin{Kor}
+Für endlichdimensionale V gilt: $V \cong {V^*}^*$.
+\end{Kor}
+
+\subsubsection{Matrizenrechnung und lineare Gleichungssysteme}
+
+Wir wissen durch den kanonischen Basisisomorphismus, dass wenn wir in V und W (beide endlichdimensional mit $\dim V=n$ und $\dim W=n$) Basen bilden, jeden Homomorphismus von V nach W als $m \times n$-Matrix darstellen können.
+
+Die Matrizenmultiplikation entspricht dann der Hintereinanderausführung (von rechts nach links gelesen).
+
+Somit können wir die Frage (lineares Gleichungssystem): existiert ein x mit $x\in\bild \varphi$ (wobei Bild-- und Urbildraum endlichdimensional seien)) durch Matrizenrechung in die Frage: "`existiert ein x mit $A x=b$"' überführen.
+
+\begin{Def}
+Der \emph{Spaltenrang} einer Matrix A sei definiert als die Dimension des von den Spalten von A erzeugten Vektorraums. Analog dazu definiert man den \emph{Zeilenrang} von A als die Dimension des von den Zeilen von A erzeugten Vektorraums.
+\end{Def}
+
+\begin{Sa}
+Der Zeilenrang einer Matrix ist gleich dem Spaltenrang einer Matrix (daher bezeichnet man beides als den \emph{Rang} einer Matrix, der auch noch gleich dem Rang des zugehörigen Homomorphismus ist (da er nicht von der Basiswahl abhängt)).
+\end{Sa}
+
+\begin{Sa}
+Die Matrizen mit $m=n$ (quadratische Matrizen) bilden bezüglich der Multiplikation eine Gruppe (was ist das neutrales Element?)
+\end{Sa}
+
+\begin{Def}
+Eine Matrix heißt "`Permutationsmatrix"', wenn sie quadratisch ist und in jeder Zeile und Spalte genau eine 1 und sonst nur Nullen stehen.
+\end{Def}
+
+\begin{Sa}
+Zu jeder quadratischen Matrix A existiert eine Permutationsmatrix P, eine obere Diagonalmatrix R und eine untere Diagonalmatrix L mit Einsen auf der Hauptdiagonale, so dass gilt: $P A=L R$ (LR- oder LU-Zerlegung).
+\end{Sa}
+
+\begin{Auf}
+Aus dem Computerspiel "`Keepsake"':
+
+Die Zahlenkombination 2, 4, 3, 4, 5 öffnet ein Zahlenschloss. Jede der 5 Scheiben enthält die Zahlen von 1 bis 5. Zu Anfang stehen alle Zahlen auf 1.
+
+Wenn wir die 1. Scheibe um 1 Zahl weiterdrehen, so dreht sich die 4. um 2 Zahlen weiter.
+Wenn wir die 2. Scheibe um 1 Zahl weiterdrehen, so dreht sich die 3. um 2 Zahlen weiter.
+Wenn wir die 3. Scheibe um 1 Zahl weiterdrehen, so dreht sich die 5. um 2 Zahlen weiter.
+Wenn wir die 4. Scheibe um 1 Zahl weiterdrehen, so dreht sich die 2. um 2 Zahlen weiter.
+Wenn wir die 5. Scheibe um 1 Zahl weiterdrehen, so dreht sich die 1. um 2 Zahlen weiter.
+
+Man modelliere dieses Problem als lineares Gleichungssystem über einem geeignet gewählten Körper und löse es.
+\end{Auf}
+\begin{Loe}
+\begin{verbatim}
+> msolve({a+2*e=1, b+2*e=3, c+2*b=2, d+2*a=3, e+2*c=4}, 5);
+{a = 0, b = 2, c = 3, d = 3, e = 3}
+\end{verbatim}
+\end{Loe}
+
+\begin{Auf}
+Besitze $A x=b$ eine Lösung $x^*$. Dann ist auch $x^*+y$ mit $y\in\Ker A$ Lösung des linearen Gleichungssystems. Umgekehrt: seien $x^*$ und $x^{**}$ Lösungen von $A x=b$. Dann ist $x^*-x^{**}\in \Ker A$.
+
+Hieraus folgt inbesondere, dass der Lösungsraum jedes linearen Gleichungssystems entweder leer ist oder ein Element des Quotientenvektorraums bezüglich $\Ker A$ ist.
+\end{Auf}
+
+\begin{Bem}
+Der in der vorherigen Aufgabe bewiesene Satz lässt sich analog auch für beliebige Homomorphismen beweisen.
+\end{Bem}
+
+\subsection{Dualräume}
+
+\begin{Def}
+Sei V ein $\mathbb{K}$-Vektorraum. Dann wird durch $V^*:=\left\{f: V\rightarrow \mathbb{K}, f\textnormal{ linear}\right\}$ ein neuer Vektorraum erklärt, der sogenannte \emph{Dualraum von V}.
+\end{Def}
+
+\begin{Bem}
+Sei $v\in V$ und $v^*\in V^*$. Dann schreibt man häufig
+\begin{displaymath}
+\left[v^*, v\right]
+\end{displaymath}
+für
+\begin{displaymath}
+v^*(v).
+\end{displaymath}
+
+Man beachte, dass es sich hierbei (trotz ähnlich aussehender Schreibweise) \emph{nicht} um ein Skalarprodukt, sondern um ein sogenanntes \emph{Dualitätsprodukt} handelt.
+\end{Bem}
+
+
+\begin{Le}
+\label{le:dim_v_v^*}
+Für $\dim V<\infty$ gilt: $\dim V=\dim V^*$.
+\end{Le}
+
+\begin{Le}
+Durch
+\begin{eqnarray*}
+\varphi: V & \rightarrow & {V^*}^* \\
+v & \mapsto & v^* \mapsto \left[v^*, v\right]
+\end{eqnarray*}
+wird eine natürliche Einbettung von $V$ nach ${V^*}^*$ definiert. Falls $\dim V<\infty$ ist, ist diese nach Lemma \ref{le:dim_v_v^*} ein Isomorphismus.
+\end{Le}
+\begin{bew}
+Wir müssen nur die Injektivität zeigen, also dass der Kern der so definierten Abbildung nur $0_V$ enthält.
+
+Werde also v durch $\varphi$ auf $0_{{V^*}^*}$ abgebildet, also für alle $v^*\in V^*$ gilt: $v^*(v)=0$. Hieraus folgt, dass $v=0_V$ ist.
+\end{bew}
+
+\begin{Def}
+Sei $\varphi: V\rightarrow W$ linear. Dann wird durch
+\begin{eqnarray*}
+\varphi': W^* & \rightarrow & V^* \\
+w^* & \mapsto & v \mapsto \left[w^*, \varphi(v)\right]
+\end{eqnarray*}
+ein Operator $\varphi': W^* \rightarrow V^*$ erklärt, der zu $\varphi$ \emph{duale Operator}.
+\end{Def}
+
+\begin{Le}
+Für alle linearen Abbildungen $\varphi: V\rightarrow W$, $v\in V$, $w^*\in W^*$ gilt:
+\begin{equation}
+\left[w^*, \varphi(v)\right] = \left[\varphi'(w^*), v\right].
+\end{equation}
+\end{Le}
+
+\subsection{Inverse Matrizen}
+
+\begin{Sa}
+Sei $A\in\mathbb{K}^{n\times n}$ quadratisch und habe vollen Rang. Dann gibt es eine Matrix $A^{-1}\in\mathbb{K}^{n\times n}$ mit $A A^{-1}=A^{-1} A=I_n$.
+\end{Sa}
+\begin{bew}
+Da A vollen Rang hat und quadratisch ist, ist A bijektiv. Also gibt es zu $\phi: x\mapsto A x$ eine Umkehrabbildung $\phi^{-1}: x\mapsto A^{-1} x$ mit $\phi^{-1} \circ \phi=id$ und  $\phi \circ \phi^{-1}=id$.
+
+In Matrizenform aufgeschrieben ergibt dies $A^{-1} A=I_n$ und $A \circ A^{-1}=I_n$.
+\end{bew}
+
+\begin{Kor}
+Die $n\times n$-Matrizen über dem Körper $\mathbb{K}$ mit vollem Rang bilden bezüglich der Multiplikation eine Gruppe. Diese bezeichnen wir mit $GL(n, \mathbb{K})$ ("`general linear group"' -- allgemeine lineare Gruppe).
+\end{Kor}
+
+Nun fragen wir uns, wie wir inverse Matrizen tatsächlich berechnen können.
+
+Eine Möglichkeit hierzu stellt folgende dar:
+
+Wir betrachten die i-te Spalte von $A^{-1}$ und bezeichnen sie als x. Dann muss gelten: $A x=e_i$, wobei $e_i$ der i-te Einheitsvektor ist.
+
+Dies ist ein lineares Gleichungssystem. Da A vollen Rang hat, ist dieses immer lösbar (z. B. mit Gauß-Verfahren).
+
+Doch man kann dies in der Praxis besser machen, da die benötigten Zeilenoperationen bei allen $e_i$ die selben sind.
+
+Somit ist eine simultane Elimination für alle $e_i$ gleichzeitig möglich.
+
+In der praktischen Umsetzung heißt das: wir lösen das Gleichungssystem $A x=I_n$, wobei jedes $x_i$ eine Zeile von $A^{-1}$ repräsentiert.
+
+\subsection{Determinanten}
+
+\begin{Def} (Determinantenfunktion nach Weierstraß)
+Sei $\det: \mathbb{K}^{n\times n}\rightarrow \mathbb{K}$. $\det$ heißt \emph{Determinantenfunktion}, wenn gilt:
+\begin{enumerate}
+	\item $\det$ ist linear in jeder Zeile
+	\item $\det A$ wechselt das Vorzeichen, wenn zwei Zeilen von A vertauscht werden
+	\item $\det I_n=1$
+\end{enumerate}
+\end{Def}
+
+\begin{Bem}
+In der vorherigen Definition kann man auch "`Zeile"' durch "`Spalte"' ersetzen.
+\end{Bem}
+
+\begin{Le}
+Wenn $\rang A<n$ ist, so gilt: $\det A=0$.
+\end{Le}
+
+\begin{Sa}
+Durch die drei Eigenschaften der Definition ist die Determinantenfunktion \emph{eindeutig} bestimmt.
+\end{Sa}
+
+\begin{Def} (Determinantenfunktion nach Leibniz)
+Sei $A=\left\{a_{i, j}\right\}_{i=1, \ldots, n; j=1, \ldots, n}\in \mathbb{K}^{n\times n}$. Dann definieren wir:
+\begin{equation}
+	\det A=\sum_{\sigma \in S_n} \prod_{i=1}^n \sgn \sigma a_{i, \sigma(i)}
+\end{equation}
+\end{Def}
+
+\begin{Def} (Determinantenfunktion nach Gauß/Entwicklungssatz)
+Für eine $1\times 1$-Matrix A definieren wir: $\det A=1$.
+
+Sei $A=\left\{a_{i, j}\right\}_{i=1, \ldots, n; j=1, \ldots, n}\in \mathbb{K}^{n\times n}$ und $k\in[n]$ (z. B. k=1). Dann definieren wir:
+\begin{equation}
+\det A=\sum_{i=1}^n (-1)^{i+k} \det A_{[n]\backslash k, [n]\backslash i},
+\end{equation}
+wobei wir den Wert von $\det A_{[n]\backslash k, [n]\backslash i}$ jeweils rekursiv berechnen (eine Zeile und Spalte weniger).
+\end{Def}
+
+\begin{Sa}
+Die drei Determinantendefinitionen sind zueinander äquivalent.
+\end{Sa}
+
+\begin{Le}
+Sei $A\in \mathbb{K}^{n\times n}$. Dann gilt:
+$\det A^T=\det A$.
+\end{Le}
+
+\begin{Sa}
+Seien $A, B\in \mathbb{K}^{n\times n}$. Dann gilt:
+$\det A B=\det A \det B$.
+\end{Sa}
+
+\begin{Kor}
+Sei $A\in \mathbb{K}^{n\times n}$ mit vollem Rang. Dann gilt:
+$\det A^{-1}=\frac{1}{\det A}$.
+\end{Kor}
+
+\begin{Kor}
+$SL(n, \mathbb{K}):=\left\{A\in\mathbb{K}^{n\times n}: \det A=1\right\}$ bildet eine Untergruppe von $GL(n, \mathbb{K})$ - die sogenannte \emph{spezielle lineare Gruppe}.
+\end{Kor}
+
+\begin{Kor}
+$\det$ ist ein surjektiver Homomorphismus von $GL(n, \mathbb{K})$ nach $\mathbb{K}^*$.
+\end{Kor}
+
+\begin{Kor}
+Da $\det$ einen surjektiven Homomorphismus von $GL(n, \mathbb{K})$ nach $\mathbb{K}^*$ ist $\ker A=\left\{A\in\mathbb{K}^{n\times n}: \det A=1\right\}=SL(n, \mathbb{K})$ ein Normalteiler von $GL(n, \mathbb{K})$. Insbesondere existiert damit die Faktorgruppe $^{GL(n, \mathbb{K})}/_{SL(n, \mathbb{K})}=:PL(n, \mathbb{K})$ -- die sogenannte \emph{projektive Gruppe}.
+\end{Kor}
+
+Wir wollen bei der Gelegenheit noch zwei weitere Matrizengruppen einführen: nämlich die allgemeine und spezielle affine Gruppe:
+
+\begin{Def}
+$GA(n, \mathbb{K}):=\left\{\varphi: \mathbb{K}^n\rightarrow \mathbb{K}^n: \varphi(x)=A x+b; A\in GL(n, \mathbb{K}), b\in \mathbb{K}^n\right\}$.
+\end{Def}
+
+\begin{Def}
+$SA(n, \mathbb{K}):=\left\{\varphi: \mathbb{K}^n\rightarrow \mathbb{K}^n: \varphi(x)=A x+b; A\in SL(n, \mathbb{K}), b\in \mathbb{K}^n\right\}$.
+\end{Def}
+
+\begin{Bem}
+Die Elemente aus $GA(n, \mathbb{K})$ bzw. $SA(n, \mathbb{K})$ sind \emph{keine} linearen Abbildungen bzw. Vektorraum-Automorphismen, sondern sogenannte \emph{affin-lineare Abbildungen} eines Vektorraums auf sich selbst.
+\end{Bem}
+
+\begin{Sa}
+Sei $A=L R$ eine LR-Zerlegung von A. Dann gilt: $\det A=\prod_{i=1}^n r_{i, i}$.
+\end{Sa}
+\begin{bew}
+L und R besitzen nach Entwicklungssatz als Determinante das Produkt der Hauptdiagonalelemente. Dieses ist bei L gleich 1 und bei R gleich $\prod_{i=1}^n r_{i, i}$. Es gilt: $\det A=\det L \det R= \prod_{i=1}^n r_{i, i}$.
+\end{bew}
+
+\begin{Auf}
+$a_j$ Kühe fressen $b_j$ Wiesen in $c_j$ Tagen (wobei $1\leq j\leq 3$).
+
+Jede Wiese liefert ein konstantes Anfangskontingent w an Gras, jede Kuh frisst eine konstante Menge k an Gras. Desweiteren wachsen jeden Tag auf jeder Wiese t Einheiten Gras nach.
+
+Man finde eine elegante Beziehung, welche zwischen den $a_j$, $b_j$ und $c_j$ bestehen muss und w, t, k nicht mehr enthält.
+\end{Auf}
+\begin{Loe}
+Die Beziehung führt auf das homogene lineare Gleichungssystem in den Variablen w, k, t:
+\begin{displaymath}
+	b_j w + b_j c_j t - c_j * a_j * k = 0\ (1\leq j\leq 3).
+\end{displaymath}
+Mindestens eine der Variablen w, t, k ist ungleich 0. Also besitzt die Matrix einen echten Kern. Demnach ist die Determinante der Koeffizientenmatrix gleich 0. Dies ist die gesuchte Beziehung.
+\end{Loe}
+
+\begin{Sa} (Cramersche Regel)
+Sei A eine quadratische Matrix mit vollem Rang und sei $A_{*, [n]\backslash i\cup b}$ die Matrix, welche entsteht, wenn man die i-te Spalte von A durch b ersetzt. Dann gilt für die Lösung $x^*$ von $A x=b$:
+\begin{displaymath}
+	x^*_i=\frac{\det (A_{*, 1, \ldots, i-1},b, A_{*, i+1, \ldots, n})}{\det A}.
+\end{displaymath}
+\end{Sa}
+
+\subsection{Der Störungssatz für lineare Gleichungssysteme}
+
+\begin{Bem}
+In diesem Abschnitt wollen wir den Körper stets als $\mathbb{R}$ oder $\mathbb{C}$ und alle Vektorräume als endlich-dimensional voraussetzen.
+\end{Bem}
+
+\begin{Def}
+Seien $(\mathbb{K}^n, \left\|\cdot\right\|_V), (\mathbb{K}^m, \left\|\cdot\right\|_W)$ normierte Vektorräume und $A\in \mathbb{K}^{m\times n}$.
+
+Sei auf $M(n, \mathbb{K})$ eine Norm $\left\|\cdot\right\|$ erklärt. Diese heißt
+\begin{itemize}
+	\item \emph{verträglich mit $\left\|\cdot\right\|_V, \left\|\cdot\right\|_W$}, wenn gilt: $\forall v\in V, A\in A\in \mathbb{K}^{m\times n}: \left\|A v\right\|_W\leq \left\|A\right\| \left\|v\right\|_V$
+	\item \emph{submultiplikativ}, wenn gilt: $\forall A, B\in \mathbb{K}^{m\times n}: \left\|A B\right\|\leq \left\|A\right\| \left\|B\right\|$
+\end{itemize}
+\end{Def}
+
+\begin{Sa}
+Seien $V:=(\mathbb{K}^n, \left\|\cdot\right\|_V), W:=(\mathbb{K}^m, \left\|\cdot\right\|_W)$ normierte Vektorräume und $A\in M(m, n, \mathbb{K})$ ein Endomorphismus von V nach W. Dann wird durch
+\begin{displaymath}
+	 \left\|A\right\|:=\sup_{x\in V, x\neq 0}\frac{\left\|A x\right\|_W}{\left\|x\right\|_V}
+\end{displaymath}
+eine mit $\left\|\cdot\right\|_V$ und $\left\|\cdot\right\|_W$ verträgliche Matrixnorm erklärt, die wir die \emph{natürliche Matrixnorm} nennen. Falls V=W (und damit $\left\|\cdot\right\|_V=\left\|\cdot\right\|_W$ und m=n) ist diese außerdem submultiplikativ.
+\end{Sa}
+\begin{bew}
+Zu zeigen:
+
+1. $\left\|A\right\|=0\Leftrightarrow A=0$:
+
+Sei A=0. Dann ist offenbar $\left\|A\right\|=0$. Sei umgekehrt $\left\|A\right\|=0$. Daraus folgt, dass für alle $x\in V, x\neq 0$ gilt: $\left\|A x\right\|_W$. Dies erfüllt lediglich die Nullmatrix.
+
+2. $\left\|\lambda A\right\|=\left|\lambda\right| \left\|\lambda A\right\|$:
+\begin{eqnarray*}
+\left\|\lambda A\right\| & = & \sup_{x\in V, x\neq 0}\frac{\left\|\lambda A x\right\|_W}{\left\|x\right\|_V} \\
+& = & \sup_{x\in V, x\neq 0}\left|\lambda\right| \frac{\left\|A x\right\|_W}{\left\|x\right\|_V} \\
+& = & \left|\lambda\right| \sup_{x\in V, x\neq 0} \frac{\left\|A x\right\|_W}{\left\|x\right\|_V} \\
+& = & \left|\lambda\right| \left\|\lambda A\right\|
+\end{eqnarray*}
+
+3. $\left\|A+B\right\|\leq \left\|A\right\|+\left\|B\right\|$:
+\begin{eqnarray*}
+\left\|A+B\right\| & = & \sup_{x\in V, x\neq 0}\frac{\left\|(A+B) x\right\|_W}{\left\|x\right\|_V} \\
+& \leq & \sup_{x\in V, x\neq 0}\frac{\left\|A x\right\|_W+\left\|(B x\right\|_W}{\left\|x\right\|_V} \\
+& = & \sup_{x\in V, x\neq 0}\frac{\left\|A x\right\|_W}{\left\|x\right\|_V}+\frac{\left\|B x\right\|_W}{\left\|x\right\|_V} \\
+& \leq & \sup_{x\in V, x\neq 0}\frac{\left\|A x\right\|_W}{\left\|x\right\|_V}+\sup_{y\in V, y\neq 0}\frac{\left\|B y\right\|_W}{\left\|y\right\|_V} \\
+& = & \left\|A\right\|+\left\|B\right\|
+\end{eqnarray*}
+
+4. Veträglichkeit:
+Sei ohne Einschränkung $\left\|x\right\|_V\neq 0$. Dann gilt: $\frac{\left\|A x\right\|_W}{\left\|x\right\|_V}\leq \sup_{y\in V, y\neq 0}\frac{\left\|A y\right\|_W}{\left\|y\right\|_V}=\left\|A\right\|$. Durch Multiplikation mit $\left\|x\right\|_V$ folgt Aussage.
+
+5. Submultiplikativität:
+\begin{eqnarray*}
+\left\|A B\right\| & = & \sup_{x\in V, x\neq 0}\frac{\left\|A B x\right\|_V}{\left\|x\right\|_V} \\
+& \leq & \sup_{x\in V, x\neq 0}\frac{\left\|A\right\| \left\|B x\right\|_V}{\left\|x\right\|_V} \\
+& = & \left\|A\right\| \sup_{x\in V, x\neq 0}\frac{\left\|B x\right\|_V}{\left\|x\right\|_V} \\
+& = & \left\|A\right\| \left\|B\right\|
+\end{eqnarray*}
+\end{bew}
+
+\begin{Bem}
+Von nun an werden wir alle Matrizen (außer, wenn eine gesonderte Bemerkung erfolgt) als quadratisch ansehen.
+\end{Bem}
+
+\begin{Def}
+Wenn V=W ist (beide mit Norm $\left\|x\right\|_V$), so wollen wir die natürliche Matrixnorm ebenfalls mit $\left\|x\right\|_V$ bezeichnen.
+\end{Def}
+
+\begin{Bsp}
+Sei $V=(\mathbb{K}^n, \left\|\cdot\right\|_1)$. Dann ist die induzierte Matrixnorm $\left\|A\right\|_1:=\max_{j=1, \ldots, n} \sum_{i=1}^n\left|a_{i, j}\right|$ (Maximale-Spaltensummen-Norm).
+\end{Bsp}
+
+\begin{Bsp}
+Sei $V=(\mathbb{K}^n, \left\|\cdot\right\|_\infty)$. Dann ist die induzierte Matrixnorm $\left\|A\right\|_\infty:=\max_{i=1, \ldots, n} \sum_{j=1}^n\left|a_{i, j}\right|$ (Maximale-Zeilensummen-Norm).
+\end{Bsp}
+
+\begin{Auf}
+Ohne Beweis wird durch
+\begin{displaymath}
+	 \left\|A\right\|:=\sqrt{\sum_{i, j=1}^n a_{i, j}^2}
+\end{displaymath}
+eine eine submultiplikative und mit $\left\|\cdot\right\|_2$ verträgliche Matrixnorm erklärt (welche wir die \emph{Frobenius-Norm} nennen). Warum kann diese keine natürliche Matrixnorm sein?
+\end{Auf}
+
+\begin{Def}
+Sei $\mathbb{K}$ ein (diesmal beliebiger) algebraisch vollständiger Körper (z. B. $\mathbb{C}$ ist algebraisch vollständig) und $A\in M(n, \mathbb{K})$. Dann heißt $\lambda$ \emph{Eigenwert}, wenn es ein $x\in\mathbb{K}^n\neq 0$ gibt mit: $A x=\lambda x$. x nennen wir dann einen zu $\lambda$ gehörenden \emph{Eigenvektor}.
+\end{Def}
+
+\begin{Def}
+Die Menge aller Eigenwerte einer Matrix A nennen wir das \emph{Spektrum} von A. Falls $\mathbb{K}=\mathbb{C}$ nennen wir den Betrag des größten Eigenwertes von A den \emph{Spektralradius} von A ($\spr(A)$).
+\end{Def}
+
+\begin{Sa} (Hirsch)
+Für alle komplexen Eigenwerte $\lambda$ von A gilt für jede natürliche Matrixnorm $\left\|\cdot\right\|$:
+\begin{displaymath}
+	\left|\lambda\right|\leq \left\|A\right\|
+\end{displaymath}
+\end{Sa}
+\begin{bew}
+Sei $\lambda$ Eigenwert von A (also $A x=\lambda x$ und $x\neq 0$). Dann gilt:
+\begin{eqnarray*}
+\left|\lambda\right| \left\|x\right\| & = & \left\|\lambda x\right\| \\
+& = & \left\|A x\right\| \\
+& \leq & \left\|A\right\| \left\|x\right\|.
+\end{eqnarray*}
+Durch Division beider Seiten durch $\left\|x\right\|$ folgt Aussage.
+\end{bew}
+
+Sei nun $A x=b$ lineares Gleichungssystem, wobei die Räume mit Vektor- bzw. Matrixnorm $\left\|x\right\| $ ausgestattet seien. Sei nun b durch $\Delta b$ gestört. Wir lösen also stattdessen das Gleichungssystem $A \widetilde{x}=b+\Delta b$ mit $\widetilde{x}=x+\Delta x$. Die Größe der Störung $\Delta x$ wollen wir abschätzen:
+
+Wegen $A\Delta x=\Delta b$ folgt: $\Delta x=A^{-1} \Delta b$ und damit wegen Verträglichkeit $\left\|\Delta x\right\|\leq\left\|A^{-1}\right\|\left\|\Delta b\right\|$. Ebenso gilt wegen $A x=b$: $\left\|b\right\|\leq\left\|A\right\|\left\|x\right\|$
+
+Um den relativen Fehler der Lösung abzuschätzen, ergibt sich somit:
+\begin{displaymath}
+	\frac{\left\|\Delta x\right\|}{\left\|x\right\|}\leq \left\|A\right\| \left\|A^{-1}\right\| \leq	\frac{\left\|\Delta b\right\|}{\left\|b\right\|}.
+\end{displaymath}
+$\left\|A\right\| \left\|A^{-1}\right\|=:\cond(A)$ wollen wir hier \emph{Konditionszahl von A} nennen.
+
+\begin{Def}
+$\cond(A):=\left\|A\right\| \left\|A^{-1}\right\|$ definiert die Konditionszahl einer Matrix A. Sie ist ein erstes Maß dafür, wie stark der relative Fehler in b sich in Form eines relativen Fehlers der Lösung x des Gleichungssystems $A x=b$ verstärkt.
+
+Sei $\left\|\cdot\right\|$ wie gewohnt natürliche Matrixnorm. Dann gilt:
+\begin{eqnarray*}
+1 & = & \left\|I\right\| \\
+& = & \left\|A A^{-1}\right\| \\
+& = & \left\|A\right\| \left\|A^{-1}\right\| \\
+& = & \cond(A)
+\end{eqnarray*}
+\end{Def}
+
+\chapter{Diskrete Geometrie}
+
+\begin{Def}
+Sei $K\subseteq \mathbb{R}^n$. K heißt konvexer Körper, wenn K konvex, abgeschlossen und beschränkt ist.
+\end{Def}
+
+\begin{Sa}
+Sei K ein konvexer nullpunktsymmetrischer Körper mit Volumen $>2^n$. Dann enthält K einen von 0 verschiedenen ganzzahligen Punkt.
+\end{Sa}
+
+Der Beweis führt über ein Lemma:
+\begin{Le}
+Sei $\mathcal{M}$ eine beschränkte offene Menge im $\mathbb{R}^n$ mit Volumen $>1$. Dann enthält $\mathcal{M}$ zwei (sogar rationale) Punkte x und y, so dass $x_i-y_i\in\mathbb{Z}\ (i=1, \ldots, n)$.
+\end{Le}
+\begin{bew}
+Sei $C_n:=\left\{x\in\mathbb{R}^n: 0\leq x_i<1\ \forall 1\leq i\leq n\right\}$. 
+
+Betrachte für $\tau\in\mathbb{N}$ die Würfel $\frac{C_n+g}{\tau}$ mit $g\in\mathbb{Z}^n$. Bezeichne $A(\tau)$ die Anzahl dieser Würfel, welche komplett in $\mathcal{M}$ liegen.
+
+Da $A(\tau) \tau^{-n}$ für $\tau\rightarrow \infty$ gegen das Volumen von $\mathcal{M}$ konvergiert (Definition des Riemann-Integrals), gilt: 
+\begin{displaymath}
+	\lim_{\tau\rightarrow \infty} A(\tau) \tau^{-n}=V>1,
+\end{displaymath}
+wobei V das Volumen von $\mathcal{M}$ sei.
+
+Also gibt es eine Zahl $\tau'$ mit $A(\tau')>{\tau'}^n$, also ist die Anzahl an Würfeln mit Seitenlänge $\frac{1}{\tau'}$ größer als ${\tau'}^n$.
+
+Wir haben somit gezeigt, dass es mehr als ${\tau'}^n$ Werte für $g\in\mathbb{Z}^n$ gibt, so dass $\frac{g}{\tau}$ ein Punkt in $\mathcal{M}$ ist.
+
+Bilde für jede Komponente $g_i$ von jedem dieser Punkte g die Restklasse modulo $\tau'$ (also für jede Komponente $\tau'$ viele Möglichkeiten). Ingesamt gibt es also über alle Komponenten hinweg $\tau'^n$ viele Restklassen.
+
+Da es jedoch mehr als $\tau'^n$ viele ganzzahlige Punkte g gibt, für die $\frac{g}{\tau}$ in $\mathcal{M}$ liegt, müssen mindestens zwei dieser Punkte in jeder Komponente in der selben Restklasse liegen.
+
+Somit haben wir zwei rationale Punkte $x, y\in \mathcal{M}$ gefunden, deren Differenz in jeder Komponente ganzzahlig ist.
+\end{bew}
+
+\begin{bew}
+Sei $\mathcal{B}$ ein konvexer nullsymmetrischer Körper mit Volumen $>2^n$. Skaliere $\mathcal{B}$ um den Faktor $\frac{1}{2}$. Dieser neue konvexe Körper, den wir $\mathcal{M}$ nennen wollen, hat ein Volumen $>1$. Nach dem vorhergehenden Lemma gibt es Punkte $x, y\in \mathcal{M}$, deren Differenz ganzzahlig ist. Also liegen $2 x$ und $2 y$ in $\mathcal{B}$. Weil $\mathcal{B}$ nullsymmetrisch ist, liegt auch $-2 y$ in $\mathcal{B}$. Da $\mathcal{B}$ konvex ist, liegt auch $\frac{1}{2} 2 x+\frac{1}{2} -2 y$ im Körper, also $x-y\in \mathcal{B}$. Dieser Punkt ist jedoch nach dem vorherigen Lemma ganzzahlig.
+\end{bew}
+
+
+
+\chapter{Analysis}
+
+\section{Geordnete Körper}
+
+\begin{Def} Sei $\mathbb{K}$ ein Körper und $\leq$ eine Totalordnung auf $\mathbb{K}$. Dann heißt das Paar $(\mathbb{K}, \leq)$ \emph{geordneter Körper} genau dann, wenn gilt:
+\begin{enumerate}
+	\item $\forall a, b, c\in \mathbb{K}:\,a\leq b\Rightarrow a+c\leq b+c$
+	\item $0\leq a \wedge 0 \leq b \Rightarrow 0\leq a b$
+\end{enumerate}
+\end{Def}
+
+\begin{Auf}
+Man zeige, dass in jedem geordneten Körper gilt:
+\begin{enumerate}
+	\item $\forall a:\, a^2\geq 0$
+	\item $a\leq b \wedge 0\leq c:\, a c\leq b c$
+\end{enumerate}
+\end{Auf}
+
+\begin{Sa}
+In jedem geordneten Körper gilt:
+\begin{enumerate}
+	\item $0 < a < b\Rightarrow 0<\frac{1}{b}<\frac{1}{a}$
+	\item Für $b\neq 0$: $0 \leq a b\Leftrightarrow 0 \leq \frac{a}{b}$
+	\item $0\leq n$ für alle $n\in\mathbb{N}:=\left\{1, \underbrace{1+1}_{=:2}, \underbrace{1+1+1}_{=:3}, \ldots\right\}$
+\end{enumerate}
+\label{sa:geordnete_koerper}
+\end{Sa}
+\begin{bew}
+Wir werden nur 1. und 2. beweisen.
+
+Zu 1.: dies beweisen wir per vollständiger Induktion
+
+$n=1$: Aus $0\leq a^2$ folgt für $a=1$: $0\leq 1$. Aber wir wissen $0\neq 1$ in jedem Körper.
+
+$n\rightarrow n+1$: sei wir wissen: $0<n$ (nach Induktionsvoraussetzung). Außerdem gilt nach Induktionsanfang: $0<1$. Durch Addieren von n auf beiden Seiten von letzterer Ungleichung erhalten wir: $n<n+1$. Da $<$ eine transitive Relation ist (überprüfen!) folgt: $0<n+1$.
+
+Zu 2.: zu zeigen sind 2 Ungleichungen:
+\begin{enumerate}[(i)]
+	\item $0<\frac{1}{b}$
+	\item $\frac{1}{b}<\frac{1}{a}$
+\end{enumerate}
+
+Der Beweis beider Ungleichungen erfolgt durch Widerspruch. Annahme $0\geq\frac{1}{b}$, also $0\leq -\frac{1}{b}$ (auf beiden Seiten b subtrahieren). Da nach Voraussetzung gilt: $0<b$ (also insbesondere $0\leq b$), folgt nach Eigenschaft 2 geordneter Körper: $0\leq -\frac{1}{b} b=-1$. Durch Addieren von 1 auf beiden Seiten folgt: $1<0$, in Widerspruch zu $0\leq a^2$ mit $a=1$ (vorherige Aufgabe).
+
+Nun nehmen wir an, dass $\frac{1}{b}\geq \frac{1}{a}$ gilt, was äquivalent zu $\frac{1}{b}-\frac{1}{a}\geq 0$ ist. Da $a, b\geq 0$ sind, folgt nach Eigenschaft 2 geordneter Körper: $a b \left(\frac{1}{b}-\frac{1}{a}\right)\geq 0$, woraus $a-b\geq 0$ ($a\geq b$) folgt. Wir wissen aber nach Voraussetzung, dass $a<b$ ist. Demnach haben wir einen Widerspruch.
+\end{bew}
+
+Mittels der soeben gezeigten Eigenschaften sehen wir leicht folgenden Satz
+
+\begin{Sa}
+Jeder geordnete Körper enthält einen zu $\mathbb{Q}$ isomorphen geordneten Teilkörper (das heißt, auch die Ordnungen sind isomorph).
+\end{Sa}
+
+In Kürze werden wir sehen, dass im Falle einer kleinen Zusatzannahme sogar noch eine verschärfte Version dieses Satzes gilt. Doch zuerst wollen wir sehen, dass es nicht möglich ist $\mathbb{C}$ zu ordnen;
+
+\begin{Sa}
+Es gibt keine Ordnung $\leq$, so dass $(\mathbb{C}, \leq)$ ein geordneter Körper ist.
+\end{Sa}
+
+\begin{bew}
+Es muss gelten $i>0$ oder $i<0$. Ohne Einschränkung sei $i>0$. Dann gilt: $i^2>0$, also $-1>0$, woraus $1<0$ folgt. Aber wir wissen gleichzeitig, dass für alle a gilt: $a^2\geq 0$, also insbesondere $1\geq 0$, womit wir einen Widerspruch haben.
+\end{bew}
+
+\subsection{Archimedisch geordnete Körper}
+
+A physics professor has been conducting experiments and has worked out a set of equations which seem to explain his data. Nevertheless, he is unsure if his equations are really correct and therefore asks a colleague from the math department to check them.
+
+A week later, the math professor calls him: "`I'm sorry, but your equations are complete nonsense."'
+
+The physics professor is, of course, disappointed. Strangely, however, his incorrect equations turn out to be surprisingly accurate in predicting the results of further experiments. So, he asks the mathematician if he was sure about the equations being completely wrong.
+
+"`Well"', the mathematician replies, "`they are not actually complete nonsense. But the only case in which they are true is the trivial one where the field is Archimedean..."'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\begin{Def}
+Sei $\mathbb{K}$ ein geordneter Körper. $\mathbb{K}$ heißt \emph{archimedisch geordnet}, wenn für alle $a\in\mathbb{K}$ ein $n\in\mathbb{N}$ ($\mathbb{N}$ sei wie in Eigenschaft 3. von Satz \ref{sa:geordnete_koerper} definiert) existiert, so dass gilt: $a<n$.
+\end{Def}
+
+Bevor wir eine wichtige Eigenschaft archimedisch geordneter Körper beweisen, wollen wir ein Beispiel für einen nicht archimedisch geordneten Körper betrachten:
+
+\begin{Bsp}
+Sei $\mathbb{K}$ ein geordneter Körper. Wir definieren auf $\mathbb{K}(x)$ (rationale Funktionen über $\mathbb{K}$ in einer Variablen als \textbf{algebraische Objekte} interpretiert) folgende Ordnung:
+
+\begin{itemize}
+	\item für $a, b\in \mathbb{K}\subset \mathbb{K}(x)$ lassen wir die Ordnung wie gehabt
+	\item $0<X<a$ für alle $a\in \mathbb{K}^+:=\left\{a\in\mathbb{K}: a>0\right\}$
+	\item für $0\neq a_k\in \mathbb{K}$: $0<a_k X^k+a_{k+1} X^{k+1}+\ldots+a_n X^n :\Leftrightarrow 0<a_k$
+	\item für $p\in \mathbb{K}(x), 0\neq q\in \mathbb{K}(x): 0<\frac{p}{q} :\Leftrightarrow 0<p q$
+	\item für $p, q\in \mathbb{K}(x): p>q :\Leftrightarrow p-q>0$
+\end{itemize}
+
+Dann ist $\mathbb{K}(x)$ offenbar nicht archimedisch geordnet, da es kein $n\in\mathbb{N}$ gibt, so dass $X^{-1}<n$ ist
+\end{Bsp}
+
+"`The world is everywhere dense with idiots."'
+
+(Quelle: \verb|http://www.math.utah.edu/~cherk/mathjokes.html|)
+
+\begin{Def}
+Sei $\mathbb{K}$ ein geordneter Körper und $M\subseteq \mathbb{K}$. Dann heißt \emph{M dicht in $\mathbb{K}$}, wenn für alle $a, b\in \mathbb{K}$ mit $a<b$ ein $m\in M$ mit $a<m<b$ existiert.
+\end{Def}
+
+\begin{Sa}
+Sei $\mathbb{K}$ ein archimedisch geordneter Körper. Dann liegt ein zu $\mathbb{Q}$ isomorpher Körper dicht in $\mathbb{K}$.
+\end{Sa}
+
+\begin{bew}
+Sei $a, b\in \mathbb{K}$ mit $a<b$. Sei $m\in\mathbb{N}$ das kleinste m mit
+\begin{displaymath}
+	(b-a)^{-1}<m
+\end{displaymath}
+(ein solches existiert, da $\mathbb{K}$ archimedisch geordnet ist). Da $b-a>0$ ist, kann man diese Gleichung mit $b-a$ multiplizieren und erhält:
+\begin{displaymath}
+	1<m (b-a),
+\end{displaymath}
+woraus man folgert:
+\begin{displaymath}
+	m a < m b-1.
+\end{displaymath}
+Wähle $n\in \mathbb{Z}$ minimal mit
+\begin{displaymath}
+	m b<n+1.
+\end{displaymath}
+Aus den gültigen Ungleichungen $m a< m b-1\leq n<m b$ folgt:
+
+\begin{itemize}
+	\item $a < \frac{n}{m}$ (aus $m a< m b-1\leq n$, also $m a< n$)
+	\item $\frac{n}{m} < b$ (aus $n<m b$)
+\end{itemize}
+\end{bew}
+
+\section{Metrische Räume, Konvergenz und Vollständigkeit}
+
+\subsection{Metrische Räume}
+
+\begin{Def}
+(M, d) mit M beliebig (aber nicht leer) und $d: M\times M\rightarrow \mathbb{R}$ heißt \emph{metrischer Raum,} wenn gilt
+\begin{enumerate}
+	\item[M1.] $\forall x, y:\ d(x, y)=0 \Leftrightarrow x=y$
+	\item[M2.] $\forall x, y:\ d(x, y)=d(y, x)$ (Symmetrie)
+	\item[M3.] $\forall x, y, z:\ d(x, y)\leq d(x, z)+d(z, y)$ (Dreiecksungleichung).
+\end{enumerate}
+In diesem Fall nennen wir d \emph{Metrik auf M.}
+\end{Def}
+
+\begin{Le}
+Sei (M, d) metrischer Raum. Dann gilt $d(x, y)\geq 0$ für alle $x, y\in M$.
+\end{Le}
+\begin{bew}
+\begin{eqnarray*}
+0 & \stackrel{M1}{=} & d(x, x) \\
+& \stackrel{M3}{\leq} & d(x, y)+d(y, x) \\
+& \stackrel{M2}{=} & d(x, y)+d(x, y) \\
+& = & 2 d(x, y).
+\end{eqnarray*}
+Durch Division beider Seiten durch 2 folgt die zu beweisende Aussage $0\leq d(x, y)$.
+\end{bew}
+
+\begin{Bsp}
+$(\mathbb{Q}, d)$, $(\mathbb{R}, d)$ bzw. $(\mathbb{C}, d)$ mit $d(x, y)=\left|x-y\right|$ bilden metrische Räume. Häufig schreibt man für diese auch $(\mathbb{Q}, \left|\ \cdot\ \right|)$, $(\mathbb{R}, \left|\ \cdot\ \right|)$ bzw. $(\mathbb{C}, \left|\ \cdot\ \right|)$.
+\end{Bsp}
+
+\begin{Bsp} Sei X eine beliebige nichtleere Menge. Definiere Metrik
+\begin{displaymath}
+d(x, y) := 
+\begin{cases}
+0 & \textnormal{für } x=y \\
+1 & \textnormal{sonst}
+\end{cases}
+\end{displaymath}
+Diese Metrik bezeichnen wir als die \emph{Urwaldmetrik auf X.}
+\end{Bsp}
+
+\begin{Bsp}
+\label{bsp:p-metriken}
+$p$-Metriken: Sei $p\in\left[1, \infty\right]$. Dann wird auf $\mathbb{R}^n$ bzw. $\mathbb{C}^n$ mittels
+\begin{eqnarray*}
+d(x, y) & := & \left\|x-y\right\|_p \textnormal{ mit}\\
+\left\|z\right\|_p & := & \sqrt[p]{\sum_{i=1}^n \left|z_i\right|^p}\textnormal{ und} \\
+\left\|z\right\|_\infty & := &  \max_{1\leq i\leq n} \left|z_i\right|
+\end{eqnarray*}
+eine Metrik definiert, die sogenannte \emph{$p$-Metrik}.
+\end{Bsp}
+
+\begin{Bem}
+Dass für die $p$-Metriken M1 und M2 erfüllt sind, sieht man sehr leicht. M3 folgt aus der sogenannten \textbf{Minkowski-Ungleichung}: für $1\leq p\leq\infty$ und $x, y\in \mathbb{C}^n$ (und damit insbesondere auch $\mathbb{R}^n$) gilt:
+\begin{equation}
+\left\|x+y\right\|_p\leq \left\|x\right\|_p+\left\|y\right\|_p
+\end{equation}
+\end{Bem}
+
+\begin{Bem}
+Der Grund, warum $\left\|z\right\|_\infty$ (und damit die $\infty$-Norm) so definiert sind, liegt darin, dass für alle $x\in \mathbb{C}^n$ gilt:
+\begin{displaymath}
+\lim_{p\rightarrow \infty} \left\|x\right\|_p = \left\|z\right\|_\infty.
+\end{displaymath}
+\end{Bem}
+
+\begin{Bem}
+Die $1$-Metrik wird häufig auch als \emph{Taximetrik}, \emph{Manhattan-Metrik} oder \emph{Betragssummen-Metrik} bezeichnet. Eine verbreitete Bezeichnung für die $l_2$-Metrik ist \emph{euklidische Metrik}. Die $\infty$-Metrik wird auch als \emph{Maximum-Metrik} bezeichnet.
+\end{Bem}
+
+\begin{Bsp}
+Sei $X=\left\{0, 1\right\}^n$. Sei $\oplus: \left\{0, 1\right\}\times \left\{0, 1\right\}\rightarrow \left\{0, 1\right\}$ (xor-Operation) mittels
+\begin{eqnarray*}
+x\oplus y & := & 
+\begin{cases}
+1 & \textnormal{für }x\neq y \\
+0 & \textnormal{für }x= y
+\end{cases}
+\end{eqnarray*} 
+definiert.
+Dann wird durch
+\begin{displaymath}
+d(x, y) := \sum_{k=1}^n 2^k \left(x_k\oplus y_k\right)
+\end{displaymath}
+eine Metrik definiert, die sogenannte \emph{xor-Metrik}.
+
+Diese Metrik spielt eine zentrale Rolle im Kademlia-Verfahren zur Implementierung verteilter Hash-Tables.
+\end{Bsp}
+
+\subsection{Konvergenz und Cauchy-Folgen}
+
+Mit metrischen Räumen haben wir nun ein Werkzeug zur Verfügung, um Konvergenz zu definieren (an dieser Stelle sei jedoch schon einmal angemerkt, dass es in Form von \emph{topologischen Räumen} auch ein deutlich abstrakteres Werkzeug zur Definition von Konvergenz gibt, von dem metrische Räume nur einen Spezialfall darstellen).
+
+\begin{Def}
+Sei $x\in M^{N_0}$ eine Folge im metrischen Raum $(M, d)$. x heißt \emph{konvergent gegen $x_0$ (mit $x_0\in M$)} genau dann, wenn
+\begin{displaymath}
+\forall \epsilon > 0 \exists n_0(\epsilon) \forall n>n_0(\epsilon):\ d(x_n, x_0)<\epsilon
+\end{displaymath}
+gilt.
+
+In diesem Fall schreiben wir
+\begin{displaymath}
+\lim_{n\rightarrow\infty} x_n = x_0.
+\end{displaymath}
+und bezeichnen $x_0$ als den Grenzwert der Folge x.
+\end{Def}
+
+Leider hat diese Definition eine unschöne Eigenschaft. Um nämlich die Konvergenz der Folge zu zeigen, müssen wir wissen, gegen welchen Grenzwert diese konvergiert. 
+
+Es wäre also schön, wenn wir Konvergenz formulieren könnten, ohne den Grenzwert kennen zu müssen.
+
+Um einzusehen, dass dies möglich sein könnte, machen wir folgende Überlegung: wenn n recht groß ist, ist $x_m$ mit $m\geq n$ anscheinend eine ziemlich gute Approximation an $x_0$. Warum ersetzen wir also in der Definition nicht einfach den (unbekannten) Grenzwert $x_0$ gegen die sehr gute Annäherung $x_m$?
+
+Dieser Gedanke führt auf die Definition einer sogenannten \emph{Cauchy-Folge}:
+
+\begin{Def}
+Sei $x\in M^{N_0}$ eine Folge im metrischen Raum $(M, d)$. x heißt \emph{Cauchy-Folge} genau dann, wenn
+\begin{displaymath}
+\forall \epsilon > 0 \exists n_0(\epsilon) \forall m, n>n_0(\epsilon):\ d(x_m, x_n)<\epsilon
+\end{displaymath}
+gilt.
+\end{Def}
+
+Nun stellen wir uns die Frage: ist eine Folge genau dann konvergent, wenn sie Cauchy-Folge ist? Die eine Richtung ist einfach zu zeigen:
+
+\begin{Le}
+Jede konvergente Folge ist eine Cauchy-Folge.
+\end{Le}
+\begin{bew}
+Sei x in $(M, d)$ konvergent gegen $x_0$ ($\lim_{n\rightarrow\infty} x_n = x_0$) und es sei ein festes $\epsilon>0$ vorgegeben. Dann existiert für $\epsilon^*:=\frac{\epsilon}{2}$ ein $n_0(\epsilon^*)$, so dass für alle $n>n_0^*(\epsilon^*)$ gilt: 
+\begin{displaymath}
+d(x_n, x_0)<\epsilon^*.
+\end{displaymath}
+Dann gilt für $m, n>n_0^*\left(\frac{\epsilon}{2}\right)=:n_0(\epsilon)$:
+\begin{eqnarray*}
+d(x_m, x_n) & \stackrel{M3.}{\leq} & d(x_m, x_0)+d(x_0, x_n) \\
+& \stackrel{M2.}{=} & d(x_m, x_0)+d(x_n, x_0) \\
+& < & \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+& = & \epsilon.
+\end{eqnarray*}
+Somit bildet x eine Cauchy-Folge.
+\end{bew}
+
+\begin{Def}
+Ein metrischer Raum heißt \emph{vollständig}, wenn in ihm jede Cauchy-Folge konvergent ist.
+\end{Def}
+
+\begin{Sa}
+$\left(\mathbb{R}, \left|\ \cdot\ \right|\right)$ ist ein vollständiger metrischer Raum (wobei $\left|\ \cdot\ \right|$ für die durch den Betrag induzierte Metrik steht).
+\end{Sa}
+
+\begin{Def}
+Seien $(X_1, d_1)$ und $(X_2, d_2)$ metrische Räume. Eine Abbildung $\Psi: X_1 \rightarrow X_2$ heißt \emph{isometrisch}, wenn für alle $x, y\in X_1$ gilt:
+\begin{equation}
+d_1(x, y) = d_2(\Psi(x), \Psi(y)).
+\label{eq:isometrische_abbildung}
+\end{equation}
+\end{Def}
+
+\begin{Def}
+Eine injektive isometrische Abbildung nennen wir \emph{isometrische Einbettung}.
+\end{Def}
+
+Zum Beweis der Vervollständigung metrischer Räume betrachten wir vorher noch ein Lemma:
+\begin{Le}
+\label{le:variante_dreicksungl} (vergleiche auch Lemma \ref{le:variante_dreicksungl_ugl} und Umgebung dort für eine Einordnung in den allgemeineren Kontext von Ungleichungen in metrischen Räumen)
+
+In jedem metrischen Raum $(X, d)$ gilt für $x_1, x_2, y_1, y_2\in M$:
+\begin{equation}
+	\left|d(x_1, y_1)-d(x_2, y_2)\right|\leq d(x_1, x_2)+d(y_1, y_2).
+\end{equation}
+\end{Le}
+\begin{bew}
+\begin{eqnarray}
+|d(x_1, y_1)-d(x_2, y_2)| & = & \left|(d(x_1, y_1)-d(x_1, y_2))+(d(x_1, y_2)-d(x_2, y_2))\right| \nonumber \\
+& \leq & \left|(d(x_1, y_1)-d(x_1, y_2))\right|+\left|(d(x_1, y_2)-d(x_2, y_2))\right| \label{eq:variante_dreicksungl}
+\end{eqnarray}
+Nun gilt:
+\begin{eqnarray*}
+d(x_1, y_1) & \leq & d(x_1, y_2)+d(y_1, y_2) \\
+d(x_1, y_2) & \leq & d(x_1, y_1)+d(y_1, y_2)
+\end{eqnarray*}
+Umgestellt:
+\begin{eqnarray*}
+d(x_1, y_1)-d(x_1, y_2) & \leq & d(y_1, y_2) \\
+d(x_1, y_2)-d(x_1, y_1) & \leq & d(y_1, y_2),
+\end{eqnarray*}
+also
+\begin{eqnarray*}
+\left|d(x_1, y_1)-d(x_1, y_2)\right| & \leq & d(y_1, y_2).
+\end{eqnarray*}
+Analog zeigt man
+\begin{eqnarray*}
+\left|(d(x_1, y_2)-d(x_2, y_2))\right| & \leq & d(x_1, x_2).
+\end{eqnarray*}
+Somit erhalten wir -- dies auf die rechte Seite von (\ref{eq:variante_dreicksungl}) angewandt -- die geforderte Aussage.
+\end{bew}
+
+\begin{Sa}
+Jeder metrische Raum $(X, d)$ kann zu einem metrischen Raum $(\widehat{X}, \widehat{d})$ vervollständigt werden, d. h. es gibt eine isometrische Einbettung von $X$ in $\widehat{X}$ und $(\widehat{X}, \widehat{d})$ ist vollständig und $\Psi(X)$ liegt dicht in $\widehat{X}$.
+\end{Sa}
+\begin{bew}
+Wir definieren auf der Menge der Cauchy-Folgen über X (die wir $X_C$ nennen wollen) folgende Äquivalenzrelation:
+\begin{displaymath}
+	\left\{x_n\right\}_{n=1}^\infty \sim \left\{y_n\right\}_{n=1}^\infty \Leftrightarrow \lim_{n\rightarrow \infty} d(x_n, y_n)=0.
+\end{displaymath}
+Man rechnet leicht nach, dass es sich um eine Äquivalenzrelation handelt.
+
+Wir definieren $\widehat{X}:={}^{X_C}/_\sim$ als Menge von Äquivalenzklassen von Cauchy-Folgen.
+
+Auf $\widehat{X}$ definieren wir eine Metrik $\widehat{d}$ durch $\widehat{d}(\widehat{x}, \widehat{y}):=\lim_{n\rightarrow \infty} d(x_n, y_n)$.
+
+Zuerst zeigen wir: $\widehat{d}$ ist sachgerecht definiert.
+
+Dazu zeigen wir:
+\begin{enumerate}
+	\item für $\widehat{x}, \widehat{y}\in \widehat{X}$ existiert $\widehat{d}(\widehat{x}, \widehat{y}):=\lim_{n\rightarrow \infty} d(x_n, y_n)$ (es ist keineswegs selbstverständlich, dass dieser Grenzwert überhaupt existiert!)
+	\item $\widehat{d}$ ist wohldefiniert, d. h. für äquivalente Cauchy-Folgen erhalten wir gleiche Abstände
+	\item $(\widehat{X}, \widehat{d})$ bildet einen metrischen Raum
+	\item es existiert eine Einbettung $\Psi$
+	\item $\Psi(X)$ ist dicht in $(\widehat{X}, \widehat{d})$
+	\item $(\widehat{X}, \widehat{d})$ ist vollständig.
+\end{enumerate}
+
+\paragraph{Zu 1.} Wegen
+\begin{eqnarray*}
+\left|(d(x_k, y_k)-d(x_l, y_l))\right| & \leq & d(x_k, x_l)+d(y_k, y_l) \textnormal{ (wegen Lemma \ref{le:variante_dreicksungl})}\\
+ & < & \epsilon \textnormal{ für }k, l\geq n_0(\epsilon)
+\end{eqnarray*}
+ist $(d(x_k, y_k))_{k=1}^\infty$ Cauchy-Folgt in $(\mathbb{R}, \left|\ \cdot\ \right|$. Da $(\mathbb{R}, \left|\ \cdot\ \right|$ vollständig ist, existiert auch ein Grenzwert.
+
+\paragraph{Zu 2.} Wegen Lemma \ref{le:variante_dreicksungl} gilt für $\left\{z_n\right\}_{n=1}^\infty\sim\left\{x_n\right\}_{n=1}^\infty$ und $\left\{y_n\right\}_{n=1}^\infty\sim\left\{w_n\right\}_{n=1}^\infty$:
+\begin{displaymath}
+	\left|(d(z_n, w_n)-d(x_n, y_n))\right| \leq d(z_n, x_n)+d(w_n, x_n)
+\end{displaymath}
+Für $n\rightarrow \infty$ geht die rechte Seite gegen 0. Somit gilt:
+\begin{displaymath}
+	\lim_{n\rightarrow \infty} d(z_n, w_n)=\lim_{n\rightarrow \infty} d(x_n, y_n).
+\end{displaymath}
+
+\paragraph{Zu 3.} Nach Definition gilt: $\widehat{d}(\widehat{x}, \widehat{y})=0 \Leftrightarrow \widehat{x}\sim \widehat{y}$.
+
+\begin{eqnarray*}
+	\widehat{d}(\widehat{x}, \widehat{y}) & = & \lim_{n\rightarrow \infty} d(x_n, y_n) \\
+	& = & \lim_{n\rightarrow \infty} d(y_n, x_n) \\
+	& = & \widehat{d}(\widehat{y}, \widehat{x}).
+\end{eqnarray*}
+
+Die Eigenschaft
+\begin{displaymath}
+	\widehat{d}(\widehat{x}, \widehat{y}) \leq \widehat{d}(\widehat{x}, \widehat{z})+\widehat{d}(\widehat{z}, \widehat{y})
+\end{displaymath}
+folgt durch Grenzwertbildung für $n\rightarrow\infty$ von
+\begin{displaymath}
+	d(x_n, y_n) \leq d(x_n, z_n)+d(z_n, y_n).
+\end{displaymath}
+
+\paragraph{Zu 4.}
+Definiere $\Psi(x)=\left[\left\{x\right\}_{n=1}^\infty\right]_\sim$. Offenbar ist $\Psi$ isometrisch.
+
+\paragraph{Zu 5.} Sei $\widehat{x}=\left\{x_n\right\}_{n=1}^\infty\in\widehat{X}$ beliebig, aber fest und $\epsilon>0$. Es existiert (Cauchy-Folgen-Eigenschaft) ein $k_0(\epsilon)$, so dass für alle $k, l\geq k_0(\epsilon)$ gilt: $d(x_k, x_l)<\epsilon$.
+
+Sei $N>k_0(\epsilon)$ fest. Setze $x^0:=\left\{x_N\right\}_{k=1}^\infty\in\Psi(X)$.
+
+Es gilt: $\widehat{d}(\widehat{x}, x^0)=\lim_{n\rightarrow \infty} d(x_k, x_N)\leq \epsilon$.
+
+\paragraph{Zu 6.} Sei $\left\{\widehat{x}_l\right\}_{l=1}^\infty$ Cauchy-Folge in $\widehat{X}$, also $\forall \epsilon>0\exists \widehat{l}(\epsilon) \forall j, l\geq \widehat{l}(\epsilon): \widehat{d}(\widehat{x}_l, \widehat{x}_j)<\frac{\epsilon}{4}$.
+
+Wegen der Dichtheit von $\Psi(X)$ in $\widehat{X}$ gibt es konstante Folge $\left\{x_{l, 0}\right\}_{k=1}^\infty=:\widehat{x}_{l, 0}$ mit $\widehat{d}(\widehat{x}_l, \left\{x_{l, 0}\right\}_{k=1}^\infty)<\frac{\epsilon}{4}$.
+
+Nun konstruieren wir das Grenzelement:
+\begin{eqnarray*}
+	d(x_{l, 0}, x_{j, 0}) & = & \widehat{d}(\widehat{x}_{l, 0}, \widehat{x}_{j, 0}) \\
+	& \leq & \widehat{d}(\widehat{x}_{l, 0}, \widehat{x}_l)+\widehat{d}(\widehat{x}_l, \widehat{x}_j)+\widehat{d}(\widehat{x}_j, \widehat{x}_{j, 0}) \\
+	& < & 3\frac{\epsilon}{4}\textnormal{ für }l, j\geq \widehat{l}(\epsilon)
+\end{eqnarray*}
+
+Also ist $\widehat{x}^0=\left\{x{l, 0}\right\}_{l=1}^\infty$ eine Cauchy-Folge in $(x, d)$ und damit $\widehat{x}^0\in \widehat{X}$.
+
+Schließlich: 
+\begin{displaymath}
+\widehat{d}(\widehat{x}^0, \widehat{x}_{j, 0})=\lim_{l\rightarrow \infty} d(x_{l, 0}, x_{j, 0})\leq 3\frac{\epsilon}{4}
+\end{displaymath}
+und
+\begin{eqnarray*}
+\widehat{d}(\widehat{x}^0, \widehat{x}_j) & \leq & \widehat{d}(\widehat{x}^0, x_{j, 0}) +\underbrace{ \widehat{d}(x_{j, 0}, \widehat{x}_j)}_{<\frac{\epsilon}{4}} \\
+& < & \epsilon\, \forall j>\widehat{l}(\epsilon),
+\end{eqnarray*}
+also $\left\{\widehat{x}_l\right\}_{l=1}^\infty\stackrel{\widehat{d}}{\rightarrow} \widehat{x}^0$.
+\end{bew}
+
+\begin{Bem}
+Alternativ lässt sich das Grenzelement der Cauchy-Folge der $\left\{\widehat{x}_l\right\}_{l=1}^\infty$ mit $\widehat{x}_l=\left\{x_{l, 1}, x_{l, 2}, x_{l, 3}, \ldots\right\}$ auch durch $\widehat{x}^0:=\left\{x_{k, k}\right\}_{k=1}^\infty$ konstruieren (Cantorsches Diagonalverfahren).
+\end{Bem}
+
+\section{Andere Räume in der Analysis}
+
+\subsection{Topologien und Hausdorff-Räume}
+
+\begin{Def}
+Sei $X\neq \emptyset$ und $\mathcal{U} \subseteq \mathcal{P}(X)$. Dann bezeichnen wir $(X, \mathcal{U})$ als \emph{topologischen Raum} (bzw. $\mathcal{U}$ als \emph{Topologie auf X} genau dann, wenn gilt:
+\begin{enumerate}
+	\item $\emptyset, X\in \mathcal{U}$
+	\item Sei $n\in \mathbb{N}$ und $\left\{U_i\right\}_{i=1}^n$ mit $U_i\in\mathcal{U}\ (i=1, \ldots, n)$ gilt: $\bigcap_{i=1}^n U_i\in \mathcal{U}$
+	\item Für jede Indexmenge I gilt: $\bigcup_{i\in I} U_i\in \mathcal{U}$
+\end{enumerate}
+\end{Def}
+
+\begin{Def}
+Sei $(X, \mathcal{U})$ ein topologischer Raum und $x_0\in X$. Wir definieren $\mathcal{U}(x_0):=\left\{U\in \mathcal{U}: x_0\in U\right\}$ als die \emph{Menge aller Umgebungen von $x_0$}.
+\end{Def}
+
+Sei für die folgenden Beispiele $X\neq \emptyset$.
+
+\begin{Bsp}
+Sei $(X, d)$ ein metrischer Raum. Dann wird durch 
+\begin{displaymath}
+\mathcal{U}:=\left\{U\subseteq X:\ \textnormal{U offen bezüglich der Metrik d}\right\}
+\end{displaymath} auf X eine Topologie definiert -- die sogenannte \emph{durch d induzierte Topologie}.
+\end{Bsp}
+
+\begin{Bsp}
+Durch $\mathcal{U}:=\left\{\emptyset, X\right\}$ wird auf X eine Topologie (die sogenannte \emph{chaotische Topologie}) definiert.
+\end{Bsp}
+
+\begin{Bsp}
+Durch $\mathcal{U}:=\mathcal{P}(X)$ wird auf X eine Topologie (die sogenannte \emph{diskrete Topologie}) definiert (diese wird übrigens durch die sogenannte "`Urwaldmetrik"'
+\begin{displaymath}
+	d(x, y)=\begin{cases}
+0 & x=y\\
+1 & x\neq y\\
+\end{cases}
+\end{displaymath}
+induziert).
+\end{Bsp}
+
+Sei im Folgenden $(X, \mathcal{U})$ ein topologischer Raum.
+
+\begin{Def}
+Sei $Y\subseteq X$. Dann heißt Y \emph{offen} $\Leftrightarrow Y\in \mathcal{U}$.
+\end{Def}
+
+\begin{Def}
+Sei $Y\subseteq X$ und $x\in X$. Dann heißt Y \emph{Umgebung} von x $\Leftrightarrow Y \textnormal{ offen und } x\in Y$.
+\end{Def}
+
+\begin{Def}
+Sei $Y\subseteq X$. Dann heißt Y \emph{abgeschlossen} $\Leftrightarrow X\backslash Y$ offen ist.
+\end{Def}
+
+\begin{Def}
+Sei $M\subseteq X$. Dann definieren $\overline{M}$ wir als den \emph{Abschluss von M} durch
+\begin{displaymath}
+	\overline{M} := \cap_{U\textnormal{ abgeschlossen }, M\subseteq U}{U}.
+\end{displaymath}
+\end{Def}
+
+\begin{Sa}
+Für alle $M\subseteq X$ ist der Abschluss von M ($\overline{M}$) abgeschlossen.
+\end{Sa}
+\begin{bew}
+\begin{eqnarray*}
+X \backslash \overline{M} & = & X \backslash \bigcap\limits_{U\textnormal{ abgeschlossen }, M\subseteq U}{U} \\
+& = & \underbrace{\bigcup\limits_{U\textnormal{ abgeschlossen, } M\subseteq U}\underbrace{X\backslash U}_{\textnormal{offen}}}_{\textnormal{offen, da Vereinigung offener Mengen}} \\
+& \in & \mathcal{U}.
+\end{eqnarray*}
+\end{bew}
+
+\begin{Def}
+Sei $\left\{x_i\right\}_{i=1}^\infty\in X^\mathbb{N}$ eine Folge. Diese heißt \emph{konvergent gegen $x_0$} $\Leftrightarrow \forall U\in\mathcal{U}(x_0) \exists n_0\in \mathbb{N} \forall n\geq n_0: x_n\in U$.
+\end{Def}
+
+\begin{Bsp} (Grenzwerte sind in topologischen Räumen im Allgemeinen nicht eindeutig) Sei $(X, \mathcal{U})$ mit der chaotischen Topologie ausgestattet. Dann ist jede beliebige Folge konvergent gegen jeden beliebigen Grenzwert.
+\end{Bsp}
+
+Um die Eindeutigkeit von Grenzwerten stets zu sichern, brauchen wir eine zusätzliche Eigenschaft:
+
+\begin{Def}
+Ein topologischer Raum $(X, \mathcal{U})$ heißt \emph{Hausdorff-Raum}, wenn zusätzlich das sogenannte \emph{Hausdorffsche Trennungsaxiom} gilt: $\forall x, y\textnormal{ mit } x\neq y\exists U\in\mathcal{U}(x): y\notin U$.
+\end{Def}
+
+\begin{Sa}
+In einem Hausdorff-Raum ist der Grenzwert jeder konvergenten Folge eindeutig bestimmt.
+\end{Sa}
+
+\begin{Sa}
+Jeder durch eine Metrik induzierte topologische Raum ist ein Hausdorff-Raum.
+\end{Sa}
+
+\subsection{Banach-Räume}
+
+Was ist gelb, gekrümmt, normiert und vollständig? \\
+Ein Bananach-Raum.
+
+\section{Stetigkeit}
+
+\begin{Def}
+Seien $(X, \mathcal{U})$ und $(Y, \mathcal{V})$ topologische Räume. Dann heißt $f: X\rightarrow Y$ \emph{stetig} (bzw. \emph{Homomorphismus (strukturerhaltende Abbildung) von topologischen Räumen}) $\Leftrightarrow \forall V\in \mathcal{V}: f^{-1}(V)\in \mathcal{U}$.
+\end{Def}
+
+\begin{Def}
+Seien $(X, \mathcal{U})$ und $(Y, \mathcal{V})$ topologische Räume. Dann heißt $f: X\rightarrow Y$ \emph{Homöomorphismus} (bzw. \emph{Isomorphismus von topologischen Räumen})$\Leftrightarrow$ f stetig, sowie $f^{-1}$ existiert und ebenfalls stetig ist.
+
+Zwei topologische Räume heißen \emph{homöomorph}, falls es einen Homöomorphismus zwischen ihnen gibt.
+\end{Def}
+
+\begin{Def}
+Ein topologischer Raum heißt \emph{n-Mannigfaltigkeit}, wenn es zu jedem Punkt eine zur offenen Einheitskugel homöomorphe Umgebung gibt.
+\end{Def}
+
+\begin{Sa}
+Die folgenden Charakterisierungen der Stetigkeit von Abbildungen zwischen topologischen Räumen $(X, \mathcal{U})$ und $(Y, \mathcal{V})$ sind äquivalent:
+\begin{enumerate}
+	\item für jede in Y offene Menge B ist $f^{-1}(B)$ offen in X
+	\item für jede in Y abgeschlossene Menge B ist $f^{-1}(B)$ abgeschlossen in X
+	\item für alle $A\subseteq X$ gilt: $f(\overline{A})\subseteq\overline{f(A)}$
+\end{enumerate}
+\end{Sa}
+
+\begin{Bem}
+Das Bild offener Mengen bezüglich einer stetigen Abbildung muss nicht offen sein (betrachte z. B. $f: \mathbb{R}\rightarrow \mathbb{R}; x\mapsto x^2$).
+\end{Bem}
+
+Nun wollen wir die punktweise Stetigkeit von Abbildungen zwischen metrischen Räumen definieren:
+
+Im Folgenden seien $(E, d)$ und $(E', d')$ metrische Räume und $f: E\rightarrow E'$.
+
+\begin{Def}
+f heißt \emph{stetig in $x_0$} genau dann, wenn gilt:
+\begin{displaymath}
+\forall \epsilon>0\exists \delta(\epsilon)>0: d(x, x_0)<\delta(\epsilon)\Rightarrow d'(f(x), f(x_0))<\epsilon.
+\end{displaymath}
+\end{Def}
+
+\begin{Def}
+f heißt \emph{stetig auf E} genau dann, wenn f in jedem Punkt stetig ist.
+\end{Def}
+
+\begin{Sa}
+Es ist äquivalent
+\begin{enumerate}
+	\item f ist stetig auf E
+	\item f ist stetig bezüglich der durch d bzw. d' in E bzw. E' erzeugten Topologien
+\end{enumerate}
+\end{Sa}
+
+Bevor wir zu einer weiteren Charakterisierung von Stetigkeit kommen, brauchen wir noch den Begriff des Grenzwerts  von Abbildungen:
+
+\begin{Def}
+Sei f: $M\rightarrow E'$ mit $M\subseteq E$ und sei $x_0$ Häufungspunkt von M (d. h. in jeder $\epsilon$-Umgebung von $x_0$ liegt ein von $x_0$ verschiedener Punkt aus M). Dann definieren wir:
+
+\begin{displaymath}
+	\lim_{x\rightarrow x_0, x\in M} f(x)=a\Leftrightarrow \forall \epsilon>0\exists \delta(\epsilon)>0 \forall x\in M, 0<d(x, x_0)<\delta(\epsilon)\Rightarrow d'(f(x), a)< \epsilon
+\end{displaymath}
+\end{Def}
+
+\begin{Sa}
+Sei f: $M\rightarrow E'$ mit $M\subseteq E$ und sei $x_0$ Häufungspunkt von M. Dann gilt: $\lim_{x\rightarrow x_0, x\in M} f(x)=a$ genau dann, wenn für alle Folgen $\left\{x_n\right\}_{n=1}^\infty\subset M$ mit $x_n\neq x_0$ und $\lim_{n\rightarrow \infty} x_n=x_0$ gilt: $\lim_{n\rightarrow \infty} f(x_n)=a$.
+\end{Sa}
+
+\section{Lösungssätze für nichtlineare Gleichungen}
+
+\subsection{Mittelwertsätze}
+
+\begin{Sa} (Satz von Rolle)
+Sei $f: [a, b] \rightarrow \mathbb{R}$ auf $[a, b]$ stetig und auf $(a, b)$ differenzierbar mit $f(a)=f(b)=0$.
+Dann existiert ein $\xi\in (a, b)$ mit $f'(\xi)=0$.
+\end{Sa}
+\begin{bew}
+Ohne Einschränkung sei f nicht konstant und es existiere ein $x\in(a, b)$, so dass $f(x)>f(a)$ ist.
+
+Nach Weierstraß nimmt f auf $[a, b]$ (kompakt) Infimum und Supremum an. 
+\end{bew}
+
+\begin{Sa} (Mittelwertsatz)
+Sei $f: [a, b] \rightarrow \mathbb{R}$ auf $[a, b]$ stetig und auf $(a, b)$ differenzierbar. Dann existiert ein $\xi\in (a, b)$ mit
+\begin{equation}
+f\left(b\right)-f\left(a\right) = f'\left(\xi\right) \left(b-a\right).
+\end{equation}
+\end{Sa}
+
+\begin{bew}
+Wende den Satz von Rolle auf die Funktion
+\begin{displaymath}
+\varphi_1(x) := f(x)-f(a) \frac{f\left(b\right)-f\left(a\right)}{b-a} \left(x-a\right)
+\end{displaymath}
+bzw. alternativ
+\begin{displaymath}
+\varphi_2(x) := \left(f\left(b\right)-f\left(a\right)\right) \left(x-a\right)-\left(f\left(x\right)-f\left(a\right)\right) \left(b-a\right)
+\end{displaymath}
+an.
+\end{bew}
+
+\begin{Sa} (Verallgemeinerter Mittelwertsatz)
+Seien $f, g: [a, b] \rightarrow \mathbb{R}$ auf $[a, b]$ stetig und auf $(a, b)$ differenzierbar. Dann existiert ein $\xi\in (a, b)$ mit
+\begin{equation}
+g'\left(\xi\right) \left(f\left(b\right)-f\left(a\right)\right) = f'\left(\xi\right) \left(g\left(b\right)-g\left(a\right)\right).
+\end{equation}
+\end{Sa}
+
+\begin{Bem}
+Der Mittelwertsatz ist offensichtlich ein Spezialfall des verallgemeinerten Mittelwertsatzes für $g=\id$.
+\end{Bem}
+
+\begin{bew} (falscher Beweis!)
+Nach dem Mittelwertsatz existiert für f und g ein $\xi$ mit
+\begin{eqnarray*}
+\left(f\left(b\right)-f\left(a\right)\right) & = & f'\left(\xi\right) \left(b-a\right) \\
+g'\left(\xi\right) \left(b-a\right) & = & \left(g\left(b\right)-g\left(a\right)\right)
+\end{eqnarray*}
+
+Multiplikation dieser beiden Gleichungen ergibt:
+\begin{equation}
+\left(f\left(b\right)-f\left(a\right)\right) g'\left(\xi\right) \left(b-a\right) = f'\left(\xi\right) \left(b-a\right) \left(g\left(b\right)-g\left(a\right)\right)
+\end{equation}
+
+Anschließend dividieren wir beide Seiten durch $\left(b-a\right)$ (möglich, da $b\neq a$ ist) und erhalten  Ergebnis
+\begin{equation}
+g'\left(\xi\right) \left(f\left(b\right)-f\left(a\right)\right) = f'\left(\xi\right) \left(g\left(b\right)-g\left(a\right)\right).
+\end{equation}
+\end{bew}
+
+\begin{Auf}
+Worin liegt der Fehler im Beweis?
+\end{Auf}
+
+\begin{Loe}
+Das $\xi$, welches nach dem Mittelwertsatz existiert, muss nicht für f und g identisch sein.
+\end{Loe}
+
+\begin{bew} (korrekter Beweis des verallgemeinerten Mittelwertsatzes)
+Wende den Satz von Rolle auf die Funktion
+\begin{displaymath}
+\varphi(x) := \left(f\left(b\right)-f\left(a\right)\right) \left(g\left(x\right)-g\left(a\right)\right)-\left(f\left(x\right)-f\left(a\right)\right) \left(g\left(b\right)-g\left(a\right)\right)
+\end{displaymath}
+an.
+\end{bew}
+
+
+\subsection{Fixpunktsätze}
+
+\begin{Def}
+Sei $(X, d)$ metrischer Raum und $f: X\rightarrow M\subseteq X$. Dann heißt f \emph{k-kontraktiv} $\Leftrightarrow \exists 0\leq K < 1 \forall x, y\,d(f(x), f(y))\leq K d(x, y)$.
+\end{Def}
+
+\begin{Sa} (Banach'scher Fixpunktsatz) \label{sa:banachscher_fixpunktsatz}
+Sei f: $X\rightarrow M\subseteq X$ eine K-kontraktive Abbildung in einem vollständigen metrischen Raum $(X, d)$ mit M abgeschlossen.
+\end{Sa}
+
+\section{Diverse Notizen zu analytischen Problemen}
+
+\subsection{Der Grenzwert $\lim_{n\rightarrow\infty} \sqrt[n]{n+1}$}
+
+Wir benutzen die Ungleichung über p-adische Mittel (Satz \ref{sa:padische_mittel}) und folgenden Satz:
+
+\begin{Sa}
+\label{sa:grenzwerte_majorante_und_minorante}
+Seien $\left\{a_k\right\}_{k=1}^\infty, \left\{b_k\right\}_{k=1}^\infty$, $\left\{c_k\right\}_{k=1}^\infty$ drei Folgen reeller Zahlen im metrischen Raum der reellen Zahlen mit euklidischer Metrik, für welche gilt:
+\begin{itemize}
+\item $a_k \leq b_k \leq c_k \forall k$
+\item $x := \lim_{n\rightarrow \infty} a_k = \lim_{n\rightarrow \infty} c_k$
+\end{itemize}
+Dann gilt: $\lim_{n\rightarrow \infty} b_k = x$.
+\end{Sa}
+
+Nun können wir den Grenzwert beweisen:
+
+\begin{Le}
+$\lim_{n\rightarrow\infty} \sqrt[n]{n+1} = 1$.
+\end{Le}
+\begin{bew}
+Offenbar gilt: $1\leq \sqrt[n]{n+1}$ für alle n. Somit bildet in Satz \ref{sa:grenzwerte_majorante_und_minorante} die konstant aus Einsen bestehende Folge eine Minorante an $\left\{\sqrt[n]{n+1}\right\}_{n=1}^\infty$.
+
+Für die Majorante benutzen wir Satz \ref{sa:padische_mittel} mit $p=0, q=\frac{1}{2}, a_1={n+1}, a_2=1, \ldots, a_n=1$. Dann gilt:
+\begin{eqnarray*}
+\sqrt[n]{n+1} & = & \sqrt[n]{\prod_{i=1}^n a_i} \\
+& \leq & \sqrt[\frac{1}{2}]{\frac{\sum_{i=1}^n {a_i}^{\frac{1}{2}}}{n}} \\
+& = & \left(\frac{\sqrt{n+1} + n-1}{n}\right)^2 \\
+& \leq & \left(1+\frac{2 \sqrt{n}-1}{n}\right)^2.
+\end{eqnarray*}
+Grenzwertbildung zeigt:
+\begin{eqnarray*} 
+\lim_{n\rightarrow\infty} \sqrt[n]{n+1} & \leq & \lim_{n\rightarrow\infty}\left(1+\frac{2 \sqrt{n}-1}{n}\right)^2 \\
+& = & \left(1+\lim_{n\rightarrow\infty} \frac{2 \sqrt{n}-1}{n}\right)^2 \\
+& = 1.
+\end{eqnarray*}
+Somit sind die Voraussetzungen für Satz \ref{sa:grenzwerte_majorante_und_minorante} erfüllt und es gilt: $\lim_{n\rightarrow\infty} \sqrt[n]{n+1} = 1$.
+\end{bew}
+
+\chapter{Differentialgleichungen}
+
+\section[Einleitung]{Einleitung\footnote{basierend aus einem Kurs von Toni Reimers}}
+
+\subsection{Was ist eine Differentialgleichung?}
+
+\begin{Bsp}
+\begin{equation}
+y'+2 x y = 0 \label{eq:diff}
+\end{equation}
+
+Lösung von \eqref{eq:diff} ist die Funktion $y=\phi(x)$, d.h. $\phi'(x)+2\,x\,\phi(x) = 0$.
+
+Man rechnet leicht nach, dass die Funktion $y=e^{-x^2}$ eine mögliche Lösung von \eqref{eq:diff} ist:
+\begin{displaymath}
+\frac{d}{dx}\left(e^{-x^2}\right) + 2 x e^{-x^2} = 0, -\infty < x < \infty
+\end{displaymath}
+Später werden wir sehen, dass sämtliche Lösungen die Gestalt $y=C e^{-x^2}$ haben mit $C$ konstant haben.
+\end{Bsp}
+
+\begin{Def}
+$F(x, y, y')=0$ heißt \emph{(implizite) Differentialgleichung erster Ordnung}; $y'=f(x, y)$ heißt deren \emph{explizite Darstellung}. Analog heißt heißt $F(x, y, y', \ldots, y^{(n)})=0$ \emph{(implizite) Differentialgleichung n-ter Ordnung} und  $y^{(n)}=f(x, y, y', \ldots,  y^{(n)})$ deren \emph{explizite Darstellung}.
+\end{Def}
+
+\begin{Bsp}
+$y'=-2 x y$ ist explizite Form der impliziten Darstellung \eqref{eq:diff}.
+\end{Bsp}
+
+Hier nur GDGs (gewöhnliche Differentialgleichungen)/ODEs (ordinary differential equations).
+
+Dennoch ein kurzes Beispiel zu PDGs (partielle Differentialgleichungen)/PDEs (partial differential equations):
+
+\begin{Bsp}
+\label{bsp:potentialgleichung}
+\begin{eqnarray*}
+\Delta u & = & 0 \textnormal{ (Potentialgleichung) mit}\\
+\Delta u & := & \left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right) u  \\
+& = & \frac{\partial^2}{\partial x^2} u + \frac{\partial^2}{\partial y^2} u + \frac{\partial^2}{\partial z^2} u \\
+& = & u_{x x}+u_{y y}+u_{z z}.
+\end{eqnarray*}
+\end{Bsp}
+
+\begin{Bem}
+Den in Beispiel \ref{bsp:potentialgleichung} definierten Operator $\Delta$ bezeichnen wir als \emph{Laplace-Operator}.
+\end{Bem}
+
+\subsection{Einführende Beispiele}
+
+\begin{Bsp}
+Freier Fall auf der Erde:
+\begin{displaymath}
+s=s(t)
+\end{displaymath}
+beschreibt zurückgelegten Weg des Körpers (bzw. des Schwerpunkts) zur Zeit t.
+
+\begin{eqnarray*}
+v(t) & =& \frac{d}{dt}s(t) \\
+ & = & \dot{s}(t)
+\end{eqnarray*}
+bezeichnet die Geschwindigkeit und 
+\begin{eqnarray*}
+a(t) & = & \frac{d^2}{dt^2}s(t) \\
+& = & \frac{d}{dt}v(t) \\
+& = & \ddot{s}(t).
+\end{eqnarray*}
+die Beschleunigung.
+
+Da in Erdnähe eine konstante Fallbeschleunigung g herrscht, ergibt sich die ODE:
+\begin{displaymath}
+\ddot{s} = g.
+\end{displaymath}
+
+Erst einmal rein formal schreiben wir diese Gleichung um zu
+\begin{displaymath}
+d^2 s(t)=g\,dt^2
+\end{displaymath}
+und rechnen
+\begin{eqnarray}
+s(t) & = & \int \int g\,\,dt\,dt \nonumber\\
+& = & \int \left(g\,t + C_1\right) dt \nonumber \\
+& = & \frac{1}{2} g\,t^2 + C_1\,t + C_2. \label{eq:diff3}
+\end{eqnarray}
+Durch Anfangsbedingungen
+\begin{eqnarray}
+s(0) & = & s_0 \nonumber \\
+\dot{s}(t) & = & v_0 \nonumber
+\end{eqnarray}
+können $C_1$ und $C_2$ in \eqref{eq:diff3} eindeutig bestimmt werden und somit folgt:
+\begin{displaymath}
+s(t) = \frac{1}{2} g\,t^2 + v_0\,t + s_0.
+\end{displaymath}
+\end{Bsp}
+
+\begin{Bsp}
+\label{bsp:newton}
+Freier Fall aus großer Höhe:
+Sei der Körper sehr weit von der Erde entfernt, d. h. $g \equiv const.$ gilt nicht mehr, sondern es gelten die Gravitationsgesetze nach Sir Isaac Newton.
+
+Es gilt für den Betrag F der Gravitationskraft von einem großen Körper der Masse M auf einen kleinen Körper der Masse m mit Abstand r:
+\begin{displaymath}
+F = \gamma \frac{M m}{r^2}\textnormal{ ($\gamma$ Gravitationskonstante)}.
+\end{displaymath}
+Unter Beachtung der Richtung, in welche die Kraft wirkt, gilt demnach:
+\begin{equation}
+\ddot{s} = -\gamma \frac{M}{r^2}. \label{eq:diff_newton}
+\end{equation}
+\end{Bsp}
+
+\begin{Auf}
+Löse die Differentialgleichung \eqref{eq:diff_newton}.
+\end{Auf}
+
+\begin{Loe}
+\begin{eqnarray*}
+s(0) & = & R \\
+\dot{s}(0) & = & 0
+\end{eqnarray*}
+Ansatz: $s(t)=a t^b$.
+
+\eqref{eq:diff_newton} lautet dann: $a b (b-1) t^{b-2} = -\gamma \frac{M}{a t^{2 b}}$.
+
+$\Rightarrow b-2=-2 b \wedge a b (b-1)=-\gamma \frac{M}{a^2}$.
+
+$\Rightarrow b=\frac{2}{3} \wedge a=3\sqrt{\frac{\gamma}{2} M}$.
+\end{Loe}
+
+\section[Elementare Lösungsmethoden]{Elementare Lösungsmethoden\footnote{basierend aus einem Kurs von Toni Reimers}}
+
+\subsection{Differentialgleichungen mit getrennten Variablen}
+
+\begin{Def}
+\label{def:getr_var} 
+Seien $I, J\subseteq \mathbb{R}$ offene Intervalle, sowie 
+\begin{eqnarray*}
+f: I & \rightarrow & \mathbb{R}\textnormal{ und} \\
+g: J & \rightarrow & \mathbb{R}
+\end{eqnarray*}
+zwei stetige Funktionen. Es wurde vorausgesetzt, dass
+\begin{displaymath}
+g(y)\neq 0\ \forall y\in J
+\end{displaymath}
+erfüllt ist. 
+
+Die Differentialgleichung
+\begin{displaymath}
+y'=f(x)g(y)
+\end{displaymath}
+in $I\times J$ heißt \emph{Differentialgleichung mit getrennten Variablen}.
+\end{Def}
+
+\begin{Sa}
+\label{sa:getr_var}
+Mit Bezeichnungen aus Definition \ref{def:getr_var} sei $(x_0, y_0)\in I\times J$ ein Punkt. Wir definieren $F: I\rightarrow \mathbb{R}$ und $G: J\rightarrow \mathbb{R}$ durch
+\begin{eqnarray*}
+F(x) & := & \int_{x_0}^x f(t) dt \\
+G(x) & := & \int_{x_0}^x \frac{1}{g(t)} dt.
+\end{eqnarray*}
+Es sei $I'\subseteq I$ ein Intervall mit $x_0\in I'$ und $F(I')\subseteq G(J)$.
+
+$\Rightarrow \exists !\varphi: I'\rightarrow \mathbb{R}$ (Lösung von $y'=f(x) g(y)$) mit der Anfangsbedingung $\varphi(x_0)=y_0$. Diese Lösung genügt der Beziehung
+\begin{equation}
+G(\varphi(x))=F(x)\ \forall x\in I'. \label{eq:getr}
+\end{equation}
+\end{Sa}
+\begin{bew}
+1. Zu zeigen: $\varphi: I'\rightarrow \mathbb{R}$ irgendeine Lösung der Differentialgleichung $y'=f(x) g(y)$ mit $\varphi(x_0)=y_0\Rightarrow \eqref{eq:getr}$.
+
+Aus $\varphi'(x)=f(x) g(\varphi(x))$ folgt
+\begin{displaymath}
+\int_{x_0}^x \frac{\varphi'(t)}{g(\varphi(t))} dt = \int_{x_0}^x f(t) dt.
+\end{displaymath}
+Führt man im linken Integral die Substitution $u:=\varphi(t)$ durch, so erhält man
+\begin{displaymath}
+\int_{y_0}^{\varphi(x)} \frac{du}{g(u)} = \int_{x_0}^x f(t) dt.
+\end{displaymath}
+$\Rightarrow G(q(x))=F(x)\ \forall x\in I'$.
+
+2. Zeige Eindeutigkeit.
+
+Da $G'(y)=\frac{1}{g(y)}\neq 0$, streng monoton fallend und nach nach Voraussetzung stetig differenzierbar ist, besitzt G eine stetig differenzierbare Umkehrfunktion $H:G(J)\rightarrow \mathbb{R}$.
+
+Aus \eqref{eq:getr} folgt:
+\begin{equation}
+\varphi(x)=H(F(x))\ \forall x\in I. \label{eq:getr_2}
+\end{equation}
+
+Dies bedeutet, dass die Lösung mit der gegebenen Anfangsbedingung, falls sie überhaupt existiert, eindeutig bestimmt ist.
+
+3. Zeige Existenz
+
+Aus \eqref{eq:getr_2} folgt
+\begin{displaymath}
+\phi(x_0)=H(F(x_0))=H(0)=y_0 
+\end{displaymath}
+und die stetige Differenzierbarkeit von $\phi$, denn $F(x_0)=0=G(y_0)$, weiter folgt \eqref{eq:getr}, d. h.
+
+\begin{eqnarray*}
+G'(\varphi(x)) \varphi'(x) & = & \frac{\varphi'(x)}{g(\phi(x))} \\
+& = & F'(x) \\
+& = & f(x), \\
+\Rightarrow \varphi'(x) & = & f(x)g(\varphi(x)),
+\end{eqnarray*}
+daher erfüllt $\varphi$ die Differentialgleichung $y'=f(x) g(y)$.
+\end{bew}
+
+\begin{Bsp}
+Wir wollen $y'=-\frac{y}{x}$ in $I\times J:=\mathbb{R}_{>0}\times \mathbb{R}_{>0}$ mit $y(1)=c, c>0$ lösen.
+
+$y'=f(x) g(y)$, d. h. $f(x)=-\frac{1}{x}$, $g(y)=y$. Nach Satz 
+\ref{sa:getr_var} ist dann
+\begin{eqnarray*}
+F(x) & = & \int_1^x f(t)\,dt \\
+& = & -\int_1^x \frac{dt}{t} \\
+& = & -\ln \left|x\right| \\
+G(y) & = & \int_c^y \frac{dt}{g(t)} \\
+& = & \int_c^y \frac{dt}{t} \\
+& = & \ln \left|\frac{x}{c}\right|
+\end{eqnarray*}
+Da also der Logarithmus $\mathbb{R}_{>0}$ auf ganz $\mathbb{R}$ abbildet, gilt $G(J)\subseteq G(\mathbb{R}_{>0}=\mathbb{R}$; wir können also $I'=I=\mathbb{R}_{>0}$ wählen, da $F(\mathbb{R}_{>0})=\mathbb{R}=G(\mathbb{R}_{>0})$.
+
+Es gibt also eine auf $\mathbb{R}_{>0}$ definierte Lösung $\phi: \mathbb{R}_{>0}\rightarrow \mathbb{R}$ mit $G(\varphi(x))=F(x)$, d. h. $\ln \left|\frac{\phi(x)}{c}\right|=-\ln \left|x\right|\,\forall x\in\mathbb{R}_{>0}$.
+\end{Bsp}
+
+\subsection{Lineare Differentialgleichungen}
+
+\begin{Def}
+Sei $I\subseteq \mathbb{R}$ ein Intervall und seien$a, b: I\rightarrow \mathbb{R}$ stetige Funktionen. Dann nennt man $y'=a(x) y+b(x)$ eine \emph{lineare Differentialgleichung 1. Ordnung} und zwar \emph{homogen}, falls $b = 0$ und sonst \emph{inhomogen.}
+\end{Def}
+
+\subsubsection{Lösung der homogenen linearen Differentialgleichung 1. Ordnung}
+
+Betrachte erst mal 
+\begin{equation}
+y'=\varphi(x) y. \label{eqn:linear}
+\end{equation}
+
+\begin{Sa}
+Mit obigen Bezeichnungen gilt:
+\begin{displaymath}
+x_0\in I, c\in\mathbb{R}.
+\end{displaymath}
+Dann $\exists !\varphi \in \mathbb{R}^I$ mit $\varphi$ löst \eqref{eqn:linear}, die der Anfangsbedingung $\varphi(x_0)=c$ genügt, nämlich
+\begin{equation}
+\varphi(x) := c e^{\int_{x_0}^x a(t) dt}. \label{eq:lin_diff_lsg}
+\end{equation}
+\end{Sa}
+\begin{bew}
+Man sieht aus \eqref{eq:lin_diff_lsg}, dass
+\begin{eqnarray*}
+\varphi(x_0) & = & c \\
+\varphi'(x_0) & = & \frac{d}{dt} c e^{\int_{x_0}^x a(t) dt} \\
+& = & \underbrace{e^{\int_{x_0}^x a(t) dt}}_{\varphi(x)} \underbrace{\int_{x_0}^x a(t) dt}_{} \\
+& = & a(x) \varphi(x).
+\end{eqnarray*}
+Eindeutigkeit:
+
+\begin{eqnarray*}
+\varphi_0(x) & := & \exp(-\int_{x_0}^x a(t) dt) \\
+\Rightarrow \varphi_0(x) & = & -\varphi(x)\varphi_0(x).
+\end{eqnarray*}
+
+Sei jetzt $\Psi \in\mathbb{R}^I$ eine beliebige Lösung von \eqref{eqn:linear} mit $\Psi(x_0)=c$. Setze $\Psi_0(x)=\Psi(x)\phi_0(x)$.
+
+Nach Produktregel gilt:
+\begin{eqnarray*}
+\Psi_0' & = & \Psi'(x) \phi_0(x)+\phi_0'(x) \Psi(x) \\
+& = & a(x) \Psi(x) \phi_0(x)-\Psi(x)a(x) \phi_0(x) \\
+& = & 0.
+\end{eqnarray*}
+
+Da x beliebig war, folgt: $\Psi_0$ ist konstant.
+
+$\Rightarrow \forall x\in I:$
+\begin{eqnarray*}
+\Psi_0(x) & = & \Psi_0(x_0) \\
+& = & \Psi(x_0)\phi_0(x) \\
+& = & c \exp(0) \\
+& = & c.
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\Rightarrow \Psi(x) & = & \frac{c}{\varphi_0(x)} \\
+& = & c \exp(\int_{x_0}^x a(t) dt).
+\end{eqnarray*}
+\end{bew}
+
+\begin{Bsp}
+\begin{displaymath}
+y' = \frac{y}{x}\ (x>0)
+\end{displaymath}
+Identifiziere also $x\mapsto -\frac{1}{x}$ ($y(1)=c>0$).
+\begin{eqnarray*}
+\Rightarrow \varphi(x) & = & c \exp(-\int_{1}^t \frac{dt}{t}) \\
+ & = & c \exp(-\ln x) \\
+ & = & \frac{c}{e^{\ln x}} \\
+ & = & \frac{c}{x}.
+\end{eqnarray*}
+\end{Bsp}
+
+\subsubsection{Variation der Konstanten}
+
+Betrachte jetzt (inhomogen):
+\begin{equation}
+y'=a(x) y +b(x). \label{eq:lin_diff_inh}
+\end{equation}
+(wie oben).
+
+Wir wollen \eqref{eq:lin_diff_inh} lösen und gehen dazu von der Lösung
+\begin{displaymath}
+\varphi_0(x)=\exp(\int_{x_0}^x a(t) dt)
+\end{displaymath}
+der Gleichung
+\begin{displaymath}
+y'=a(x)y \label{eq:diff_h}
+\end{displaymath}
+aus und machen einen als "`Variation der Konstanten"' bekannten Ansatz.
+\begin{displaymath}
+\varphi(x) = \varphi_0(x) u(x)
+\end{displaymath}
+für die Lösung der inhomogenen Gleichung mit der noch unbekannten Funktion $u\in \mathbb{R}^I$, da $\varphi_0(x)\neq 0\ \forall x\in I$ lässt sich jede Funktion $\varphi$ in dieser Form schreiben.
+
+Untersuche jetzt, welche Bedingungen u genügen muss, damit $\varphi$ die inhomogene Version erfüllt. 
+
+Es ist 
+\begin{eqnarray*}
+\varphi' & = & \phi_0' u+u' \phi_0 \\
+a \varphi + b & = & a \varphi_0 u+b
+\end{eqnarray*}
+also
+\begin{displaymath}
+\varphi_0=a\varphi_0,
+\end{displaymath}
+gilt
+\begin{displaymath}
+\varphi'=a\varphi+b
+\end{displaymath}
+genau dann, wenn
+\begin{displaymath}
+\varphi_0 u' = b,
+\end{displaymath}
+d. h.
+\begin{displaymath}
+u(x) = \int_{x_0}^x \frac{b(t)}{\varphi_0(t)} dt+\textnormal{Const}
+\end{displaymath}
+
+Damit $\varphi(x_0)=c$ gilt, muss $u(x_0)=c$ sein. Also Integrationskonstante $= c$.
+
+Rekapituliere synoptisch:
+
+\begin{Sa}
+$I\subseteq \mathbb{R}, a, b \in C^0(\mathbb{R}^I), x_0\in I, c\in\mathbb{R}$.
+
+$\Rightarrow \exists ! \varphi\in\mathbb{R}^I$, welches die homogene Gleichung löst mit $\varphi(x_0)=C$, nämlich
+\begin{displaymath}
+x\mapsto \varphi_0(x)\left(c+\int_{x_0}^x \frac{b(t)}{\varphi_0(t)} dt\right),
+\end{displaymath}
+wobei $\varphi_0(x)=varphi_{hom}\left(\int_{x_0}^x a(t) dt\right)$.
+\end{Sa}
+
+\begin{Bsp}
+$y'=2 x y +x^3$.
+
+$y'=2 x y$ besitzt die Lösung
+\begin{displaymath}
+\varphi_0(x) = \exp\left(\int_{x_0}^x 2 t dt\right) = e^{x^2}.
+\end{displaymath}
+
+Mit
+\begin{eqnarray*}
+\varphi(x) & = & e^{x^2} \left(c+\int_{x_0}^x \frac{t^3}{e^{t^2}} dt\right) \\
+& \stackrel{=}{\textnormal{Subsitutiere }s=t^2} & \frac{1}{2} \int_{0}^{x} s ds \\
+& = & \frac{x}{e^x}+\int_{x_0}^x \frac{dt}{e^t}
+\end{eqnarray*}
+Mit Resubstitution folgt $\varphi(x)=(c+\frac{1}{2}) e^{x^2}-\frac{1}{2}\left(x^2+1\right)$
+\end{Bsp}
+
+\begin{Auf}
+$y'=k y$ mit $k\in \mathbb{R}$ mit Anfangsbedingung $\phi_0(x_0)=c$.
+\end{Auf}
+
+\section{Fixpunktsätze und allgemeine Existenzsätze für Lösungen von Anfangswertprobleme}
+
+In diesem Kapitel wollen wir das Anfangswertproblem
+
+\begin{eqnarray}
+y'(t) & = & g(y, t) \\
+y(t_0) & = & y_0
+\end{eqnarray}
+
+betrachten.
+
+\subsection{Der Banach'sche Fixpunktsatz und der Satz von Picard-Lindelöff}
+
+Für den Banach'schen Fixpunktsatz siehe Satz \ref{sa:banachscher_fixpunktsatz}.
+
+\section{Neumannsche Reihen als Lösungsverfahren anhand des Beispiels der 2. Fredholmschen Integralgleichung}
+
+\chapter{Ungleichungen}
+
+\section{Ungleichungen mit Beträgen, sowie in allgemeinen metrischen und normierten Räumen}
+
+\begin{Le} (Dreiecksungleichung)
+Für $x, y\in\mathbb{R}$ gilt:
+\begin{equation}
+\left|x+y\right|\leq \left|x\right|+\left|y\right|.
+\end{equation}
+\end{Le}
+
+Mittels vollständiger Induktion beweist man unter Nutzung der Subadditivität von Normen:
+
+\begin{Le}
+Sei $(V, \left\|\cdot\right\|)$ normierter Raum. Dann gilt für $x^1, \ldots, x^k\in V$:
+\begin{equation}
+\left\|\sum_{i=1}^k x^k\right\|\leq \sum_{i=1}^k \left\|x^k\right\|.
+\end{equation}
+\end{Le}
+
+\begin{Kor}
+Seien $x_1, \ldots, x_k \in \mathbb{R}$ bzw. $\mathbb{C}$.
+
+Dann gilt:
+\begin{equation}
+\left|\sum_{i=1}^k x_k\right|\leq \sum_{i=1}^k \left|x_k\right|.
+\end{equation}
+\end{Kor}
+
+\begin{Le}
+\label{le:variante_dreicksungl_ugl}
+(vergleiche Lemma \ref{le:variante_dreicksungl} -- dort auch Beweis)
+In jedem metrischen Raum $(X, d)$ gilt für $x_1, x_2, y_1, y_2\in M$:
+\begin{equation}
+	\left|d(x_1, y_1)-d(x_2, y_2)\right|\leq d(x_1, x_2)+d(y_1, y_2).
+\end{equation}
+\end{Le}
+
+\begin{Kor}
+Sei $(V, \left\|\cdot\right\|)$ normierter Raum und $x, y\in V$. Dann gilt:
+\begin{equation}
+\left|\left\|x\right\|-\left\|y\right\|\right| \leq \left\|x-y\right\|
+\end{equation}
+\end{Kor}
+\begin{bew}
+Setze in Lemma \ref{le:variante_dreicksungl_ugl}:
+\begin{eqnarray*}
+x_1 & := & x \\
+x_2 & := & y \\
+y_1 & := & 0 \\
+y_2 & := & 0.
+\end{eqnarray*}
+\end{bew}
+
+Auch in diesem Korollar kann man wieder den Spezialfall $V=(\mathbb{R}, \left|\cdot\right|)$ bzw. $V=(\mathbb{C}, \left|\cdot\right|)$ betrachten.
+
+\section{Jensen-Ungleichung}
+
+\begin{Def}
+\label{def:konvexe_fkt}
+Sei V ein $\mathbb{R}$-Vektorraum, $M\subseteq V$ und $f: M\rightarrow \mathbb{R}$. Sei außerdem $C\subseteq M$ konvex. Dann heißt f
+\begin{itemize}
+\item \emph{konvex} auf C $\Leftrightarrow \forall x, y\in V, \forall \lambda \in\left[0, 1\right]$ gilt: $f(\lambda x+\left(1-\lambda\right) y) \leq \lambda f(x)+\left(1-\lambda\right) f(y)$,
+\item \emph{streng konvex} auf C $\Leftrightarrow \forall x, y\in V, x\neq y, \forall \lambda \in\left(0, 1\right)$ gilt: $f(\lambda x+\left(1-\lambda\right) y) < \lambda f(x)+\left(1-\lambda\right) f(y)$,
+\item \emph{konkav} auf C $\Leftrightarrow -f$ konvex auf C,
+\item \emph{streng konvex} auf C $\Leftrightarrow -f$ streng konvex auf C
+\end{itemize}
+\end{Def}
+
+\begin{Bsp}
+Sei $(V, \left\|\cdot\right\|)$ ein normierter $\mathbb{R}$-Vektorraum.
+
+Dann ist $\left\|\cdot\right\|$ konvex auf V.
+\end{Bsp}
+\begin{bew}
+Seien $x, y\in V$ und $\lambda \in [0, 1]$.
+
+Dann gilt:
+\begin{eqnarray*}
+\left\|\lambda x+(1-\lambda) y\right\| & \leq & \left\|\lambda x\right\|+\left\|(1-\lambda) y\right\| \\
+& = & \lambda \left\|x\right\|+(1-\lambda) \left\|y\right\|
+\end{eqnarray*}
+\end{bew}
+
+\begin{Sa}
+Sei $f: I\rightarrow \mathbb{R}$ (I offenes Intervall reeller Zahlen) differenzierbar. Dann gilt:
+\begin{itemize}
+\item $f$ ist konvex $\Leftrightarrow$ $f'$ monoton wachsend
+\item $f$ ist streng konvex $\Leftrightarrow$ $f'$ streng monoton wachsend
+\item $f$ ist konkav $\Leftrightarrow$ $f'$ monoton fallend
+\item $f$ ist streng konkav $\Leftrightarrow$ $f'$ streng monoton fallend
+\end{itemize}
+\end{Sa}
+
+\begin{Kor}
+Sei $f: I\rightarrow \mathbb{R}$ (I offenes Intervall reeller Zahlen) zwei mal differenzierbar. Dann gilt:
+\begin{itemize}
+\item $f$ ist konvex $\Leftrightarrow$ $f''\geq 0$ auf I
+\item $f$ ist konkav $\Leftrightarrow$ $f''\leq 0$ auf I
+\end{itemize}
+\end{Kor}
+
+Eine Verallgemeinerung dieses Korollars ist:
+
+\begin{Sa}
+Sei $f: M\rightarrow \mathbb{R}$ (nach Definition \ref{def:konvexe_fkt}) zwei mal stetig differenzierbar (die \emph{Stetigkeit} der zweiten Ableitung benötigen wir, weil wir sonst nicht den Satz von Schwarz anwenden können, der sagt, dass die Hesse-Matrix symmetrisch ist). Dann gilt:
+\begin{itemize}
+\item $f$ ist konvex $\Leftrightarrow$ $\nabla \nabla f\succeq 0$ auf M (also die Hesse-Matrix von f positiv semidefinit ist)
+\item $f$ ist konkav $\Leftrightarrow$ $\nabla \nabla f\preceq 0$ auf M (also die Hesse-Matrix von f negativ semidefinit ist)
+\end{itemize}
+\end{Sa}
+
+\begin{Sa} (Jensen-Ungleichung)
+Sei f nach Definition \ref{def:konvexe_fkt} konvex bzw. konkav und $\lambda_1, \ldots, \lambda_n\geq 0$ mit $\sum_{i=1}^n \lambda_i =1$. Dann gilt für alle $x_1, \ldots, x_n\in M$:
+\begin{eqnarray*}
+f(\sum_{i=1}^n \lambda_i x_i) & \leq & \sum_{i=1}^n \lambda_i f(x_i) \textnormal{ bzw.}\\
+f(\sum_{i=1}^n \lambda_i x_i) & \geq & \sum_{i=1}^n \lambda_i f(x_i)
+\end{eqnarray*}
+\end{Sa}
+
+\section{Ungleichungen über p-Normen}
+
+\begin{Def}
+Setze (vgl. Beispiel \ref{bsp:p-metriken}) für $p\in\left[1, \infty\right]$ und $z\in \mathbb{R}^n$ bzw. $z\in \mathbb{C}^n$:
+\begin{eqnarray*}
+\left\|z\right\|_p & := & \sqrt[p]{\sum_{i=1}^n \left|z_i\right|^p}\textnormal{ und} \\
+\left\|z\right\|_\infty & := &  \max_{1\leq i\leq n} \left|z_i\right|
+\end{eqnarray*}
+als sogenannte \emph{p-Normen} (erst einmal als rein formaler Ausdruck; dass es sich hierbei um eine Norm handelt, folgt erst später mit der Minkowski-Ungleichung beweisen).
+\end{Def}
+
+\subsection{Hölder-Ungleichung und Verallgemeinerungen der Cauchy-Schwarz-Ungleichung}
+
+\begin{Sa} (Hölder-Ungleichung)
+Seien $p, q\in\left[1, \infty\right]$ mit
+\begin{displaymath}
+\frac{1}{p}+\frac{1}{q} = 1
+\end{displaymath}
+(p und q bilden sogenannte \emph{konjugierte Hölder-Exponenten}) -- die Paare $(p, q):=(1, \infty)$ und $(p, q):=(\infty, 1)$ sollen diese Bedingung ebenfalls erfüllen -- und $x, y \in \mathbb{R}^n$ bzw. $\mathbb{C}^n$.
+
+Dann gilt:
+\begin{equation}
+\left|x^T y\right| \leq \left\|z\right\|_p \left\|z\right\|_q
+\end{equation}
+mit
+\begin{displaymath}
+x^T y := \sum_{i=1}^n x_i y_i.
+\end{displaymath}
+\end{Sa}
+
+\begin{Kor} (Cauchy-Schwarz-Ungleichung)
+Für $x, y\in \mathbb{R}^n$  bzw. $\mathbb{C}^n$ gilt:
+\begin{equation}
+\left(\sum_{i=1}^n x_i y_i\right)^2 \leq \left(\sum_{i=1}^n x_i^2\right) \left(\sum_{i=1}^n y_i^2\right).
+\end{equation}
+
+Gleichheit gilt genau dann, wenn x und y linear abhängig sind.
+\end{Kor}
+\begin{bew}
+Setze in Hölder-Ungleichung $p=q=\frac{1}{2}$ und quadriere beide Seiten (erlaubt, da beide Seiten $\geq 0$ sind).
+\end{bew}
+
+\begin{Le} (Cauchy-Schwarz-Ungleichung in euklidischen bzw. unitären Vektorräumen)
+
+Sei $(V, \left\langle\cdot, \cdot\right\rangle)$ ein euklidischer bzw. unitärer Vektorraum und $x, y\in V$.
+
+Dann gilt:
+\begin{equation}
+\left|\left\langle x, y\right\rangle\right|^2 \leq \left\langle x, x\right\rangle \cdot \left\langle y, y\right\rangle
+\end{equation}
+\end{Le}
+
+\subsection{Minkowski-Ungleichung}
+
+\begin{Sa} (Minkowski-Ungleichung)
+Seien $p\in\left[1, \infty\right]$ und $x, y \in \mathbb{R}^n$ bzw. $\mathbb{C}^n$.
+
+Dann gilt:
+\begin{equation}
+\left\|x+y\right\|_p \leq \left\|x\right\|_p + \left\|y\right\|_p 
+\end{equation}
+
+Gleichheit gilt genau dann, wenn x und y linear abhängig sind.
+\end{Sa}
+
+\section{Ungleichungen über p-adische Mittel}
+
+\begin{Sa} (Ungleichung über p-adische Mittel)
+\label{sa:padische_mittel}
+Seien $a_i \geq 0$ für $1\leq i\leq n$ und $-\infty \leq p\leq q\leq \infty$. Dann gilt:
+\begin{equation}
+\sqrt[p]{\frac{\sum_{i=1}^n {a_i}^p}{n}} \leq \sqrt[q]{\frac{\sum_{i=1}^n {a_i}^q}{n}},
+\end{equation}
+wobei wir für $p=0, p=-\infty$ bzw. $p=\infty$ setzen:
+\begin{eqnarray*}
+\sqrt[0]{\frac{\sum_{i=1}^n {a_i}^0}{n}} & := & \sqrt[n]{\prod_{i=1}^n a_i}\\
+\sqrt[-\infty]{\frac{\sum_{i=1}^n {a_i}^{-\infty}}{n}} & := & \min_{i=1, \ldots, n} a_i \\
+\sqrt[\infty]{\frac{\sum_{i=1}^n {a_i}^\infty}{n}} & := & \max_{i=1, \ldots, n} a_i
+\end{eqnarray*}
+\end{Sa}
+
+\begin{Bem}
+Die scheinbar willkürliche Definition für $p, q=0, -\infty, \infty$ lässt sich mittels Funktionsgrenzwerten erklären.
+\end{Bem}
+
+\begin{Kor} (Gewichtete Ungleichung über p-adische Mittel)
+Seien $a_i \geq 0, 0\leq \lambda_i\leq 0$ für $1\leq i\leq n$, $\sum_{i=1}^n \lambda_i=1$ und $-\infty \leq p\leq q\leq \infty$. Dann gilt:
+\begin{equation}
+\sqrt[p]{\sum_{i=1}^n \lambda_i {a_i}^p} \leq \sqrt[q]{\sum_{i=1}^n \lambda_i {a_i}^q},
+\end{equation}
+wobei wir für $p, q=0, -\infty, \infty$ setzen:
+\begin{eqnarray*}
+\sqrt[0]{\sum_{i=1}^n \lambda_i {a_i}^0} & := & \prod_{i=1}^n a_i^{\lambda_i} \textnormal{ mit }0^0:=1 \\
+\sqrt[-\infty]{\sum_{i=1}^n \lambda_i {a_i}^{-\infty}} & := & \min_{i=1, \ldots, n} a_i \\
+\sqrt[\infty]{\sum_{i=1}^n \lambda_i {a_i}^\infty} & := & \max_{i=1, \ldots, n} a_i
+\end{eqnarray*}
+\end{Kor}
+
+\chapter{Graphentheorie}
+
+\section{Grundlegende Definitionen}
+
+\subsection{k-elementige Teilmengen}
+
+\begin{Def}
+Sei $M$ eine beliebige Menge und $k\in \mathbb{Z}_{\geq 0}$. Dann bezeichnen wir mit
+\begin{displaymath}
+M \choose k
+\end{displaymath}
+die Menge aller k-elementigen Teilmengen von M.
+\end{Def}
+
+\begin{Bem}
+Offenbar leitet sich diese Notation für die k-elementigen Teilmengen von M aus der für alle endliche Mengen M gültigen Gleichung
+\begin{displaymath}
+{\left| {M \choose k} \right|} = {{\left| M \right|} \choose k} := {{\left| M \right|!}\over {k! \cdot \left(\left| M \right|-k\right)!}}
+\end{displaymath}
+mit
+\begin{eqnarray*}
+\left(\cdot\right)! : \mathbb{Z}_{\geq 0} & \rightarrow & \mathbb{Z}_{\geq 0} \\
+0! & = & 1 \\
+n! & = & n\cdot \left(n-1\right)!\textnormal{ für } n\geq 1
+\end{eqnarray*}
+her (Beweis: Schulstoff oder Übung).
+\end{Bem}
+
+\subsection{Graphen und Digraphen}
+
+\begin{Def}
+Sei für das Kapitel V stets eine endliche Menge, deren Elemente wir als \emph{Knoten} bezeichnen.
+\end{Def}
+
+\begin{Def}
+Ein \emph{Graph} G ist ein geordnetes Paar $(V, E)$ mit $E\subseteq {V \choose 2}$. Die Elemente von E bezeichnen wir als \emph{Kanten} des Graphen.
+\end{Def}
+
+Häufig tritt der Fall auf, dass man den Kanten gerne eine Orientierung zuordnen will:
+
+\begin{Def}
+Ein \emph{Digraph} D ist ein geordnetes Paar $(V, A)$ mit $A\subseteq V \times V \backslash \bigcup_{v\in V}\left\{\left(v, v\right)\right\}$. Die Elemente von A bezeichnen wir als \emph{Bögen} des Digraphen.
+\end{Def}
+
+\begin{Bem}
+Da es in vielen Fällen unerwünscht ist, dass Bögen von einem Knoten zu sich selbst führen (eine sogenannte \emph{Schleife}), wurde dies in der Definition von einem Digraph ausgeschlossen. Im Folgenden wollen wir für den Fall, dass dies erwünscht ist, Definitionen für Graphen und Digraphen, welche dies erlauben, aufschreiben.
+\end{Bem}
+
+\begin{Def}
+Ein \emph{Graph mit Schleifen} ist ein geordnetes Paar $(V, E)$ mit $E\subseteq {V \choose 2} \cupdot {V \choose 1}$.
+\end{Def}
+
+\begin{Def}
+Ein \emph{Digraph mit Schleifen} ist ein geordnetes Paar $(V, A)$ mit $A\subseteq V \times V$.
+\end{Def}
+
+\begin{Bem}
+Offenbar bedeutet, dass ein "`Graph/Digraph mit Schleifen"' vorliegt \emph{nicht} dass tatsächlich Schleifen vorliegen müssen, sondern lediglich, dass diese nicht ausgeschlossen werden.
+\end{Bem}
+
+\subsection{Multigraphen und Hypergraphen}
+
+Gelegentlich wünscht man sich, dass im Graphen "`parallele Kanten/Bögen"' auftreten können, d. h. zwei Knoten durch mehrere Kanten/Bögen verbunden werden. Da die im vorherigen Abschnitt eingeführte mengentheoretische Notation dies nicht zulässt, gibt es zwei Lösungen:
+\begin{itemize}
+\item wir verwenden Multi-Mengen anstelle von Mengen (aufgrund des axiomatischen Aufwandes wollen wir hiervon keinen Gebrauch machen)
+\item wir führen eine Funktion ein, welche die Vielfachheit einer Kante/eines Bogens angibt (das Mittel unserer Wahl)
+\end{itemize}
+
+\begin{Def}
+Ein Tupel $(V, E, \Psi)$ bzw. $(V, A, \Psi)$ heißt \emph{Multigraph} bzw. \emph{Multidigraph}, wenn $(V, E)$ ein Graph bzw. $(V, A)$ ein Digraph ist und $Psi$ eine Abbildung $\Psi: E\rightarrow \mathbb{Z}_{>0}$ bzw. $\Psi: A\rightarrow \mathbb{Z}_{>0}$ bildet. Diese Abbildung gibt die Vielfachheit einer Kante bzw. eines Bogens an.
+\end{Def}
+
+Wir werden im Folgenden nur in Ausnahmefällen Definitionen für Multigraphen bzw. Multidigraphen explizit aufschreiben, da sich im Allgemeinen klar ist, wie sie im Falle einer solchen Notwendigkeit zu verallgemeinern sind.
+
+Gelegentlich tritt der Fall auf, dass man auch mehr als zwei Knoten mit einer Kante verbinden will. Für diesen Fall führen wir Hypergraphen ein:
+
+\begin{Def}
+Ein Tupel $(V, E)$ heißt \emph{Hypergraph}, wenn $E\subseteq \mathcal{P}(V)\backslash \emptyset$ ist.
+\end{Def}
+
+\begin{Bem}
+Gelegentlich tritt bei Anwendungen von Hypergraphen die Anforderung auf, auch die leere Menge als Kante zuzulassen oder dass jede Kante mindestens zwei Knoten enthalten soll.
+\end{Bem}
+
+\subsection{Mittels Graphen definierte Objekte}
+
+\begin{Def}
+Sei $G=(V, E)$ bzw. $G=(V, A)$ ein Graph bzw. Digraph. $G'=(V', E')$ bzw. $G'=(V', A')$ heißt \emph{Untergraph von G} bzw. \emph{Unterdigraph von G}, wenn $V'\subseteq V$ und  $E'\subseteq E$ bzw. $A'\subseteq A$ ist.
+\end{Def}
+
+\begin{Def}
+Sei $G=(V, E)$ bzw. $G=(V, A)$ ein Graph bzw. Digraph und $V'\subseteq V$. Dann heißt
+\begin{displaymath}
+G\left[V'\right] := (V', \left\{\left\{v_1, v_2\right\}\in E: v_1, v_2\in V'\right\}
+\end{displaymath}
+bzw.
+\begin{displaymath}
+G\left[V'\right] := (V', \left\{\left(v_1, v_2\right)\in A: v_1, v_2\in V'\right\}
+\end{displaymath}
+der \emph{von $V'$ induzierte Untergraph von G}.
+\end{Def}
+
+\begin{Def}
+Sei $G=(V, E)$ bzw. $G=(V, A)$ ein Graph bzw. Digraph. Eine endliche Folge $p:=\left(v_0, v_1, \ldots, v_n\right)$ heißt \emph{$v_0$-$v_n$-Pfad} in G, wenn $\forall 0\leq i \leq n-1:  \left\{v_i, v_{i+1}\right\}\in E$ bzw. $\forall 0\leq i \leq n-1:  \left(v_i, v_{i+1}\right)\in A$ gilt.
+
+Gilt zusätzlich, dass sämtliche $v_i$ unterschiedlich sind, so bezeichnen wir p als \emph{$v_0$-$v_n$-Weg} in G.
+\end{Def}
+
+\begin{Def}
+Sei $G=(V, E)$ bzw. $G=(V, A)$ ein Graph bzw. Digraph. Eine endliche Folge $p:=\left(v_0, v_1, \ldots, v_n, v_0\right)$ heißt \emph{geschlossener Pfad} in G, wenn $\forall 0\leq i \leq n-1: \left\{v_i, v_{i+1}\right\}\in E$ und $\left\{v_n, v_0\right\}\in E$ bzw. $\forall 0\leq i \leq n-1:  \left(v_i, v_{i+1}\right)\in A$ und $\left(v_n, v_0\right)\in A$ gilt.
+
+Gilt zusätzlich, dass sämtliche $v_i$ unterschiedlich sind, so bezeichnen wir p als \emph{Kreis} in G.
+\end{Def}
+
+\begin{Def}
+Sei $p=\left(v_0, v_1, \ldots, v_n\right)$ ein Pfad in einem Graph. Dann bezeichnen wir mit $\left|p\right|:=n$ die sogenannte \emph{kombinatorische Länge von p} (also die Anzahl an Kanten, die p benutzt, wobei Vielfachheiten gezählt werden).
+\end{Def}
+
+\begin{Le}
+Seien $s, t\in V$ (Knoten eines Graphs oder Digraphs) und es gebe in G einen s-t-Pfad p. Dann gibt es in G auch einen s-t-Weg w mit $\left|w\right|\leq \left|\right|$, welcher ausschließlich Kanten benutzt, welche auch von p benutzt werden.
+\end{Le}
+\begin{bew}
+Sei w ein kürzestmöglicher s-t-Pfad, welcher ausschließlich Kanten benutzt, welche auch von p benutzt werden.
+
+Annahme es w ist kein s-t-Weg, d.h. er enthält den Knoten $v_{k^*}$ mindestens zwei mal.
+
+Also besteht w aus dem (möglicherweise leeren) $s-v_{k^*}$-Weg $w_1$, einem nichtleeren in $v_{k^*}$ "`startenden"' Kreis $w_2$ und einem (möglicherweise leeren) $v_{k^*}-t$-Weg $w_3$.
+
+Aber der aus $w_1$ und $w_3$ bestehende Pfad hat eine kürzere kombinatorische Länge als w und benutzt nach Konstruktion ausschließlich Kanten, die auch von p benutzt werden, womit wir einen Widerspruch haben.
+\end{bew}
+
+\begin{Def}
+Ein Graph heißt \emph{zusammenhängend}, wenn es für alle Knoten $v_0, v_1$ mit $v_0\neq v_1$ in G einen $v_0$-$v_1$-Weg gibt.
+\end{Def}
+
+\begin{Def}
+Ein Digraph heißt \emph{stark zusammenhängend}, wenn es für alle Knoten $v_0, v_1$ mit $v_0\neq v_1$ in G einen $v_0$-$v_1$-Weg gibt.
+\end{Def}
+
+\begin{Def}
+Ein Digraph heißt \emph{schwach zusammenhängend}, wenn der aus Entfernen der Orientierung der Kanten entstehende Graph zusammenhängend ist.
+\end{Def}
+
+\begin{Def}
+Sei $G=(V, E)$ ein Graph. Eine Teilmenge $V'\subseteq V$ heißt \emph{Zusammenhangskomponente von G}, wenn $V'$ bezüglich der Eigenschaft, dass $G[V']$ zusammenhängend ist, inklusionsmaximal ist.
+\end{Def}
+
+\begin{Def}
+Sei $G=(V, A)$ ein Digraph. Eine Teilmenge $V'\subseteq V$ heißt \emph{starke Zusammenhangskomponente von G}, wenn $V'$ bezüglich der Eigenschaft, dass $G[V']$ stark zusammenhängend ist, inklusionsmaximal ist.
+\end{Def}
+
+\begin{Le}
+Für jeden Graphen $G=(V, E)$ existiert eine (bis auf Reihenfolge) eindeutige Zerlegung $V=V_1\cupdot V_2 \cupdot \ldots \cupdot V_n$ in Zusammenhangskomponenten $V_i$.
+\end{Le}
+\begin{bew}
+(Toni, hast du Lust einen Beweis zu bringen?)
+\end{bew}
+
+\begin{Le}
+Für jeden Digraphen $G=(V, A)$ existiert eine (bis auf Reihenfolge) eindeutige Zerlegung $V=V_1\cupdot V_2 \cupdot \ldots \cupdot V_n$ in starke Zusammenhangskomponenten $V_i$.
+\end{Le}
+\begin{bew}
+(Toni, hast du Lust einen Beweis zu bringen?)
+\end{bew}
+
+\begin{Def}
+Sei $G=\left(V, E\right)$ ein Graph. Dann definieren wir $\overline{G}:=\left(V, {V \choose 2} \backslash E\right)$ als den \emph{zu G komplementären Graph}.
+\end{Def}
+
+\begin{Auf}
+Man beweise, dass für jeden Graph $G=\left(V, E\right)$ gilt: entweder G oder $\overline{G}$ ist zusammenhängend.
+\end{Auf}
+
+\begin{Def}
+Ein Graph heißt \emph{Baum}, wenn er zusammenhängend und kreisfrei ist.
+\end{Def}
+
+\begin{Def}
+Ein Graph heißt \emph{Wald}, wenn er kreisfrei ist.
+\end{Def}
+
+\section{Stoff von Toni}
+
+\subsection{Maximalflussproblem}
+
+\subsubsection{Flüsse und Schnitte}
+
+\begin{Def}
+$N=(D, q, s, c)$ heißt \emph{Netzwerk} $:\Leftrightarrow$
+\begin{enumerate}
+\item $D=(V, A)$ gerichtet, endlich, schlicht
+\item $q, s\in V$ (Quelle, Senke)
+\item $c: E\rightarrow \mathbb{Q}_{>0}$ Kantengewichtsfunktion, $c(e)$ Kapazität von $e\in E$, $c(e)>0 \forall e\in E$
+\end{enumerate}
+\end{Def}
+
+\begin{Def}
+Sei $E_{in}(v)=\left\{(u, v): (u, v)\in E\right\}$ Menge der in v ein- und $E_{aus}(v)=\left\{(v, u): (u, v)\in E\right\}$ Menge der in v auslaufenden Kanten.
+
+$f: E\rightarrow  \mathbb{Q}_{>0}$ heißt \emph{Fluss} auf N $:\Leftrightarrow$
+\begin{enumerate}
+\item $\forall e\in E: 0\leq f(e)\leq c(e)$
+\item $\forall v\in V\backslash \left\{q, s\right\}$: $\underbrace{\sum_{e\in E_{in}(v)} f(e)}_{=: f^+(v)}-\underbrace{\sum_{e\in E_{aus}(v)} f(e)}_{=:f^-(v)}=0$
+\item $F=f^+(s)-f^-(s)=F(f)$ heißt \emph{Gesamtfluss} ($E_{aus}(s)\neq \emptyset$ im Allgemeinen) Maximalfluss aif N heißt f $:\Leftrightarrow F(f)=\max_{f\textnormal{ Fluss auf N}} F(f)$
+\end{enumerate}
+\end{Def}
+
+\begin{Bsp}
+\ldots
+\end{Bsp}
+
+\begin{Def}
+Das Maximalflussproblem ist algorithmisch so definiert:
+\begin{itemize}
+\item Eingabe: Netzwerk N
+\item Ausgabe: Maximalfluss f auf N
+\end{itemize}
+\end{Def}
+
+\begin{Def}
+Sei $S\subseteq V$ mit $q\in S$ mit $q\neq s$, $\overline{S}:=V\backslash S$. Der durch S definierte \emph{Schnitt} ist die Kantenmenge $(S, \overline{S}) \cup (\overline{S}, S)$ mit
+\begin{enumerate}
+\item $(S, \overline{S})=\left\{(x, y)\in E: x\in S, y\in \overline{S}\right\}$
+\item $(\overline{S}, S)=\left\{(x, y)\in E: x\in \overline{S}, y\in S\right\}$
+\end{enumerate}
+$\Rightarrow F=F(f)$ kann also nicht nur mit s, sondern auch mit s definiert werden; dies ist Aussage des folgenden Lemmas.
+\end{Def}
+
+\begin{Le}
+\label{le:2.8}
+$\forall S\subset V$ mit $q\in S$ mit $s\neq q$ gilt: $\sum_{a\in (S, \overline{S})} f(e)-\sum_{a\in (\overline{S}, S)} f(e)=F$, wobei F der Gesamtfluss sei.
+\end{Le}
+\begin{bew}
+\ldots
+\end{bew}
+
+\begin{Def}
+Die durch Schnitt S bestimmte Kapazität $c(s)$ ist $\sum_{e\in (S, \overline{S})}c(e)$. Also gilt $F\leq c(s)$.
+
+$\Rightarrow F = \sum_{e\in (S, \overline{S})} f(e)-\sum_{e\in (\overline{S}, S)} f(e)\leq \sum_{e\in (S, \overline{S})} f(e)$, d. h. $\max \left\{F(f): f\textnormal{ Fluss auf }N\right\}\leq \min \left\{c(S): S\subset V\wedge q\in S, s\in S \right\}$ mit "`="' $\Leftrightarrow$ Fluss maximal und Kapazität minimal  $\Leftrightarrow$ Max-Flow-Min-Cut-Theorem.
+\end{Def}
+
+\subsubsection{Algorithmus von Ford und Fulkerson}
+
+\begin{Def}
+Sei $P=\left(e_1, \ldots, e_n\right)$ mit $e_i\in E$ für $1\leq i\leq k$ Bogenfolge, deren zugrundeliegender ungerichtete Kantenfolge $P':=\left(e'_1, \ldots, e'_n\right)$ ein einfacher Weg zwischen q und s ist, d. h. $P'=x_0\stackrel{e_1}- x_1 \stackrel{e_2}-\ldots \stackrel{e_k}- x_k$ mit $x_0=q, x_k=s$, $e_i=x_{i-1}\rightarrow x_i$ heißt Vorwärts-, $e_i=x_{i-1}\leftarrow x_i$ heißt Rückwärtskante in P.
+\end{Def}
+
+\begin{Bsp}
+\ldots
+\end{Bsp}
+
+\begin{Def}
+Bezeichnungen wie sonst; gesetzt wird
+\begin{displaymath}
+\Delta\left(e_i\right)=
+\begin{cases}
+c\left(e_i\right)-f\left(e_i\right), & \textnormal{ falls $e_i$ Vorwärtskante in P} \\
+f\left(e_i\right), & \textnormal{ falls $e_i$ Vorwärtskante in P}
+\end{cases}
+\end{displaymath}
+
+$e_i=x\rightarrow y$ \emph{nützlich} von x nach y $:\Leftrightarrow c\left(e_i\right)-f\left(e_i\right)>0$.
+
+Außerdem heißt P \emph{flussvergrößernd} $:\Leftrightarrow$ $\Delta P := \min_{e_i\in P} > 0$.
+\end{Def}
+
+\begin{Bsp}
+Siehe vorheriges Beispiel.
+\begin{itemize}
+\item $P_1 = q\rightarrow c \rightarrow b \rightarrow s$
+\item $P_2 = q\rightarrow a \rightarrow b \leftarrow c \rightarrow d \rightarrow s$
+\end{itemize}
+Also $\Delta P_1 > 0$, also bezüglich $f_1$ flussvergrößernd.
+\end{Bsp}
+
+\begin{Def}
+Seien f Flussfunktion, P flussvergrößernder Weg.
+
+Dann
+\begin{displaymath}
+f'(e):=
+\begin{cases}
+f(e)+\Delta P & \textnormal{e Vorwärtskante in P} \\
+f(e)-\Delta P & \textnormal{e Rückwärtskante in P} \\
+f(e) & \textnormal{sonst}
+\end{cases}
+\end{displaymath}
+\end{Def}
+
+\paragraph{Ford-Fulkerson-Algorithmus}
+\subparagraph{Eingabe} $N=(D, q, s, c), D=(V, E), c: E\rightarrow \mathbb{Q}^+, q, s\in V$
+\subparagraph{Ausgabe} Maximalfluss auf N
+\begin{itemize}
+\item Für alle $e\in E$
+\begin{itemize}
+\item $f(e):=0$
+\item Solange $\exists P: \Delta P>0$
+\begin{itemize}
+\item Konstruiere P
+\item Bilde zu f und P f'
+\item Setze f=f'
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\begin{Bsp}
+\ldots
+\end{Bsp}
+
+\subsection{Kürzeste-Wege-Probleme}
+
+\subsubsection{Dijkstra-Algorithmus}
+
+\paragraph{Eingabe} $D=(V, E), l: E \rightarrow \mathbb{Q}+, v_1 \in V=\left\{v_1, \ldots, v_n\right\}$
+\paragraph{Ausgabe} Liste $(d(v_j))_{1\leq j\leq n}$, die $dist(v_1, v_j) = d(v_j)$ enthält
+\begin{itemize}
+\item $d/v_1):=0$
+\item $X:=V$
+\item For $j:=2$ To n
+\begin{itemize}
+\item $d(v_j):=\infty$
+\end{itemize}
+\item While $X\neq \emptyset$
+\begin{itemize}
+\item Wähle $v\in X: d(v)=\min_{w\in X} d(w)$
+\item $X:=X\backslash \left\{v\right\}$
+\item For all $w\in X: (v, w)\in E$
+\begin{itemize}
+\item $d(w):=\min\left\{d(w), d(v)+l((v, w))\right\}$
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\section{Bemerkungen zum Ford-Fulkerson-Algorithmus}
+
+\begin{Bem}
+Sei im Folgenden $N:=(D=(V, A), c, s, t)$ ein gewichtetes Netzwerk mit $c>0$ und $f\in\mathbb{R}_+^A$ ein s-t-Fluss.
+\end{Bem}
+
+\begin{Def}
+$D_f$ (Residual-Netzwerk von N bezüglich f) ist ein folgendermaßen definierter gewichteter Multigraph:
+\begin{itemize}
+\item Die Knoten (insbesondere s und t) entsprechen denen aus V
+\item für jeden Bogen a mit $f(a) < c(a)$ füge in $D_f$ einen Bogen mit Gewicht $c(a)-f(a)$ ein
+\item für jeden Bogen a mit $f(a) > 0$ füge in $D_f$ einen Bogen $\overleftarrow{a}$ mit Gewicht $c(a)$ ein
+\end{itemize}
+\end{Def}
+
+\begin{Def}
+Als f-augmentierenden s-t-Weg R bezeichnen wir einen s-t-Weg in $D_f$. Seine Kapazität $\capa D_f$ ist $\min_{a\in R} c(a)>0$.
+\end{Def}
+
+\begin{Bem}
+Sei R f-augmentierenden s-t-Weg. Dann ist $f+\capa R$ ein Fluss mit höherer Kapazität als f.
+\end{Bem}
+
+\begin{Le}
+Es gebe keinen f-augmentierenden Weg in $D_f$. Dann ist $\delta^{aus}(S)$ mit $S:=R_{D_f}(s)$ (im Residualnetzwerk von s erreichbare Knoten) ein s-t-Schnitt, dessen Kapazität dem Flusswert von f entspricht.
+\end{Le}
+\begin{bew}
+Da $t\notin S$ ist, ist $\delta^{aus}(S)$ ein s-t-Schnitt.
+
+Nach Lemma \ref{le:2.8} gilt: $\val(f)=f(\delta^{aus}(S))-f(\delta^{ein}(S))$.
+
+Sei $v\in S, w\notin S$. Dann gilt:
+\begin{itemize}
+\item $(v, w)\in A\Rightarrow f(a)=c(a)$ (sonst wäre $a\in A_f$)
+\item $(w, v)\notin A\Rightarrow f(a)=0$ (sonst wäre $\overleftarrow{a}\in A_f$)
+\end{itemize}
+
+Also: 
+\begin{eqnarray*}
+\val(f) & = & \underbrace{f(\delta^{aus}(S))}_{c\left(\delta^{aus}\left(S\right)\right)}-\underbrace{f(\delta^{ein}(S))}_{=0} \\
+& = & c\left(\delta^{aus}\left(S\right)\right).
+\end{eqnarray*}
+\end{bew}
+
+Da die maximale Kapazität eines Flusses durch die maximale Kapazität eines s-t-Schnittes beschränkt wird, folgt:
+
+\begin{Sa} (Max-Flow-Min-Cut)
+Der maximale Wert eines s-t-Flusses in einem Netzwerk ist gleich der minimalen Kapazität eines s-t-Schnittes in diesem.
+\end{Sa}
+
+Außerdem gilt:
+
+\begin{Sa}
+\label{sa:ff-korrekt}
+Ein s-t-Fluss f ist genau dann maximal, wenn es keinen f-augmentierenden s-t-Weg in $D_f$ gibt. Dann ist $\delta^{aus}\left(R_{D_f}(s)\right)$ ein s-t-Schnitt minimaler Kapazität.
+\end{Sa}
+
+\subsection{Probleme und Verbesserungsmöglichkeiten beim Ford-Fulkerson-Algorithmus}
+
+Der Ford-Fulkerson-Algorithmus kann für rationale Koeffizienten exponentielle Laufzeit in der Inputlänge benötigen.
+
+Für reelle Koeffizienten muss er weder terminieren, noch muss die Folge der Kapazitäten der berechneten Flüsse gegen die maximale Kapazität konvergieren.
+
+Beide Probleme verschwinden jedoch, wenn wir im FF-Algorithmus stets mit einem s-t-Weg minimaler kombinatorischer Länge augmentieren (Algorithmus von Edmonds und Karp).
+
+\subsection{Korrektheitsbegriffe für Algorithmen}
+
+\begin{Def}
+Ein Algorithmus heißt \emph{partiell korrekt}, bezüglich P und Q (P, Q: prädikatenlogische Ausdrücke), wenn 
+nach Ausführung des Algorithmus auf Eingabedaten, welche P erfüllen, \emph{im Falle einer Terminierung} Q gilt.
+\end{Def}
+
+\begin{Def}
+Ein Algorithmus heißt \emph{total korrekt}, bezüglich P und Q, wenn er partiell korrekt bezüglich P und Q ist und aus der Erfüllung von P eine Terminierung folgt.
+\end{Def}
+
+\begin{Bem}
+Der Ford-Fulkerson-Algorithmus mit nichtnegativen reellen Kapazitäten ist somit partiell, aber nicht total korrekt.
+\end{Bem}
+
+\begin{Le}
+Für nichtnegative rationale Kapazitäten terminiert der Ford-Fulkerson-Algorithmus (da wegen Satz \ref{sa:ff-korrekt} die partielle Korrektheit des Ford-Fulkerson-Algorithmus gilt, folgt somit, dass der Ford-Fulkerson-Algorithmus bezüglich nichtnegativer rationale Kapazitäten total korrekt ist).
+\end{Le}
+\begin{bew}
+Durch Multiplikation aller Kapazitäten mit dem kleinsten gemeinsamen Vielfachen (lcm -- "`least common multiple"') der Nenner können wir voraussetzen, dass alle Kapazitäten natürliche Zahlen sind.
+
+Jede f-Augmentation erhöht den Flusswert um mindestens 1. Auf der anderen Seite ist der maximale Flusswert durch die Kapazität eines beliebigen s-t-Schnittes beschränkt.
+
+Somit werden nur endlich viele f-Augmentationen durchgeführt.
+\end{bew}
+
+\chapter{Mathematische Optimierung}
+
+At the end of his course on mathematical methods in optimization, the professor sternly looks at his students and says: "`There is one final piece of advice I'm going to give you now: Whatever you have learned in my course - never ever try to apply it to your personal lives!"'
+
+"`Why?"' the students ask.
+
+"`Well, some years ago, I observed my wife preparing breakfast, and I noticed that she wasted a lot of time walking back and forth in the kitchen. So, I went to work, optimized the whole procedure, and told my wife about it."'
+
+"`And what happened?!"'
+
+"`Before I applied my expert knowledge, my wife needed about half an hour to prepare breakfast for the two of us. And now, it takes me less than fifteen minutes\ldots"'
+
+(Quelle: \verb|http://www.math.ualberta.ca/~runde/jokes.html|)
+
+\section{Lineare Optimierungsprobleme}
+
+\begin{Def}
+Ein Problem
+\begin{displaymath}
+	\min c^T x \textnormal{ unter } A x\leq b
+\end{displaymath}
+bezeichnen wir als \emph{lineares Optimierungsproblem}.
+\end{Def}
+
+\subsection{Das Traveling Salesman Problem}
+
+\begin{Def}
+Wir wollen in $K_n$ (vollständiger Graph mit n Knoten) jeder Kante e ein Gewicht $c_e$ zuordnen. Das Problem den Hamilton-Kreis mit der kleinsten Kantengewichtssumme zu bestimmen, bezeichnen wir als \emph{Traveling Salesman Problem}. c bezeichnen wir als \emph{Kostenvektor}.
+\end{Def}
+
+\begin{Bem}
+Das Entscheidungsproblem, ob ein beliebiger Graph $G=(V, E)$ einen Hamilton-Kreis besitzt, lässt sich als Entscheidungsproblem über die Lösung des Traveling Salesman Problem formulieren.
+
+Setze dazu in $K_{\left|V\right|}$ als Kantengewichte
+\begin{displaymath}
+c_e:=\begin{cases}
+0 & e\in G\\
+1 & e\notin G.
+\end{cases}
+\end{displaymath}
+Offensichtlich gibt es genau dann einen Hamilton-Kreis in G, wenn das TSP-Problem die Lösung 0 besitzt.
+
+\end{Bem}
+
+\begin{Sa}
+(Lineare Relaxierung des Traveling Salesman Problems) Wenn $x^*$ die Optimallösung unter allen ganzzahligen x des folgenden linearen Optimierungsproblems ist, so bilden die Komponenten von x als Indikatorvariablen der optimalen Rundreise:
+
+\begin{eqnarray}
+\min c^T x\textnormal{ unter } & & \nonumber\\
+x & \in & \mathbb{R}^{V \choose 2}\\
+x & \geq & 0 \\
+x & \leq & 1 \\
+\sum_{i\in V} x_{\left\{i, j\right\}} & = & 2\ \forall j\in V\backslash \left\{i\right\} \label{eq:kreise} \\
+\sum_{i\in U} \sum_{j\in V\backslash U} x_{\left\{i, j\right\}} & \geq & 2\ \forall U\subset V\textnormal{ mit }2\leq\left|U\right|\leq \left|V\right|-2 \label{eq:subtour_elimination}
+\end{eqnarray}
+\end{Sa}
+
+\begin{Bem}
+Die Ungleichungen (\ref{eq:kreise}) dienen dazu, dass jeder Knoten genau mit zwei anderen Knoten inzident ist.
+
+Die Ungleichungen (\ref{eq:subtour_elimination}) bezeichnen wir als \emph{Subtour-Elimination-Ungleichungen}. Sie verhindern, dass der Hamilton-Kreis in mehrere Kreise zerfällt.
+\end{Bem}
+
+\begin{Bem}
+Zwar sind exponentiell viele Ungleichungen in diesem linearen Optimierungsproblem beteiligt. Dennoch kann dieses in polynomiell beschränkter Zeit gelöst werden, da in polynomiell beschränkter Zeit entschieden werden kann, ob eine der Ungleichungen verletzt ist.
+
+Dazu löst man das sogenannte "`Minimal-Cut-Problem"': Gegeben sei ein beliebiger Graph $G=(V, E)$ mit Kantengewichten c. Wir suchen einen minimalen Schnitt in G, d. h. eine Zerlegung $V=U\cupdot (V\backslash U)$ 
+
+Hierfür sind Algorithmen mit polynomiell beschränkter Laufzeit bekannt.
+\end{Bem}
+\end{document}
