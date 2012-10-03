@@ -1,0 +1,29 @@
+\documentclass[10pt]{scrartcl}
+\usepackage[latin1]{inputenc}
+\usepackage{ngerman}
+\usepackage[babel]{csquotes}
+\author{Wolfgang Keller}
+\title{Lösung zur Aufgabe des Monats März}
+\begin{document}
+\maketitle
+\section{Lösung zur Aufgabe des Monats März}
+Die Gültigkeit der Aussage für n=1, 2 Städte ist offensichtlich, da es für eine Stadt keine anderen zu erreichenden Städte gibt und damit die einzige vorhandene Stadt trivialerweise Zentralstadt ist und für $n=2$ muss gibt es nur den Fall, dass von einer der beiden Städte (o. E. nennen wir diese A) die andere (welche wir o. E. B nennen wollen) erreichbar ist. Somit ist offensichtlich A Zentralstadt.
+
+Nun zum Induktionsschritt.
+
+Gelte die Aussage für m Städte mit $m\geq 2$. Also gibt es eine Stadt Z (Zentralstadt), so dass jede der ersten m (außer Z) Städte von Z entweder direkt oder über höchstens eine Zwischenstadt erreichbar ist.
+
+Die m+1-ste Stadt wollen wir X nennen.
+
+\paragraph{Fall 1:} X ist von Z direkt erreichbar. In diesem Fall ist Z auch Zentralstadt der m+1 Städte und die Aussage gilt damit auch für m+1 Städte.
+
+\paragraph{Fall 2:} X ist von Z nicht direkt erreichbar, aber es gibt eine von Z direkt erreichbare Stadt, von der X direkt erreichbar ist. Auch in diesem Fall ist Z auch Zentralstadt der m+1 Städte und die Aussage gilt damit auch für m+1 Städte.
+
+\paragraph{Fall 3:} X ist von Z nicht direkt erreichbar und es gibt keine von Z direkt erreichbare Stadt, von der die Stadt X direkt erreichbar ist.
+
+Jede von Z direkt erreichbare Stadt A ist demnach auch von X direkt erreichbar (da entweder eine Straße von A nach X oder X nach A existiert. Da nach Fallvoraussetzung keine Straße von A nach X existiert (sonst wäre X von Z über die Zwischenstadt A erreichbar), muss demnach eine Straße von X nach A existieren).
+
+Z muss sowieso von X direkt erreichbar sein, sonst wäre mit dem selben Argument X von Z aus direkt erreichbar, was im Widerspruch zur Voraussetzung des Falls stände. 
+
+Also sind alle von Z direkt erreichbaren Städte (sowie Z) von X direkt erreichbar. Damit sind alle von Z über eine Zwischenstadt erreichbaren Städte auch von X über eine Zwischenstadt erreichbar. Somit ist X Zentralstadt der m+1 Städte und die Aussage gilt demnach auch für m+1 Städte.
+\end{document}

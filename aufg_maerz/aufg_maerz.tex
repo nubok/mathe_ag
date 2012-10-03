@@ -1,0 +1,51 @@
+\documentclass[10pt]{scrartcl}
+\usepackage[latin1]{inputenc}
+\usepackage{ngerman}
+\usepackage{graphicx}
+\newtheorem{Def}{Definition}
+\newtheorem{Bem}[Def]{Bemerkung}
+\newtheorem{Bsp}[Def]{Beispiel}
+\author{Wolfgang Keller}
+\title{Aufgabe des Monats März}
+\begin{document}
+\maketitle
+\section{Hintergrund}
+In einem Land mit $n>0$ Städten gibt es nur Einbahnstraßen. Je zwei (ungleiche) Städte sind durch genau eine Straße verbunden.
+
+\section{Aufgabe}
+Man zeige, dass es eine Stadt (die wir "`Zentralstadt"' nennen wollen) gibt, von der jede andere Stadt entweder direkt oder über höchstens eine Zwischenstadt erreichbar ist.
+
+\begin{Bem}
+Unter "`B ist von A direkt erreichbar"' wollen wir verstehen, dass es eine Einbahnstraße von A nach B gibt und unter "`B ist von A über höchstens eine Zwischenstadt erreichbar"' wollen wir verstehen, dass es eine von A und B unterschiedliche Stadt C gibt, so dass es Einbahnstraßen von A nach C und C nach B gibt.
+\end{Bem}
+
+\begin{Bsp}
+Wir haben n=4 Städte (Magdeburg, Halle, Dresden und Berlin), welche gemäß der Landkarte aus Abbildung \ref{fig:karte} mit Einbahnstraßen verbunden sind.
+
+\begin{figure}[htbp]
+\includegraphics[width=0.5\textwidth]{karte}
+\caption{Das Einbahnstraßennetz aus dem Beispiel (Bildquelle: OpenStreetMap)}
+\label{fig:karte}
+\end{figure}
+
+Dann sind in diesem Beispiel Magdeburg (da Berlin und Halle direkt und Dresden über Halle erreicht werden kann), Halle (da Dresden direkt und Berlin und Magdeburg über Dresden erreichbar sind) und Dresden (da Magdeburg und Berlin direkt und Halle über Magdeburg erreichbar sind) Zentralstädte. Berlin ist keine Zentralstadt, da Magdeburg von Berlin weder direkt, noch über eine Zwischenstadt (sogar gar nicht) erreichbar ist.
+\end{Bsp}
+
+\section{Tipp}
+Man versuche die zu beweisende Aussage mit dem Prinzip der "`vollständigen Induktion"' zu zeigen, das heißt: man zeigt
+\begin{enumerate}
+	\item die zu beweisende Aussage gilt alle Zahlen $\leq k$ an Städten (beispielsweise könnten 1, 2 oder 3 in dieser Aufgabe sinnvolle Werte für k sein): dies bezeichnet man als "`Induktionsanfang"'
+	\item wenn die Aussage für ein $m$ Städte gilt (wobei $m\geq k$, aber ansonsten wissen wir nichts über m), so gilt sie auch für $m+1$: dies bezeichnet man als "`Induktionsschritt"'
+\end{enumerate}
+Durch das Induktionsaxiom der natürlichen Zahlen (nach Peano) wird gesichert, dass mittels dieses Beweisverfahrens die Aussage tatsächlich für alle natürlichen Zahlen n gilt (wenn du dich für weitere Details darüber interessierst, wende dich an deinen AG-Leiter).
+
+Vorstellen kann man sich dieses Beweisverfahren als eine Art unendliche Dominoreihe, siehe dazu Abbildung \ref{fig:domino}.
+
+\begin{figure}[htbp]
+\includegraphics[width=0.7\textwidth]{domino}
+\caption{Veranschaulichung des Prinzips der vollständigen Induktion}
+\label{fig:domino}
+\end{figure}
+
+Der Induktionsanfang sichert, dass die ersten k Dominosteine fallen werden und der Induktionsschritt, dass wenn ein Dominostein gefallen ist, auch der folgende fällt. Somit fallen "`intuitiv"' alle Dominosteine. Mathematisch präzisiert wird diese Aussage durch das oben bereits genannte Induktionsaxiom der natürlichen Zahlen.
+\end{document}

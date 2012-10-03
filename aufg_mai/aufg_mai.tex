@@ -1,0 +1,26 @@
+\documentclass[10pt]{scrartcl}
+\usepackage[latin1]{inputenc}
+\usepackage[ngerman]{babel}
+\author{Wolfgang Keller}
+\title{Große Primzahlen -- Aufgabe des Monats Mai}
+\begin{document}
+\maketitle
+\section{Aufgabe}
+Die Zahl Googol (aus der sich übrigens der Name der Suchmaschine "`Google"' ableitet) ist definiert als $10^{100}$.
+
+Man zeige: es gibt zwei Primzahlen p und q, die sich um mindestens Googol unterscheiden und zwischen denen sich keine weitere Primzahl befindet.
+
+\section{Bonusaufgabe}
+Man schätze die Größenordnungen von p und q ab (im Sinne der Anzahl der Dezimalstellen). Die folgenden Sätze und Ungleichungen könnten hierbei hilfreich sein:
+
+\subsection{Die Stirling-Ungleichung}
+Mit $n!:=n (n-1) \ldots 1$ (wobei $0!:=1$ gilt, wie es allgemein üblich bei der Definition eines leeren Produkts ist) gilt:
+
+\begin{displaymath}
+	\sqrt{2\pi} n^{n+\frac{1}{2}} e^{-n+\frac{1}{12 n+1}} < n!< \sqrt{2\pi} n^{n+\frac{1}{2}} e^{-n+\frac{1}{12 n}}
+\end{displaymath}
+
+\subsection{Satz über Primzahldichte}
+
+Für jede natürliche Zahl n gilt, dass es eine Primzahl p mit $n\leq p\leq 2 n$ gibt.
+\end{document}
