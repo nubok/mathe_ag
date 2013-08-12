@@ -2873,34 +2873,34 @@ Zum Beweis der Vervollständigung metrischer Räume betrachten wir vorher noch e
 \begin{Le}
 \label{le:variante_dreicksungl} (vergleiche auch Lemma \ref{le:variante_dreicksungl_ugl} und Umgebung dort für eine Einordnung in den allgemeineren Kontext von Ungleichungen in metrischen Räumen)
 
-In jedem metrischen Raum $(X, d)$ gilt für $x_1, x_2, y_1, y_2\in M$:
+In jedem metrischen Raum $(M, d)$ gilt für $x_1, x_2, y_1, y_2\in M$:
 \begin{equation}
 	\left|d(x_1, y_1)-d(x_2, y_2)\right|\leq d(x_1, x_2)+d(y_1, y_2).
 \end{equation}
 \end{Le}
 \begin{bew}
-\begin{eqnarray}
-|d(x_1, y_1)-d(x_2, y_2)| & = & \left|(d(x_1, y_1)-d(x_1, y_2))+(d(x_1, y_2)-d(x_2, y_2))\right| \nonumber \\
-& \leq & \left|(d(x_1, y_1)-d(x_1, y_2))\right|+\left|(d(x_1, y_2)-d(x_2, y_2))\right| \label{eq:variante_dreicksungl}
-\end{eqnarray}
-Nun gilt:
-\begin{eqnarray*}
-d(x_1, y_1) & \leq & d(x_1, y_2)+d(y_1, y_2) \\
-d(x_1, y_2) & \leq & d(x_1, y_1)+d(y_1, y_2)
-\end{eqnarray*}
-Umgestellt:
-\begin{eqnarray*}
-d(x_1, y_1)-d(x_1, y_2) & \leq & d(y_1, y_2) \\
-d(x_1, y_2)-d(x_1, y_1) & \leq & d(y_1, y_2),
-\end{eqnarray*}
+\begin{align}
+|d(x_1, y_1)-d(x_2, y_2)| & = \left|(d(x_1, y_1)-d(x_1, y_2))+(d(x_1, y_2)-d(x_2, y_2))\right| \nonumber \\
+& \leq \left|(d(x_1, y_1)-d(x_1, y_2))\right|+\left|(d(x_1, y_2)-d(x_2, y_2))\right| \label{eq:variante_dreicksungl}
+\end{align}
+Nun gilt
+\begin{align*}
+d(x_1, y_1) & \leq d(x_1, y_2)+d(y_1, y_2) \\
+d(x_1, y_2) & \leq d(x_1, y_1)+d(y_1, y_2).
+\end{align*}
+Umgestellt erhält man
+\begin{align*}
+d(x_1, y_1)-d(x_1, y_2) & \leq d(y_1, y_2) \\
+d(x_1, y_2)-d(x_1, y_1) & \leq d(y_1, y_2),
+\end{align*}
 also
-\begin{eqnarray*}
-\left|d(x_1, y_1)-d(x_1, y_2)\right| & \leq & d(y_1, y_2).
-\end{eqnarray*}
+\begin{displaymath}
+\left|d(x_1, y_1)-d(x_1, y_2)\right| \leq d(y_1, y_2).
+\end{displaymath}
 Analog zeigt man
-\begin{eqnarray*}
-\left|(d(x_1, y_2)-d(x_2, y_2))\right| & \leq & d(x_1, x_2).
-\end{eqnarray*}
+\begin{displaymath}
+\left|(d(x_1, y_2)-d(x_2, y_2))\right| \leq d(x_1, x_2).
+\end{displaymath}
 Somit erhalten wir -- dies auf die rechte Seite von (\ref{eq:variante_dreicksungl}) angewandt -- die geforderte Aussage.
 \end{bew}
 
@@ -3724,7 +3724,7 @@ Dann gilt:
 \begin{Le}
 \label{le:variante_dreicksungl_ugl}
 (vergleiche Lemma \ref{le:variante_dreicksungl} -- dort auch Beweis)
-In jedem metrischen Raum $(X, d)$ gilt für $x_1, x_2, y_1, y_2\in M$:
+In jedem metrischen Raum $(M, d)$ gilt für $x_1, x_2, y_1, y_2\in M$:
 \begin{equation}
 	\left|d(x_1, y_1)-d(x_2, y_2)\right|\leq d(x_1, x_2)+d(y_1, y_2).
 \end{equation}
